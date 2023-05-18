@@ -8,6 +8,8 @@ import Lose from "./pages/Lose";
 import Win from "./pages/Win";
 import HighScore from "./pages/HighScore";
 import LandingPage from "./pages/LandingPage";
+import DeckList from "./pages/DeckList";
+import DeckDetails from "./pages/DeckDetails";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/token" element={<ProfileTest />} />
+      <Route path="/decklist" element={<DeckList />} />
+      <Route path="/deckdetails" element={<DeckDetails />} />
       <Route path="/game" element={<Game />} />
       <Route path="/lose" element={<Lose />} />
       <Route path="/win" element={<Win />} />
