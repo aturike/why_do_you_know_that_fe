@@ -9,6 +9,7 @@ import Win from "./pages/Win";
 import HighScore from "./pages/HighScore";
 import LandingPage from "./pages/LandingPage";
 
+
 function App() {
   return (
     <Routes>
