@@ -13,30 +13,7 @@ function FormTest() {
     { text: "", value: 0, img: "" },
   ]);
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   const payload = {
-  //     title,
-  //     question,
-  //     cards,
-  //   };
-  //   try {
-  //     const response = await axios.create(
-  //       "http://localhost:5005/decks",
-  //       payload
-  //     );
-  //     if (response.status === 201) {
-  //       console.log(response.data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  console.log(cards);
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const payload = {
@@ -44,8 +21,28 @@ function FormTest() {
       question,
       cards,
     };
-    console.log(payload);
+    try {
+      const response = await axios.post("http://localhost:5005/decks", payload);
+      if (response.status === 201) {
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  // console.log(cards);
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   const payload = {
+  //     title,
+  //     question,
+  //     cards,
+  //   };
+  //   console.log(payload);
+  // };
 
   return (
     <div>
