@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import FormCardTest from "./FormCardTest";
+import FormCardTest from "../components/FormCardTest";
 
 function FormTest() {
   const [title, setTitle] = useState("");
