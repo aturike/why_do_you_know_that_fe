@@ -1,0 +1,13 @@
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.game-grid div {
+  height: 10rem;
+  border: 1px solid black;
+}
+
+.game-grid > div:last-child {
+  grid-column: span 5;
+}

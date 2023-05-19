@@ -1,5 +1,9 @@
 function Win() {
-  return <div>Win</div>;
+  return (
+    <div>
+      <h1>Win!</h1>
+    </div>
+  );
 }
 
 export default Win;
