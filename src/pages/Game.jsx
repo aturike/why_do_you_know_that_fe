@@ -7,16 +7,24 @@ function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
   const [gameSet, setgameSet] = useState([]);
   const [score, setscore] = useState(0);
+  //to test lives = 100
+  const [lives, setlives] = useState(100);
+
   const navigate = useNavigate();
   useEffect(() => {
     fetchRandomDeck();
   }, []);
 
   useEffect(() => {
+    if (lives === 0) {
+      navigate("/lose");
+    }
+  }, [lives]);
+
+  useEffect(() => {
     if (score === randomDecks.length && score !== 0) {
       navigate("/win");
     } else if (randomDecks.length !== 0) {
-      console.log(score);
       gameCardsSelect(3);
     }
   }, [randomDecks, score]);
@@ -90,7 +98,7 @@ function Game() {
     ) {
       setscore(score + 1);
     } else {
-      console.log("lose");
+      setlives(lives - 1);
     }
   }
 
@@ -98,6 +106,7 @@ function Game() {
     <div>
       {randomDecks[score] ? (
         <div>
+          <h4>Score: {score}</h4>
           <h3>{randomDecks[score].question}</h3>
           <div className="game-grid">
             {gameSet.map((element, index) => {
