@@ -10,6 +10,7 @@ import HighScore from "./pages/HighScore";
 import LandingPage from "./pages/LandingPage";
 import DeckList from "./pages/DeckList";
 import DeckDetails from "./pages/DeckDetails";
+import FormTest from "./pages/FormTest";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Route path="/lose" element={<Lose />} />
       <Route path="/win" element={<Win />} />
       <Route path="/highscore" element={<HighScore />} />
+      <Route path="/createdeck" element={<FormTest />} />
     </Routes>
   );
 }
