@@ -9,7 +9,7 @@ function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
   const [gameSet, setgameSet] = useState({
     cards: [],
-    columns: {},
+    columns: { firstcolumn: { id: "column-1" } },
     columnsOrder: [],
   });
   const [score, setscore] = useState(0);
@@ -52,8 +52,6 @@ function Game() {
     const lowBound = gameSet.cards[diffIndex - 1];
     const highBound = gameSet.cards[diffIndex + 1];
 
-    console.log(targetValue, lowBound, highBound);
-
     if (!lowBound && targetValue.value < highBound.value) {
       setscore(score + 1);
     } else if (
@@ -72,7 +70,41 @@ function Game() {
   }
 
   const handleDropEnd = (result) => {
-    //todo
+    const { destination, source } = result;
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    } else {
+      console.log(result);
+
+      // const diffIndex = destination.index;
+
+      // const [targetValue] = gameSet.cards.slice(-1);
+      // const lowBound = gameSet.cards[diffIndex - 1];
+      // const highBound = gameSet.cards[diffIndex + 1];
+
+      // if (!lowBound && targetValue.value < highBound.value) {
+      //   console.log("");
+      //   setscore(score + 1);
+      // } else if (
+      //   highBound.value === targetValue.value &&
+      //   targetValue.value > lowBound.value
+      // ) {
+      //   setscore(score + 1);
+      // } else if (
+      //   targetValue.value < highBound.value &&
+      //   targetValue.value > lowBound.value
+      // ) {
+      //   setscore(score + 1);
+      // } else {
+      //   setlives(lives - 1);
+      // }
+    }
   };
 
   return (
@@ -82,7 +114,7 @@ function Game() {
           <div>
             <h4>Score: {score}</h4>
             <h3>{randomDecks[score].question}</h3>
-            <Droppable droppableId="column-id">
+            <Droppable droppableId={gameSet.columns.firstcolumn.id}>
               {(provided) => (
                 <div
                   className="game-grid"
@@ -91,51 +123,81 @@ function Game() {
                 >
                   {gameSet.cards.map((element, index) => {
                     if (element.value) {
-                      return (
-                        <Draggable
-                          key={element._id}
-                          draggableId={element._id}
-                          index={index}
-                        >
-                          {(provided) => {
-                            return (
-                              <div
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                              >
-                                <img
-                                  style={{ height: "50px" }}
-                                  src={element.img}
-                                />
-                                <h2>{element.text}</h2>
-                                <h4>{element.value}</h4>
-                              </div>
-                            );
-                          }}
-                        </Draggable>
-                      );
+                      if (index === gameSet.cards.length - 1) {
+                        return (
+                          <Draggable
+                            key={element._id}
+                            draggableId={element._id}
+                            index={index}
+                          >
+                            {(provided) => {
+                              return (
+                                <div
+                                  className="Card"
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                >
+                                  <img
+                                    style={{ height: "50px" }}
+                                    src={element.img}
+                                  />
+                                  <h2>{element.text}</h2>
+                                  <h4>{element.value}</h4>
+                                </div>
+                              );
+                            }}
+                          </Draggable>
+                        );
+                      } else {
+                        return (
+                          <Draggable
+                            key={element._id}
+                            draggableId={element._id}
+                            index={index}
+                          >
+                            {(provided) => {
+                              return (
+                                <div
+                                  className="Card"
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                >
+                                  <img
+                                    style={{ height: "50px" }}
+                                    src={element.img}
+                                  />
+                                  <h2>{element.text}</h2>
+                                  <h4>{element.value}</h4>
+                                </div>
+                              );
+                            }}
+                          </Draggable>
+                        );
+                      }
                     } else {
                       return (
-                        <Draggable
+                        <Droppable
+                          droppableId={"first" + element._id}
                           key={element._id}
-                          draggableId={element._id + "hello"}
                           index={index}
                         >
                           {(provided) => {
                             return (
                               <div
+                                className="Card"
                                 ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
+                                {...provided.droppableProps}
                               >
                                 <button onClick={handleClick} name={index}>
                                   Click here{" "}
                                 </button>
+                                {provided.placeholder}
                               </div>
                             );
                           }}
-                        </Draggable>
+                        </Droppable>
                       );
                     }
                   })}

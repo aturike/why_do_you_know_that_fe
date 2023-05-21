@@ -9,5 +9,10 @@
 }
 
 .game-grid > div:last-child {
-  grid-column: span 5;
+}
+
+.Card {
+  height: 200px;
+  width: 150px;
+  border: 1px solid black;
 }
