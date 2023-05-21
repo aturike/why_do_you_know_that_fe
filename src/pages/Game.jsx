@@ -4,18 +4,16 @@ import { useNavigate } from "react-router-dom";
 import gameCardsSelect from "../Hooks/gamedata";
 import "../Game.css";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import Card from "../components/Card";
 
 function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
-  const [gameSet, setgameSet] = useState({
-    cards: [],
-    columns: { firstcolumn: { id: "column-1" } },
-    columnsOrder: [],
-  });
+  const [gameSet, setgameSet] = useState([]);
   const [score, setscore] = useState(0);
   //to test lives = 100
   const [lives, setlives] = useState(100);
   const navigate = useNavigate();
+  const timeout = 1000;
 
   useEffect(() => {
     fetchRandomDeck();
@@ -31,9 +29,21 @@ function Game() {
     if (score === randomDecks.length && score !== 0) {
       navigate("/win");
     } else if (randomDecks.length !== 0) {
-      setgameSet({ ...gameSet, cards: gameCardsSelect(3, randomDecks, score) });
+      setgameSet(gameCardsSelect(3, randomDecks, score));
     }
   }, [randomDecks, score]);
+
+  const reArrangeGame = (targetIndex) => {
+    const updategameSet = [
+      ...gameSet.slice(0, targetIndex),
+      ...gameSet.slice(-1),
+      ...gameSet.slice(targetIndex, -1),
+    ];
+    setgameSet(updategameSet);
+    setTimeout(() => {
+      setscore(score + 1);
+    }, timeout);
+  };
 
   const fetchRandomDeck = async () => {
     try {
@@ -44,30 +54,6 @@ function Game() {
       console.log(error);
     }
   };
-
-  function handleClick(event) {
-    const diffIndex = parseInt(event.target.name);
-
-    const [targetValue] = gameSet.cards.slice(-1);
-    const lowBound = gameSet.cards[diffIndex - 1];
-    const highBound = gameSet.cards[diffIndex + 1];
-
-    if (!lowBound && targetValue.value < highBound.value) {
-      setscore(score + 1);
-    } else if (
-      highBound.value === targetValue.value &&
-      targetValue.value > lowBound.value
-    ) {
-      setscore(score + 1);
-    } else if (
-      targetValue.value < highBound.value &&
-      targetValue.value > lowBound.value
-    ) {
-      setscore(score + 1);
-    } else {
-      setlives(lives - 1);
-    }
-  }
 
   const handleDropEnd = (result) => {
     const { destination, source } = result;
@@ -82,22 +68,22 @@ function Game() {
     } else {
       const diffIndex = parseInt(destination.droppableId.slice(0, 1));
 
-      const [targetValue] = gameSet.cards.slice(-1);
-      const lowBound = gameSet.cards[diffIndex - 1];
-      const highBound = gameSet.cards[diffIndex + 1];
+      const [targetValue] = gameSet.slice(-1);
+      const lowBound = gameSet[diffIndex - 1];
+      const highBound = gameSet[diffIndex + 1];
 
       if (!lowBound && targetValue.value < highBound.value) {
-        setscore(score + 1);
+        reArrangeGame(diffIndex);
       } else if (
         highBound.value === targetValue.value &&
         targetValue.value > lowBound.value
       ) {
-        setscore(score + 1);
+        reArrangeGame(diffIndex);
       } else if (
         targetValue.value < highBound.value &&
         targetValue.value > lowBound.value
       ) {
-        setscore(score + 1);
+        reArrangeGame(diffIndex);
       } else {
         setlives(lives - 1);
       }
@@ -112,13 +98,13 @@ function Game() {
             <h4>Score: {score}</h4>
             <h3>{randomDecks[score].question}</h3>
             <div className="game-grid">
-              {gameSet.cards.map((element, index) => {
+              {gameSet.map((element, index) => {
                 if (element.value) {
-                  if (index === gameSet.cards.length - 1) {
+                  if (index === gameSet.length - 1) {
                     return (
                       <Droppable
                         key={element._id}
-                        droppableId={gameSet.columns.firstcolumn.id}
+                        droppableId={index + "target-column"}
                       >
                         {(provided) => (
                           <div
@@ -130,7 +116,7 @@ function Game() {
                               draggableId={element._id}
                               index={index}
                             >
-                              {(provided) => {
+                              {(provided, snapshot) => {
                                 return (
                                   <div
                                     className="Card"
@@ -138,12 +124,10 @@ function Game() {
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
                                   >
-                                    <img
-                                      style={{ height: "50px" }}
-                                      src={element.img}
+                                    <Card
+                                      isDragging={snapshot.isDragging}
+                                      element={element}
                                     />
-                                    <h2>{element.text}</h2>
-                                    <h4>{element.value}</h4>
                                   </div>
                                 );
                               }}
@@ -168,18 +152,15 @@ function Game() {
                       droppableId={index + "index" + element._id}
                       key={element._id}
                     >
-                      {(provided) => {
+                      {(provided, snapshot) => {
                         return (
-                          <div
-                            className="Card"
-                            ref={provided.innerRef}
+                          <Card
+                            innerRef={provided.innerRef}
                             {...provided.droppableProps}
+                            isDraggingOver={snapshot.isDraggingOver}
                           >
-                            <button onClick={handleClick} name={index}>
-                              Click here{" "}
-                            </button>
                             {provided.placeholder}
-                          </div>
+                          </Card>
                         );
                       }}
                     </Droppable>
