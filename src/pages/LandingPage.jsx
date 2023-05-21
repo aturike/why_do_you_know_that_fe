@@ -1,4 +1,5 @@
 import axios from "axios";
+import NavBar from "../components/Navbar";
 
 function LandingPage() {
   const fetchdata = async () => {
@@ -8,7 +9,11 @@ function LandingPage() {
 
   fetchdata();
 
-  return <div>Landing Page</div>;
+  return (
+    <div>
+      <NavBar />
+    </div>
+  );
 }
 
 export default LandingPage;

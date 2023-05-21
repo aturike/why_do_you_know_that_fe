@@ -11,6 +11,7 @@ import LandingPage from "./pages/LandingPage";
 import DeckList from "./pages/DeckList";
 import DeckDetails from "./pages/DeckDetails";
 import FormTest from "./pages/FormTest";
+import PrivateRoute from "./components/PrivateRoute";
 
 
 function App() {
@@ -19,7 +20,9 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/token" element={<ProfileTest />} />
+      <Route path="/token" element={<PrivateRoute>
+                                      <ProfileTest />
+                                    </PrivateRoute>} />
       <Route path="/decklist" element={<DeckList />} />
       <Route path="/deckdetails" element={<DeckDetails />} />
       <Route path="/game" element={<Game />} />

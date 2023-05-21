@@ -1,7 +1,13 @@
 
-
 function ProfileTest() {
-  return <div> Gus this only with a token!</div>;
+ 
+
+  return  (
+  
+    <div>
+      <h1>Profile</h1>
+    </div>
+  )
 }
 
 export default ProfileTest;
