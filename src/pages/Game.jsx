@@ -80,30 +80,27 @@ function Game() {
     ) {
       return;
     } else {
-      console.log(result);
+      const diffIndex = parseInt(destination.droppableId.slice(0, 1));
 
-      // const diffIndex = destination.index;
+      const [targetValue] = gameSet.cards.slice(-1);
+      const lowBound = gameSet.cards[diffIndex - 1];
+      const highBound = gameSet.cards[diffIndex + 1];
 
-      // const [targetValue] = gameSet.cards.slice(-1);
-      // const lowBound = gameSet.cards[diffIndex - 1];
-      // const highBound = gameSet.cards[diffIndex + 1];
-
-      // if (!lowBound && targetValue.value < highBound.value) {
-      //   console.log("");
-      //   setscore(score + 1);
-      // } else if (
-      //   highBound.value === targetValue.value &&
-      //   targetValue.value > lowBound.value
-      // ) {
-      //   setscore(score + 1);
-      // } else if (
-      //   targetValue.value < highBound.value &&
-      //   targetValue.value > lowBound.value
-      // ) {
-      //   setscore(score + 1);
-      // } else {
-      //   setlives(lives - 1);
-      // }
+      if (!lowBound && targetValue.value < highBound.value) {
+        setscore(score + 1);
+      } else if (
+        highBound.value === targetValue.value &&
+        targetValue.value > lowBound.value
+      ) {
+        setscore(score + 1);
+      } else if (
+        targetValue.value < highBound.value &&
+        targetValue.value > lowBound.value
+      ) {
+        setscore(score + 1);
+      } else {
+        setlives(lives - 1);
+      }
     }
   };
 
@@ -114,97 +111,82 @@ function Game() {
           <div>
             <h4>Score: {score}</h4>
             <h3>{randomDecks[score].question}</h3>
-            <Droppable droppableId={gameSet.columns.firstcolumn.id}>
-              {(provided) => (
-                <div
-                  className="game-grid"
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  {gameSet.cards.map((element, index) => {
-                    if (element.value) {
-                      if (index === gameSet.cards.length - 1) {
-                        return (
-                          <Draggable
-                            key={element._id}
-                            draggableId={element._id}
-                            index={index}
+            <div className="game-grid">
+              {gameSet.cards.map((element, index) => {
+                if (element.value) {
+                  if (index === gameSet.cards.length - 1) {
+                    return (
+                      <Droppable
+                        key={element._id}
+                        droppableId={gameSet.columns.firstcolumn.id}
+                      >
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
                           >
-                            {(provided) => {
-                              return (
-                                <div
-                                  className="Card"
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                >
-                                  <img
-                                    style={{ height: "50px" }}
-                                    src={element.img}
-                                  />
-                                  <h2>{element.text}</h2>
-                                  <h4>{element.value}</h4>
-                                </div>
-                              );
-                            }}
-                          </Draggable>
-                        );
-                      } else {
+                            <Draggable
+                              key={element._id}
+                              draggableId={element._id}
+                              index={index}
+                            >
+                              {(provided) => {
+                                return (
+                                  <div
+                                    className="Card"
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                  >
+                                    <img
+                                      style={{ height: "50px" }}
+                                      src={element.img}
+                                    />
+                                    <h2>{element.text}</h2>
+                                    <h4>{element.value}</h4>
+                                  </div>
+                                );
+                              }}
+                            </Draggable>
+                            {provided.placeholder}
+                          </div>
+                        )}
+                      </Droppable>
+                    );
+                  } else {
+                    return (
+                      <div className="Card" key={element._id}>
+                        <img style={{ height: "50px" }} src={element.img} />
+                        <h2>{element.text}</h2>
+                        <h4>{element.value}</h4>
+                      </div>
+                    );
+                  }
+                } else {
+                  return (
+                    <Droppable
+                      droppableId={index + "index" + element._id}
+                      key={element._id}
+                    >
+                      {(provided) => {
                         return (
-                          <Draggable
-                            key={element._id}
-                            draggableId={element._id}
-                            index={index}
+                          <div
+                            className="Card"
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
                           >
-                            {(provided) => {
-                              return (
-                                <div
-                                  className="Card"
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                >
-                                  <img
-                                    style={{ height: "50px" }}
-                                    src={element.img}
-                                  />
-                                  <h2>{element.text}</h2>
-                                  <h4>{element.value}</h4>
-                                </div>
-                              );
-                            }}
-                          </Draggable>
+                            <button onClick={handleClick} name={index}>
+                              Click here{" "}
+                            </button>
+                            {provided.placeholder}
+                          </div>
                         );
-                      }
-                    } else {
-                      return (
-                        <Droppable
-                          droppableId={"first" + element._id}
-                          key={element._id}
-                          index={index}
-                        >
-                          {(provided) => {
-                            return (
-                              <div
-                                className="Card"
-                                ref={provided.innerRef}
-                                {...provided.droppableProps}
-                              >
-                                <button onClick={handleClick} name={index}>
-                                  Click here{" "}
-                                </button>
-                                {provided.placeholder}
-                              </div>
-                            );
-                          }}
-                        </Droppable>
-                      );
-                    }
-                  })}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
+                      }}
+                    </Droppable>
+                  );
+                }
+              })}
+            </div>
           </div>
         </DragDropContext>
       ) : (

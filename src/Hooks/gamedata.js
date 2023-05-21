@@ -30,7 +30,7 @@ const gameCardsSelect = (nrDisplayCards, allDecks, score) => {
       const index = i / 2 - 1;
       gameCardsDiv.push(gameCards[index]);
     } else {
-      gameCardsDiv.push({ _id: Math.random() * 1000 });
+      gameCardsDiv.push({ _id: Math.round(Math.random() * 1000) });
     }
   }
 
