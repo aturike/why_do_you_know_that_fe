@@ -3,19 +3,19 @@ import { useContext } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 
 
-function PrivateRoute({children}) {
+function PrivateRoute() {
   
   const {isLoggedin, isLoading} = useContext(SessionContext)
 
   if(!isLoggedin && !isLoading){
-    return <Navigate to='/path' />
+    return <Navigate to='/login' />
   }
 
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
     <>
-      <h1>{children}</h1>
+      <h1>Profile</h1>
     </>
   )
 }
