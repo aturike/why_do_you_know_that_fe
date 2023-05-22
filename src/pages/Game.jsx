@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import gameCardsSelect from "../Hooks/gamedata";
 import "../Game.css";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import Card from "../components/Card";
 
 function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
@@ -9,8 +12,9 @@ function Game() {
   const [score, setscore] = useState(0);
   //to test lives = 100
   const [lives, setlives] = useState(100);
-
   const navigate = useNavigate();
+  const timeout = 1000;
+
   useEffect(() => {
     fetchRandomDeck();
   }, []);
@@ -25,9 +29,22 @@ function Game() {
     if (score === randomDecks.length && score !== 0) {
       navigate("/win");
     } else if (randomDecks.length !== 0) {
-      gameCardsSelect(3);
+      setgameSet(gameCardsSelect(3, randomDecks, score));
     }
   }, [randomDecks, score]);
+
+  const reArrangeGame = (targetIndex) => {
+    const updategameSet = [
+      ...gameSet.slice(0, targetIndex),
+      ...gameSet.slice(-1),
+      ...gameSet.slice(targetIndex, -1),
+    ];
+
+    setgameSet(updategameSet);
+    setTimeout(() => {
+      setscore(score + 1);
+    }, timeout);
+  };
 
   const fetchRandomDeck = async () => {
     try {
@@ -39,97 +56,114 @@ function Game() {
     }
   };
 
-  const gameCardsSelect = (nrDisplayCards) => {
-    const indexArr = [];
-    const gameCardsDiv = [];
-
-    const getRandomCardIndex = () => {
-      const newIndex = Math.floor(Math.random() * randomDecks.length);
-
-      if (indexArr.indexOf(newIndex) !== -1) {
-        getRandomCardIndex();
-      } else {
-        indexArr.push(newIndex);
-      }
-    };
-
-    for (let i = 0; i < nrDisplayCards; i++) {
-      getRandomCardIndex();
+  const handleDropEnd = (result) => {
+    const { destination, source } = result;
+    if (!destination) {
+      return;
     }
-
-    const targetIndex = Math.floor(Math.random() * indexArr.length);
-    const targetCard = randomDecks[score].cards[targetIndex];
-    const gameCards = indexArr
-      .filter((indexElement) => indexElement !== targetIndex)
-      .map((element) => randomDecks[score].cards[element])
-      .sort((a, b) => a.value - b.value);
-
-    gameCards.push(targetCard);
-
-    for (let i = 1; i <= nrDisplayCards * 2; i++) {
-      if (i % 2 === 0) {
-        const index = i / 2 - 1;
-        gameCardsDiv.push(gameCards[index]);
-      } else {
-        gameCardsDiv.push({ _id: Math.random() * 1000 });
-      }
-    }
-
-    setgameSet(gameCardsDiv);
-  };
-
-  function handleClick(event) {
-    const diffIndex = parseInt(event.target.name);
-
-    const [targetValue] = gameSet.slice(-1);
-    const lowBound = gameSet[diffIndex - 1];
-    const highBound = gameSet[diffIndex + 1];
-
-    if (!lowBound && targetValue.value < highBound.value) {
-      setscore(score + 1);
-    } else if (
-      highBound.value === targetValue.value &&
-      targetValue.value > lowBound.value
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
     ) {
-      setscore(score + 1);
-    } else if (
-      targetValue.value < highBound.value &&
-      targetValue.value > lowBound.value
-    ) {
-      setscore(score + 1);
+      return;
     } else {
-      setlives(lives - 1);
+      const diffIndex = parseInt(destination.droppableId.slice(0, 1));
+
+      const [targetValue] = gameSet.slice(-1);
+      const lowBound = gameSet[diffIndex - 1];
+      const highBound = gameSet[diffIndex + 1];
+
+      if (!lowBound && targetValue.value < highBound.value) {
+        reArrangeGame(diffIndex);
+      } else if (
+        highBound.value === targetValue.value &&
+        targetValue.value > lowBound.value
+      ) {
+        reArrangeGame(diffIndex);
+      } else if (
+        targetValue.value < highBound.value &&
+        targetValue.value > lowBound.value
+      ) {
+        reArrangeGame(diffIndex);
+      } else {
+        setlives(lives - 1);
+      }
     }
-  }
+  };
 
   return (
     <div>
       {randomDecks[score] ? (
-        <div>
-          <h4>Score: {score}</h4>
-          <h3>{randomDecks[score].question}</h3>
-          <div className="game-grid">
-            {gameSet.map((element, index) => {
-              if (element.value) {
-                return (
-                  <div key={element._id}>
-                    <img style={{ height: "50px" }} src={element.img} />
-                    <h2>{element.text}</h2>
-                    <h4>{element.value}</h4>
-                  </div>
-                );
-              } else {
-                return (
-                  <div key={element._id}>
-                    <button onClick={handleClick} name={index}>
-                      Click here{" "}
-                    </button>
-                  </div>
-                );
-              }
-            })}
+        <DragDropContext onDragEnd={handleDropEnd}>
+          <div>
+            <h4>Score: {score}</h4>
+            <h3>{randomDecks[score].question}</h3>
+            <div className="game-grid">
+              {gameSet.map((element, index) => {
+                if (element.value) {
+                  if (index === gameSet.length - 1) {
+                    return (
+                      <Droppable
+                        key={element._id}
+                        droppableId={index + "target-column"}
+                      >
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                          >
+                            <Draggable
+                              key={element._id}
+                              draggableId={element._id}
+                              index={index}
+                            >
+                              {(provided, snapshot) => {
+                                return (
+                                  <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                  >
+                                    <Card
+                                      isDragging={snapshot.isDragging}
+                                      element={element}
+                                    />
+                                  </div>
+                                );
+                              }}
+                            </Draggable>
+                            {provided.placeholder}
+                          </div>
+                        )}
+                      </Droppable>
+                    );
+                  } else {
+                    return <Card key={element._id} element={element} />;
+                  }
+                } else {
+                  return (
+                    <Droppable
+                      droppableId={index + "index" + element._id}
+                      key={element._id}
+                    >
+                      {(provided, snapshot) => {
+                        return (
+                          <Card
+                            innerRef={provided.innerRef}
+                            {...provided.droppableProps}
+                            isDraggingOver={snapshot.isDraggingOver}
+                          >
+                            {provided.placeholder}
+                          </Card>
+                        );
+                      }}
+                    </Droppable>
+                  );
+                }
+              })}
+            </div>
           </div>
-        </div>
+        </DragDropContext>
       ) : (
         <div>Loading</div>
       )}

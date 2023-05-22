@@ -9,5 +9,16 @@
 }
 
 .game-grid > div:last-child {
-  grid-column: span 5;
+  grid-column: 3;
+}
+
+.Card {
+  height: 200px;
+  width: 150px;
+  border: 1px solid black;
+  border-radius: 5%;
+}
+
+.Card-drop {
+  border: none;
 }
