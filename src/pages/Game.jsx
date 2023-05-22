@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import gameCardsSelect from "../Hooks/gamedata";
 import "../Game.css";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
@@ -14,6 +14,8 @@ function Game() {
   const [lives, setlives] = useState(100);
   const navigate = useNavigate();
   const timeout = 1000;
+  const showNumberofCards = 3;
+  const { userId } = useParams();
 
   useEffect(() => {
     fetchRandomDeck();
@@ -29,7 +31,13 @@ function Game() {
     if (score === randomDecks.length && score !== 0) {
       navigate("/win");
     } else if (randomDecks.length !== 0) {
-      setgameSet(gameCardsSelect(3, randomDecks, score));
+      if (randomDecks.length < showNumberofCards) {
+        navigate("/");
+      } else {
+        setgameSet(
+          gameCardsSelect(showNumberofCards, randomDecks, score, userId)
+        );
+      }
     }
   }, [randomDecks, score]);
 
@@ -48,9 +56,15 @@ function Game() {
 
   const fetchRandomDeck = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5005/decks/random");
-
-      setrandomDecks(data);
+      if (!userId) {
+        const { data } = await axios.get("http://localhost:5005/decks/random");
+        setrandomDecks(data);
+      } else {
+        const { data } = await axios.get(
+          `http://localhost:5005/decks/random/${userId}`
+        );
+        setrandomDecks(data);
+      }
     } catch (error) {
       console.log(error);
     }
