@@ -15,7 +15,7 @@ function NavBar () {
                     <Link to='/login'>Login</Link>
                 </li>
                 <li>
-                    <Link to='/token'>Profile</Link>
+                    <Link to='/verify'>Profile</Link>
                 </li>
                 <li>
                     <Link to='/decklist'>Decks</Link>
