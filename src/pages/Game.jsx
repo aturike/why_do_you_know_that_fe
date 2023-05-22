@@ -39,6 +39,7 @@ function Game() {
       ...gameSet.slice(-1),
       ...gameSet.slice(targetIndex, -1),
     ];
+
     setgameSet(updategameSet);
     setTimeout(() => {
       setscore(score + 1);
@@ -119,7 +120,6 @@ function Game() {
                               {(provided, snapshot) => {
                                 return (
                                   <div
-                                    className="Card"
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
@@ -138,13 +138,7 @@ function Game() {
                       </Droppable>
                     );
                   } else {
-                    return (
-                      <div className="Card" key={element._id}>
-                        <img style={{ height: "50px" }} src={element.img} />
-                        <h2>{element.text}</h2>
-                        <h4>{element.value}</h4>
-                      </div>
-                    );
+                    return <Card key={element._id} element={element} />;
                   }
                 } else {
                   return (

@@ -8,12 +8,12 @@ function Card({ element, isDragging, isDraggingOver, children, innerRef }) {
     : { height: "100%", backgroundColor: "white" };
 
   const stylesDrop = isDraggingOver
-    ? { height: "100%", backgroundColor: "blue" }
+    ? { height: "100%", backgroundColor: "lightgray" }
     : { height: "100%" };
 
   if (element) {
     return (
-      <div style={stylesDrag}>
+      <div style={stylesDrag} className="Card">
         <img style={{ height: "50px" }} src={element.img} />
         <h2>{element.text}</h2>
         <h4>{element.value}</h4>
@@ -21,7 +21,7 @@ function Card({ element, isDragging, isDraggingOver, children, innerRef }) {
     );
   } else {
     return (
-      <div className="Card" ref={innerRef} style={stylesDrop}>
+      <div className="Card-drop" ref={innerRef} style={stylesDrop}>
         {children}
       </div>
     );
