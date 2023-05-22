@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import SignupPage from "./pages/Signup";
 import LoginPage from "./pages/LoginPage";
-import ProfileTest from "./pages/ProfileTest";
+import Profile from "./pages/Profile";
 import Game from "./pages/Game";
 import Lose from "./pages/Lose";
 import Win from "./pages/Win";
@@ -11,7 +11,8 @@ import LandingPage from "./pages/LandingPage";
 import DeckList from "./pages/DeckList";
 import DeckDetails from "./pages/DeckDetails";
 import FormTest from "./pages/FormTest";
-import PrivateRoute from "./components/PrivateRoute";import UpdateDeckForm from "./pages/UpdateDeckForm";
+import PrivateRoute from "./components/PrivateRoute";
+import UpdateDeckForm from "./pages/UpdateDeckForm";
 
 function App() {
   return (
@@ -23,18 +24,53 @@ function App() {
         path="/verify"
         element={
           <PrivateRoute>
-            <ProfileTest />
+            <Profile />
           </PrivateRoute>
         }
       />
-      <Route path="/decklist" element={<DeckList />} />
-      <Route path="/deckdetails/:deckId" element={<DeckDetails />} />
+      <Route
+        path="/decklist"
+        element={
+          <PrivateRoute>
+            <DeckList />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/deckdetails/:deckId"
+        element={
+          <PrivateRoute>
+            <DeckDetails />
+          </PrivateRoute>
+        }
+      />
       <Route path="/game" element={<Game />} />
       <Route path="/lose" element={<Lose />} />
       <Route path="/win" element={<Win />} />
-      <Route path="/highscore" element={<HighScore />} />
-      <Route path="/createdeck" element={<FormTest />} />
-      <Route path="/updatedeck/:deckId" element={<UpdateDeckForm />} />
+      <Route
+        path="/highscore"
+        element={
+          <PrivateRoute>
+            <HighScore />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/createdeck"
+        element={
+          <PrivateRoute>
+            <FormTest />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/updatedeck/:deckId"
+        element={
+          <PrivateRoute>
+            <UpdateDeckForm />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 }
