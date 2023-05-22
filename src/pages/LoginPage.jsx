@@ -19,7 +19,7 @@ function LoginPage() {
     if (response.status == 200) {
       const tokenFromResponse = await response.json();
       setToken(tokenFromResponse);
-      navigate("/verify");
+      navigate("/profile");
     }
   };
 

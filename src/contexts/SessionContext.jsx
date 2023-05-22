@@ -8,7 +8,8 @@ const SessionContextProvider = ({ children }) => {
   const [token, setToken] = useState();
   const [isLoggedin, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [tokenInfo, setTokenInfo] = useState();
+  
   const navigate = useNavigate();
 
   const verifyToken = async (currentToken) => {
@@ -21,7 +22,7 @@ const SessionContextProvider = ({ children }) => {
       const parsed = await response.json();
       setToken(currentToken);
       setIsLoggedIn(true);
-      console.log(parsed);
+      setTokenInfo(parsed);
     }
     setIsLoading(false);
   };

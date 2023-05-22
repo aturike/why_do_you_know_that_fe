@@ -21,7 +21,7 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route
-        path="/verify"
+        path="/profile"
         element={
           <PrivateRoute>
             <Profile />
@@ -29,7 +29,7 @@ function App() {
         }
       />
       <Route
-        path="/decklist"
+        path="/decklist/:userId"
         element={
           <PrivateRoute>
             <DeckList />
@@ -44,7 +44,7 @@ function App() {
           </PrivateRoute>
         }
       />
-      <Route path="/game" element={<Game />} />
+      <Route path="/game/:userId" element={<Game />} />
       <Route path="/lose" element={<Lose />} />
       <Route path="/win" element={<Win />} />
       <Route
