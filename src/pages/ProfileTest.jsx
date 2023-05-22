@@ -1,7 +1,16 @@
-
+import { SessionContext } from "../contexts/SessionContext";
+import { useContext } from "react";
 
 function ProfileTest() {
-  return <div> Gus this only with a token!</div>;
+ const { logout } = useContext(SessionContext)
+
+  return  (
+  
+    <div>
+      <h1>Profile</h1>
+      <button type="button" onClick = {logout}>Log Out</button>
+    </div>
+  )
 }
 
 export default ProfileTest;

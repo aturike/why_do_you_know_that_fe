@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import NavBar from "../components/Navbar";
 
 function LandingPage() {
   const fetchdata = async () => {
@@ -11,9 +11,7 @@ function LandingPage() {
 
   return (
     <div>
-      <h1>WHY DO YOU KNOW THAT?!</h1>
-      <Link to="/game">PLAY!</Link>
-      <Link>Create you own game!</Link>
+      <NavBar />
     </div>
   );
 }
