@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import FormCardTest from "../components/FormCardTest";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { SessionContext } from "../contexts/SessionContext";
 
 function FormTest() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
+  const [userId, setUserId] = useState("");
   const [cards, setCards] = useState([
     { text: "", value: 0, img: "" },
     { text: "", value: 0, img: "" },
@@ -14,6 +16,11 @@ function FormTest() {
     { text: "", value: 0, img: "" },
     { text: "", value: 0, img: "" },
   ]);
+  const { tokenInfo } = useContext(SessionContext);
+
+  useEffect(() => {
+    setUserId(tokenInfo.payload._id);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,6 +28,7 @@ function FormTest() {
     const payload = {
       title,
       question,
+      userId,
       cards,
     };
 

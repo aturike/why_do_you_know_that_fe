@@ -44,6 +44,7 @@ function App() {
           </PrivateRoute>
         }
       />
+      <Route path="/game" element={<Game />} />
       <Route path="/game/:userId" element={<Game />} />
       <Route path="/lose" element={<Lose />} />
       <Route path="/win" element={<Win />} />

@@ -1,21 +1,18 @@
 import { SessionContext } from "../contexts/SessionContext";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import NavBar from "../components/Navbar";
 function Profile() {
-  const { logout } = useContext(SessionContext);
-  
-  useEffect(() => {
-    const localToken = localStorage.getItem("authToken");
-    if (localToken) {
-      console.log(localToken)
-    }
-  }, []);
-
+  const { logout, tokenInfo } = useContext(SessionContext);
 
   return (
     <div>
       <NavBar />
-      <h1>Profile</h1>
+      {tokenInfo.payload ? (
+        <h1>Hello {tokenInfo.payload.username}</h1>
+      ) : (
+        <h1>Hello</h1>
+      )}
+
       <button type="button" onClick={logout}>
         Log Out
       </button>

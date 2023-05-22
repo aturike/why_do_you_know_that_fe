@@ -20,6 +20,8 @@ function LoginPage() {
       const tokenFromResponse = await response.json();
       setToken(tokenFromResponse);
       navigate("/profile");
+    } else if (response.status == 401) {
+      console.log("no");
     }
   };
 

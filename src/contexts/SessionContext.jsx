@@ -8,8 +8,8 @@ const SessionContextProvider = ({ children }) => {
   const [token, setToken] = useState();
   const [isLoggedin, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [tokenInfo, setTokenInfo] = useState();
-  
+  const [tokenInfo, setTokenInfo] = useState({});
+
   const navigate = useNavigate();
 
   const verifyToken = async (currentToken) => {
@@ -54,7 +54,7 @@ const SessionContextProvider = ({ children }) => {
   return (
     <div>
       <SessionContext.Provider
-        value={{ token, setToken, isLoggedin, isLoading, logout }}
+        value={{ token, setToken, isLoggedin, isLoading, logout, tokenInfo }}
       >
         {children}
       </SessionContext.Provider>
