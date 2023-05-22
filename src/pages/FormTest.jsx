@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import FormCardTest from "../components/FormCardTest";
+import { useNavigate, useParams } from "react-router-dom";
 
 function FormTest() {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [cards, setCards] = useState([
@@ -21,31 +23,19 @@ function FormTest() {
       question,
       cards,
     };
+
     try {
       const response = await axios.post("http://localhost:5005/decks", payload);
       if (response.status === 201) {
-        console.log(response.data);
+        navigate("/decklist");
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  // console.log(cards);
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   const payload = {
-  //     title,
-  //     question,
-  //     cards,
-  //   };
-  //   console.log(payload);
-  // };
-
   return (
-    <div>
+    <div style={{ border: "1px lightgrey solid", padding: "10px" }}>
       <form onSubmit={handleSubmit}>
         <h3>New deck</h3>
         <label>Title: </label>

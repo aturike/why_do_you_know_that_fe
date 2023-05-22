@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function FormCardTest({ cards, setCards, index }) {
+function UpdateCardForm({ thisDeck, cards, setCards, index }) {
   const handleCard = (event) => {
     event.preventDefault();
     const copyArray = [...cards];
@@ -8,16 +8,16 @@ function FormCardTest({ cards, setCards, index }) {
     setCards(copyArray);
   };
 
-  const [img, setImg] = useState("");
-  const [text, setText] = useState("");
-  const [value, setValue] = useState(0);
+  const [img, setImg] = useState(thisDeck.cards[index].img);
+  const [text, setText] = useState(thisDeck.cards[index].text);
+  const [value, setValue] = useState(thisDeck.cards[index].value);
 
   return (
     <form
       onSubmit={handleCard}
       style={{ border: "1px lightgrey solid", padding: "10px" }}
     >
-      <h3>Card 1</h3>
+      <h3>Card {index + 1}</h3>
       <label> Picture: </label>
       <input
         name="img"
@@ -43,9 +43,9 @@ function FormCardTest({ cards, setCards, index }) {
           setValue(e.target.value);
         }}
       ></input>
-      <button type="submit">Create card</button>
+      <button type="submit">Update card</button>
     </form>
   );
 }
 
-export default FormCardTest;
+export default UpdateCardForm;

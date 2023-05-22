@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   const fetchdata = async () => {
@@ -8,7 +9,13 @@ function LandingPage() {
 
   fetchdata();
 
-  return <div>Landing Page</div>;
+  return (
+    <div>
+      <h1>WHY DO YOU KNOW THAT?!</h1>
+      <Link to="/game">PLAY!</Link>
+      <Link>Create you own game!</Link>
+    </div>
+  );
 }
 
 export default LandingPage;
