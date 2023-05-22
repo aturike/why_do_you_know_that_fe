@@ -13,19 +13,20 @@ import DeckDetails from "./pages/DeckDetails";
 import FormTest from "./pages/FormTest";
 import PrivateRoute from "./components/PrivateRoute";
 
-
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/token" element={
-                                    <PrivateRoute>
-                                      <ProfileTest />
-                                    </PrivateRoute>
-                                    }
-                                    />
+      <Route
+        path="/verify"
+        element={
+          <PrivateRoute>
+            <ProfileTest />
+          </PrivateRoute>
+        }
+      />
       <Route path="/decklist" element={<DeckList />} />
       <Route path="/deckdetails" element={<DeckDetails />} />
       <Route path="/game" element={<Game />} />

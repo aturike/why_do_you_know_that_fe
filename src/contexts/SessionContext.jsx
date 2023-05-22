@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const SessionContext = createContext();
 
@@ -8,8 +9,10 @@ const SessionContextProvider = ({ children }) => {
   const [isLoggedin, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  const navigate = useNavigate();
+
   const verifyToken = async (currentToken) => {
-    const response = await fetch("http://localhost:5005/auth/auth/verify", {
+    const response = await fetch("http://localhost:5005/auth/verify", {
       headers: {
         Authorization: `Bearer ${currentToken}`,
       },
@@ -34,6 +37,7 @@ const SessionContextProvider = ({ children }) => {
     if (token) {
       localStorage.setItem("authToken", token);
       setIsLoading(false);
+      setIsLoggedIn(true);
     } else {
       localStorage.removeItem("authToken");
     }
@@ -43,6 +47,7 @@ const SessionContextProvider = ({ children }) => {
     setToken();
     localStorage.removeItem("authToken");
     setIsLoggedIn(false);
+    navigate("/");
   };
 
   return (
