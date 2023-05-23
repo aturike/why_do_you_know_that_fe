@@ -4,7 +4,7 @@ function NavBar() {
   return (
     <div className="navBar">
       <div className="logo">
-        <Link to="/">Why Do You Know that?</Link>
+        <Link to="/"><span>Why</span> Do You Know that?</Link>
       </div>
       <ul>
         <li>
