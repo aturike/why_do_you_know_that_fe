@@ -1,16 +1,36 @@
 import { useEffect, useState } from "react";
 
-function UpdateCardForm({ thisDeck, cards, setCards, index }) {
+function UpdateCardForm({
+  setThisDeck,
+  thisDeck,
+  setCards,
+  index,
+  setCardFields,
+}) {
+  const [img, setImage] = useState(thisDeck.cards[index].img);
+  const [text, setText] = useState(thisDeck.cards[index].text);
+  const [value, setValue] = useState(thisDeck.cards[index].value);
+
   const handleCard = (event) => {
     event.preventDefault();
-    const copyArray = [...cards];
-    copyArray[index] = { text, value, img };
+    const copyArray = [...thisDeck.cards];
+    const copyObject = copyArray[index];
+    const updatedObject = {
+      ...copyObject,
+      [event.target.name]: event.target.value,
+    };
+    copyArray[index] = updatedObject;
+    setThisDeck({ ...thisDeck, cards: copyArray });
     setCards(copyArray);
   };
 
-  const [img, setImg] = useState(thisDeck.cards[index].img);
-  const [text, setText] = useState(thisDeck.cards[index].text);
-  const [value, setValue] = useState(thisDeck.cards[index].value);
+  useEffect(() => {
+    if (img.length > 0 && text.length > 0 && value > 0) {
+      setCardFields(true);
+    } else {
+      setCardFields(false);
+    }
+  }, [img, text, value]);
 
   return (
     <form
@@ -23,7 +43,8 @@ function UpdateCardForm({ thisDeck, cards, setCards, index }) {
         name="img"
         value={img}
         onChange={(e) => {
-          setImg(e.target.value);
+          handleCard(e);
+          setImage(e.target.value);
         }}
       ></input>
       <label> Text: </label>
@@ -31,6 +52,7 @@ function UpdateCardForm({ thisDeck, cards, setCards, index }) {
         name="text"
         value={text}
         onChange={(e) => {
+          handleCard(e);
           setText(e.target.value);
         }}
       ></input>
@@ -40,10 +62,10 @@ function UpdateCardForm({ thisDeck, cards, setCards, index }) {
         name="value"
         value={value}
         onChange={(e) => {
+          handleCard(e);
           setValue(e.target.value);
         }}
       ></input>
-      <button type="submit">Update card</button>
     </form>
   );
 }

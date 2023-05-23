@@ -19,6 +19,9 @@ function UpdateDeckForm() {
     { text: "", value: 0, img: "" },
   ]);
 
+  const [formFields, setFormFields] = useState(false);
+  const [cardFields, setCardFields] = useState(false);
+
   const fetchOneDeck = async () => {
     try {
       const response = await axios.get(`http://localhost:5005/decks/${deckId}`);
@@ -62,6 +65,14 @@ function UpdateDeckForm() {
     }
   }, [thisDeck]);
 
+  useEffect(() => {
+    if (title.length > 0 && question.length > 0 && cardFields) {
+      setFormFields(true);
+    } else {
+      setFormFields(false);
+    }
+  }, [title, question, cardFields]);
+
   return thisDeck ? (
     <div style={{ border: "1px lightgrey solid", padding: "10px" }}>
       <form onSubmit={handleSubmit}>
@@ -82,38 +93,53 @@ function UpdateDeckForm() {
             setQuestion(e.target.value);
           }}
         ></input>
-        <button type="submit">Update deck</button>
+        {formFields ? (
+          <button type="submit">Update deck</button>
+        ) : (
+          <h2>fill all fields please</h2>
+        )}
+        <Link to={`/deckdetails/${deckId}`}>Go back!</Link>
       </form>
 
       <UpdateCardForm
         thisDeck={thisDeck}
+        setThisDeck={setThisDeck}
         index={0}
         cards={cards}
         setCards={setCards}
+        setCardFields={setCardFields}
       />
       <UpdateCardForm
         thisDeck={thisDeck}
+        setThisDeck={setThisDeck}
         index={1}
         cards={cards}
         setCards={setCards}
+        setCardFields={setCardFields}
       />
       <UpdateCardForm
         thisDeck={thisDeck}
+        setThisDeck={setThisDeck}
         index={2}
         cards={cards}
         setCards={setCards}
+        setCardFields={setCardFields}
       />
       <UpdateCardForm
         thisDeck={thisDeck}
+        setThisDeck={setThisDeck}
         index={3}
         cards={cards}
         setCards={setCards}
+        setCardFields={setCardFields}
       />
       <UpdateCardForm
         thisDeck={thisDeck}
+        setThisDeck={setThisDeck}
         index={4}
         cards={cards}
         setCards={setCards}
+        setCardFields={setCardFields}
       />
     </div>
   ) : (
