@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
-function FormCardTest({ cards, setCards, index, setCardFields }) {
+function FormCardTest({
+  cards,
+  setCards,
+  index,
+  setCardFields,
+  setValueFields,
+}) {
   //  TRY WITH STATES
   const [img, setImage] = useState(cards[index].img);
   const [text, setText] = useState(cards[index].text);

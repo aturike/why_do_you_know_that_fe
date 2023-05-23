@@ -18,6 +18,12 @@ function FormTest() {
   ]);
   const [formFields, setFormFields] = useState(false);
   const [cardFields, setCardFields] = useState(false);
+  const [valueFields, setValueFields] = useState(false);
+
+  useEffect(() => {
+    const mapedArray = cards.map((card) => card.value);
+    setValueFields(new Set(mapedArray).size === mapedArray.length);
+  }, [cards]);
 
   useEffect(() => {
     if (title.length > 0 && question.length > 0 && cardFields) {
@@ -74,7 +80,11 @@ function FormTest() {
           }}
         ></input>
         {formFields ? (
-          <button type="submit">Create deck</button>
+          valueFields ? (
+            <button type="submit">Create deck</button>
+          ) : (
+            <h2>Values must be different</h2>
+          )
         ) : (
           <h2>fill all fields please</h2>
         )}
@@ -85,30 +95,35 @@ function FormTest() {
         cards={cards}
         setCards={setCards}
         setCardFields={setCardFields}
+        setValueFields={setValueFields}
       />
       <FormCardTest
         index={1}
         cards={cards}
         setCards={setCards}
         setCardFields={setCardFields}
+        setValueFields={setValueFields}
       />
       <FormCardTest
         index={2}
         cards={cards}
         setCards={setCards}
         setCardFields={setCardFields}
+        setValueFields={setValueFields}
       />
       <FormCardTest
         index={3}
         cards={cards}
         setCards={setCards}
         setCardFields={setCardFields}
+        setValueFields={setValueFields}
       />
       <FormCardTest
         index={4}
         cards={cards}
         setCards={setCards}
         setCardFields={setCardFields}
+        setValueFields={setValueFields}
       />
     </div>
   );

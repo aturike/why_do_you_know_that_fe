@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 
-function UpdateCardForm({
-  setThisDeck,
-  thisDeck,
-  setCards,
-  index,
-  setCardFields,
-}) {
+function UpdateCardForm({ setThisDeck, thisDeck, index, setCardFields }) {
   const [img, setImage] = useState(thisDeck.cards[index].img);
   const [text, setText] = useState(thisDeck.cards[index].text);
   const [value, setValue] = useState(thisDeck.cards[index].value);
@@ -21,7 +15,7 @@ function UpdateCardForm({
     };
     copyArray[index] = updatedObject;
     setThisDeck({ ...thisDeck, cards: copyArray });
-    setCards(copyArray);
+    // setCards(copyArray);
   };
 
   useEffect(() => {
