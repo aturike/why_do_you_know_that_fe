@@ -26,7 +26,7 @@ function LoginPage() {
   };
 
   return (
-    <div>
+    <div className="login-form">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -47,7 +47,7 @@ function LoginPage() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-        <button type="submit">Login</button>
+        <button className="submit-btn" type="submit">Login</button>
       </form>
     </div>
   );

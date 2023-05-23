@@ -1,21 +1,158 @@
+/*----COLORS
+black: #000000
+Electric indigo: #5800FF
+Tiffany Blue: #98DFD6
+Mikado Yellow: #FFC600
+Anti-flash white: #F0F0F0
+
+----*/
+@import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
+
 #root {
-  max-width: 1280px;
+  width: 100vw;
+  height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
+  box-sizing: border-box;
+  background: linear-gradient(200deg, #000000, #5800ff, #ffc600);
+}
+
+.navBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.logo {
+  margin-left: 40px;
+  font-family: "Titan One", cursive;
+  font-size: 3rem;
+  font-weight: 600;
+  text-shadow: #f0f0f0 0 0 10px;
+  transition: transform 0.6s;
+}
+
+.logo:hover {
+  transform: scale(0.85);
+}
+
+.logo span {
+  color: #f0f0f0;
+  font-weight: 900;
+  text-shadow: #000000 0 0 10px;
+}
+
+.navBar ul {
+  list-style: none;
+  font-family: "Titan One", cursive;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-right: 50px;
+  font-size: 1.5rem;
+  color: #f0f0f0;
+  text-shadow: #ffc600 5px 5px 5px;
+  transition: transform 1s;
+}
+
+.navBar li:hover {
+  transform: scale(1.2);
+  text-shadow: #f0f0f0 5px 5px 5px;
+  color: #ffc600;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 100px;
+  width: 100%;
+}
+
+.preview-container p {
+  font-size: 2rem;
   text-align: center;
 }
 
-* {
-  box-sizing: border-box;
+.card-preview {
+  height: 200px;
+  width: 150px;
+  background: linear-gradient(270deg, #98dfd6, #f0f0f0);
+  border-radius: 5px;
+  box-shadow: #ffc600 0 10px 20px;
+  transition: transform 0.6s;
 }
-html,
-body {
-  min-height: 100%;
+.card-preview:hover {
+  transform: scale(1.2);
+  box-shadow: #ffc600 0 10px 50px;
 }
 
-body,
-ul,
-ol,
-dl {
-  margin: 0;
+.hidden-card {
+  opacity: 1;
+  text-align: center;
+  font-family: "Titan One", cursive;
+  color: #f0f0f0;
+  transition: transform 0.6s;
+}
+
+.hidden-card:hover {
+  opacity: 1;
+  height: 200px;
+  width: 150px;
+  background: linear-gradient(270deg, #98dfd6, #f0f0f0);
+  border-radius: 5px;
+  transform: scale(1.2);
+  box-shadow: #ffc600 0 10px 50px;
+}
+
+.two {
+  position: absolute;
+  top: 50%;
+}
+
+.submit-btn {
+  padding: 15px;
+  border: none;
+  background-color: #98dfd6;
+  border-radius: 40px;
+  color: #000000;
+  font-weight: 800;
+  font-size: 1.2rem;
+  transition: transform 0.8s;
+  cursor: pointer;
+  width: 100%;
+}
+.submit-btn:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  color: #5800ff;
+  transform: scale(0.9);
+}
+
+.login-form {
+  font-family: "Titan One", cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #f0f0f0;
+  font-size: 2rem;
+}
+
+input {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  color: #000000;
+  margin-left: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 }
