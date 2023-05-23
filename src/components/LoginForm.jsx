@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 
 function LoginForm(props) {
   const navigate = useNavigate();
-  const { setToken, verifyToken } = useContext(SessionContext);
+  const { setToken } = useContext(SessionContext);
 
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -19,10 +19,8 @@ function LoginForm(props) {
     if (response.status == 200) {
       const tokenFromResponse = await response.json();
       setToken(tokenFromResponse);
-      if (props.setuserName) {
-        props.setuserName(username);
-      } else {
-        navigate("/profile");
+      if (!props.gameUserName) {
+        navigate("/");
       }
     } else if (response.status == 401) {
       console.log("no");

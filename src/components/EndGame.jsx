@@ -11,16 +11,18 @@ function EndGame({ score, lives, gameId }) {
   const { tokenInfo } = useContext(SessionContext);
   const [loginShow, setLoginShow] = useBoolean();
   const [signupShow, setsignupShow] = useBoolean();
+  const [isSignedup, setisSignedup] = useState(false);
 
   useEffect(() => {
     if (tokenInfo && tokenInfo.payload) {
       setuserName(tokenInfo.payload.username);
     }
-  }, []);
+    console.log("test");
+  }, [tokenInfo]);
 
   useEffect(() => {
     createHighscore();
-  }, []);
+  }, [tokenInfo]);
 
   const createHighscore = async () => {
     if (tokenInfo && tokenInfo.payload) {
@@ -62,6 +64,7 @@ function EndGame({ score, lives, gameId }) {
           Unregistered highscore: {score} on {creatorName}`s game
         </h2>
         <h2>Do you want to register your score? Please login or Sign up</h2>
+        {isSignedup && <h2>Sign up complete, please log in</h2>}
         <button
           onClick={() => {
             setLoginShow.toggle();
@@ -74,16 +77,24 @@ function EndGame({ score, lives, gameId }) {
         </button>
         <button
           onClick={() => {
-            setsignupShow.toggle();
-            if (loginShow) {
-              setLoginShow.toggle();
+            if (!isSignedup) {
+              setsignupShow.toggle();
+              if (loginShow) {
+                setLoginShow.toggle();
+              }
             }
           }}
         >
           Sign up
         </button>
-        {loginShow && <LoginForm setuserName={setuserName} />}
-        {signupShow && <SignUpForm setuserName={setuserName} />}
+        {loginShow && <LoginForm gameUserName={setuserName} />}
+        {signupShow && (
+          <SignUpForm
+            setsignupShow={setsignupShow}
+            setLoginShow={setLoginShow}
+            setisSignedup={setisSignedup}
+          />
+        )}
       </div>
     );
   }

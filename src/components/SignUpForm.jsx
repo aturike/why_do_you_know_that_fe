@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function SignUpForm() {
+function SignUpForm(props) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +15,13 @@ function SignUpForm() {
       body: JSON.stringify({ email, username, password }),
     });
     if (response.status === 201) {
-      navigate("/login");
+      if (props.setsignupShow) {
+        props.setsignupShow.toggle();
+        props.setLoginShow.toggle();
+        props.setisSignedup(true);
+      } else {
+        navigate("/login");
+      }
     }
   };
 
