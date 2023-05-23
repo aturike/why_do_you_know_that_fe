@@ -3,7 +3,7 @@ const gameCardsSelect = (nrDisplayCards, allDecks, score) => {
   const gameCardsDiv = [];
 
   const getRandomCardIndex = () => {
-    const newIndex = Math.floor(Math.random() * (allDecks.length - 1));
+    const newIndex = Math.floor(Math.random() * allDecks[score].cards.length);
 
     if (indexArr.indexOf(newIndex) !== -1) {
       getRandomCardIndex();

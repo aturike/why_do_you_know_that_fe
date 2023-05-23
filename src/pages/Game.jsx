@@ -5,6 +5,7 @@ import gameCardsSelect from "../Hooks/gamedata";
 import "../Game.css";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Card from "../components/Card";
+import EndGame from "../components/EndGame";
 
 function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
@@ -22,16 +23,10 @@ function Game() {
   }, []);
 
   useEffect(() => {
-    if (lives === 0) {
-      navigate("/lose");
-    }
-  }, [lives]);
-
-  useEffect(() => {
-    if (score === randomDecks.length && score !== 0) {
-      navigate("/win");
+    if ((score === randomDecks.length && score !== 0) || lives === 0) {
+      setgameSet([]);
     } else if (randomDecks.length !== 0) {
-      if (randomDecks.length < showNumberofCards) {
+      if (randomDecks[score].cards.length < showNumberofCards) {
         navigate("/");
       } else {
         setgameSet(
@@ -105,9 +100,9 @@ function Game() {
     }
   };
 
-  return (
-    <div>
-      {randomDecks[score] ? (
+  if (randomDecks[score] && score < randomDecks.length && lives > 0) {
+    return (
+      <div>
         <DragDropContext onDragEnd={handleDropEnd}>
           <div>
             <h4>Score: {score}</h4>
@@ -178,11 +173,13 @@ function Game() {
             </div>
           </div>
         </DragDropContext>
-      ) : (
-        <div>Loading</div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  } else if (score === randomDecks.length && score !== 0) {
+    return <EndGame score={score} lives={lives} gameId={userId} />;
+  } else if (lives === 0) {
+    return <EndGame score={score} lives={lives} gameId={userId} />;
+  }
 }
 
 export default Game;
