@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { SessionContext } from "../contexts/SessionContext";
 
 import "../Deck.css";
 
@@ -9,6 +10,8 @@ function DeckDetails() {
   const navigate = useNavigate();
   const { deckId } = useParams();
   const [thisDeck, setThisDeck] = useState();
+
+  const [userId, setUserId] = useState("");
 
   const fetchOneDeck = async () => {
     try {
@@ -39,9 +42,14 @@ function DeckDetails() {
     fetchOneDeck();
   }, []);
 
+  const { tokenInfo } = useContext(SessionContext);
+  useEffect(() => {
+    setUserId(tokenInfo.payload._id);
+  }, []);
+
   return thisDeck ? (
     <div>
-      <Link to="/decklist">Back to the list</Link>
+      <Link to={`/decklist/${userId}`}>Back to the list</Link>
       <div className="cardDiv">
         <h1>Title: {thisDeck.title}</h1>
         <h2>Question: {thisDeck.question}</h2>

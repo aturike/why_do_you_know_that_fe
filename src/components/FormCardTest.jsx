@@ -1,29 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function FormCardTest({ cards, setCards, index }) {
+function FormCardTest({ cards, setCards, index, setCardFields }) {
+  //  TRY WITH STATES
+  const [img, setImage] = useState(cards[index].img);
+  const [text, setText] = useState(cards[index].text);
+  const [value, setValue] = useState(cards[index].value);
+
   const handleCard = (event) => {
     event.preventDefault();
     const copyArray = [...cards];
-    copyArray[index] = { text, value, img };
+    const copyObject = copyArray[index];
+    const updatedObject = {
+      ...copyObject,
+      [event.target.name]: event.target.value,
+    };
+    copyArray[index] = updatedObject;
     setCards(copyArray);
   };
 
-  const [img, setImg] = useState("");
-  const [text, setText] = useState("");
-  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (img.length > 0 && text.length > 0 && value > 0) {
+      setCardFields(true);
+    } else {
+      setCardFields(false);
+    }
+  }, [img, text, value]);
 
   return (
-    <form
-      onSubmit={handleCard}
-      style={{ border: "1px lightgrey solid", padding: "10px" }}
-    >
-      <h3>Card 1</h3>
+    <form style={{ border: "1px lightgrey solid", padding: "10px" }}>
+      <h3>Card {index + 1}</h3>
       <label> Picture: </label>
       <input
         name="img"
         value={img}
         onChange={(e) => {
-          setImg(e.target.value);
+          handleCard(e);
+          setImage(e.target.value);
         }}
       ></input>
       <label> Text: </label>
@@ -31,6 +43,7 @@ function FormCardTest({ cards, setCards, index }) {
         name="text"
         value={text}
         onChange={(e) => {
+          handleCard(e);
           setText(e.target.value);
         }}
       ></input>
@@ -40,10 +53,10 @@ function FormCardTest({ cards, setCards, index }) {
         name="value"
         value={value}
         onChange={(e) => {
+          handleCard(e);
           setValue(e.target.value);
         }}
       ></input>
-      <button type="submit">Create card</button>
     </form>
   );
 }

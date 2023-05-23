@@ -16,6 +16,17 @@ function FormTest() {
     { text: "", value: 0, img: "" },
     { text: "", value: 0, img: "" },
   ]);
+  const [formFields, setFormFields] = useState(false);
+  const [cardFields, setCardFields] = useState(false);
+
+  useEffect(() => {
+    if (title.length > 0 && question.length > 0 && cardFields) {
+      setFormFields(true);
+    } else {
+      setFormFields(false);
+    }
+  }, [title, question, cardFields]);
+
   const { tokenInfo } = useContext(SessionContext);
 
   useEffect(() => {
@@ -62,14 +73,43 @@ function FormTest() {
             setQuestion(e.target.value);
           }}
         ></input>
-        <button type="submit">Create deck</button>
+        {formFields ? (
+          <button type="submit">Create deck</button>
+        ) : (
+          <h2>fill all fields please</h2>
+        )}
       </form>
 
-      <FormCardTest index={0} cards={cards} setCards={setCards} />
-      <FormCardTest index={1} cards={cards} setCards={setCards} />
-      <FormCardTest index={2} cards={cards} setCards={setCards} />
-      <FormCardTest index={3} cards={cards} setCards={setCards} />
-      <FormCardTest index={4} cards={cards} setCards={setCards} />
+      <FormCardTest
+        index={0}
+        cards={cards}
+        setCards={setCards}
+        setCardFields={setCardFields}
+      />
+      <FormCardTest
+        index={1}
+        cards={cards}
+        setCards={setCards}
+        setCardFields={setCardFields}
+      />
+      <FormCardTest
+        index={2}
+        cards={cards}
+        setCards={setCards}
+        setCardFields={setCardFields}
+      />
+      <FormCardTest
+        index={3}
+        cards={cards}
+        setCards={setCards}
+        setCardFields={setCardFields}
+      />
+      <FormCardTest
+        index={4}
+        cards={cards}
+        setCards={setCards}
+        setCardFields={setCardFields}
+      />
     </div>
   );
 }
