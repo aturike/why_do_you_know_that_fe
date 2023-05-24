@@ -10,6 +10,7 @@ import EndGame from "../components/EndGame";
 function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
   const [gameSet, setgameSet] = useState([]);
+  const [creatorName, setcreatorName] = useState("main");
   const [score, setscore] = useState(0);
   //to test lives = 100
   const [lives, setlives] = useState(100);
@@ -20,6 +21,7 @@ function Game() {
 
   useEffect(() => {
     fetchRandomDeck();
+    fetchCreatorName();
   }, []);
 
   useEffect(() => {
@@ -36,11 +38,25 @@ function Game() {
     }
   }, [randomDecks, score]);
 
+  const fetchCreatorName = async () => {
+    if (userId) {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5005/auth/user/${userId}`
+        );
+        setcreatorName(data.username);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   const reArrangeGame = (targetIndex) => {
     const updategameSet = [
       ...gameSet.slice(0, targetIndex),
       ...gameSet.slice(-1),
-      ...gameSet.slice(targetIndex, -1),
+      ...gameSet.slice(targetIndex + 1, -1),
+      ...gameSet.slice(targetIndex, targetIndex + 1),
     ];
 
     setgameSet(updategameSet);
@@ -52,7 +68,9 @@ function Game() {
   const fetchRandomDeck = async () => {
     try {
       if (!userId) {
-        const { data } = await axios.get("http://localhost:5005/decks/random");
+        const { data } = await axios.get(
+          "http://localhost:5005/decks/random/admin"
+        );
         setrandomDecks(data);
       } else {
         const { data } = await axios.get(
@@ -176,9 +194,23 @@ function Game() {
       </div>
     );
   } else if (score === randomDecks.length && score !== 0) {
-    return <EndGame score={score} lives={lives} gameId={userId} />;
+    return (
+      <EndGame
+        score={score}
+        lives={lives}
+        gameId={userId}
+        gameUserName={creatorName}
+      />
+    );
   } else if (lives === 0) {
-    return <EndGame score={score} lives={lives} gameId={userId} />;
+    return (
+      <EndGame
+        score={score}
+        lives={lives}
+        gameId={userId}
+        gameUserName={creatorName}
+      />
+    );
   }
 }
 

@@ -27,12 +27,13 @@ const SessionContextProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const localToken = localStorage.getItem("authToken");
+
   useEffect(() => {
-    const localToken = localStorage.getItem("authToken");
     if (localToken) {
       verifyToken(localToken);
     }
-  }, []);
+  }, [localToken]);
 
   useEffect(() => {
     if (token) {
@@ -62,7 +63,6 @@ const SessionContextProvider = ({ children }) => {
           isLoading,
           logout,
           tokenInfo,
-          verifyToken,
         }}
       >
         {children}
