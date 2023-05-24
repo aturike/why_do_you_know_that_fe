@@ -24,9 +24,6 @@ function FormTest() {
     const newArray = array.filter(
       (item, index) => array.indexOf(item) !== index
     );
-    console.log(array);
-    console.log(newArray);
-    console.log(newArray.length === 0);
     return newArray.length === 0;
   };
 
