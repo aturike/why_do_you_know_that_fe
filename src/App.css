@@ -13,7 +13,10 @@ Anti-flash white: #F0F0F0
   height: 100vh;
   margin: 0 auto;
   box-sizing: border-box;
-  background: linear-gradient(#5800ff,#f0f0f0 );
+  background-image: url("./assets/layered-waves-haikei.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*background: linear-gradient(#5800ff, #f0f0f0);*/
 }
 
 .navBar {
@@ -25,35 +28,26 @@ Anti-flash white: #F0F0F0
   width: 100vw;
   height: 200px;
   margin-bottom: 20px;
-  
 }
 
-.space-top {
-  height: 30px;
-}
-
-.wavy{
-  background: 
-    linear-gradient(
-      200deg,
-      #ffc600, 
-      #98dfd6,
-      #ffc600
-      );
-      --mask:
-      radial-gradient(34.99px at 50% 48.00px,#000 99%,#0000 101%) calc(50% - 60px) 0/120px 51% repeat-x,
-      radial-gradient(34.99px at 50% -18px,#0000 99%,#000 101%) 50% 30px/120px calc(51% - 30px) repeat-x,
-      radial-gradient(34.99px at 50% calc(100% - 48.00px),#000 99%,#0000 101%) calc(50% - 60px) 100%/120px 51% repeat-x,
-      radial-gradient(34.99px at 50% calc(100% + 18.00px),#0000 99%,#000 101%) 50% calc(100% - 30px)/120px calc(51% - 30px) repeat-x;
-    -webkit-mask: var(--mask);
-            mask: var(--mask);
-}
+/*.wavy {
+  background: linear-gradient(200deg, #ffc600, #98dfd6, #ffc600);
+  --mask: radial-gradient(34.99px at 50% 48px, #000 99%, #0000 101%)
+      calc(50% - 60px) 0/120px 51% repeat-x,
+    radial-gradient(34.99px at 50% -18px, #0000 99%, #000 101%) 50% 30px/120px
+      calc(51% - 30px) repeat-x,
+    radial-gradient(34.99px at 50% calc(100% - 48px), #000 99%, #0000 101%)
+      calc(50% - 60px) 100%/120px 51% repeat-x,
+    radial-gradient(34.99px at 50% calc(100% + 18px), #0000 99%, #000 101%) 50%
+      calc(100% - 30px) / 120px calc(51% - 30px) repeat-x;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}*/
 
 .logo {
   font-family: "Titan One", cursive;
   font-size: 2rem;
   font-weight: 600;
-  text-shadow: #f0f0f0 0 0 10px;
   transition: transform 0.6s;
   margin-left: 30px;
 }
@@ -75,9 +69,8 @@ Anti-flash white: #F0F0F0
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  font-size: 1.1rem;
-  color: #5800ff;
-  text-shadow: #f0f0f0 5px 5px 5px;
+  font-size: 1.5rem;
+  color: #f0f0f0;
   transition: transform 1s;
   gap: 30px;
   margin-right: 30px;
@@ -99,61 +92,57 @@ Anti-flash white: #F0F0F0
   padding: 30px;
 }
 
-.preview-container p {
-  font-size: 2rem;
-  text-align: center;
-}
-
 .card-preview {
   height: 200px;
   width: 150px;
-  background: linear-gradient(270deg, #98dfd6, #f0f0f0);
+  background: #5800ff80;
   border-radius: 5px;
-  box-shadow: #ffc600 0 10px 20px;
+  box-shadow: #f0f0f0 0 10px 20px;
   transition: transform 0.6s;
 }
- .two:hover {
+.two:hover {
   transform: scale(1.2);
-  box-shadow: #ffc600 0 10px 50px;
+  box-shadow: #f0f0f0 0 10px 50px;
 }
-
-
 
 .landing-page-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 50px;
 }
 
-.landing-page-section p{
-  font-family:"Titan One", cursive;
+.directions p {
+  font-family: "Titan One", cursive;
   text-align: center;
-  font-size: 2rem;
-  padding: 40px;
+  font-size: 1.5rem;
+  padding-top: 60px;
   color: #f0f0f0;
+  width: 60%;
 }
 
-.directions{
-  padding: 20px;
+.directions {
+  padding-top: 60px;
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .btn {
   padding: 15px;
   border: none;
-  background-color: #98dfd6;
+  background-color: #5800ff;
   border-radius: 20px;
-  color: #000000;
-  font-weight: 800;
+  color: #f0f0f0;
+  font-weight: 400;
   font-size: 1.2rem;
   transition: transform 0.8s;
   cursor: pointer;
   width: 20%;
   height: 20%;
   text-align: center;
-  
- 
+  font-family: "Titan One", cursive;
 }
 .btn:hover {
   cursor: pointer;
@@ -162,8 +151,73 @@ Anti-flash white: #F0F0F0
   transform: scale(0.9);
   width: 20%;
   height: 20%;
+  font-family: "Titan One", cursive;
 }
 
+.team {
+  padding: 40px;
+  margin-top: 50px;
+  text-align: center;
+  color: #f0f0f0;
+  font-family: "Titan One", cursive;
+  line-height: 2rem;
+}
 
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 1000px;
+}
 
+.signup-form h1 {
+  color: #f0f0f0;
+  font-family: "Titan One", cursive;
+  font-size: 3rem;
+  padding-bottom: 20px;
+}
 
+.signup-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.signup-form label {
+  color: #f0f0f0;
+  font-family: "Titan One", cursive;
+  font-size: 1.5rem;
+}
+
+.signup-form input {
+  border-radius: 10px;
+  background-color: #5800ff;
+  font-size: 1rem;
+}
+
+.signup-btn {
+  padding: 15px;
+  border: none;
+  background-color: #5800ff;
+  border-radius: 20px;
+  color: #f0f0f0;
+  font-weight: 400;
+  font-size: 1.2rem;
+  transition: transform 0.8s;
+  cursor: pointer;
+  width: 50%;
+  height: 20%;
+  text-align: center;
+  font-family: "Titan One", cursive;
+}
+.signup-btn:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  color: #5800ff;
+  transform: scale(0.9);
+  width: 50%;
+  height: 20%;
+  font-family: "Titan One", cursive;
+}

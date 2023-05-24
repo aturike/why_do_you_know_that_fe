@@ -8,12 +8,7 @@ function LandingPage() {
       <div className="landing-page-section">
         <div className="directions">
           <p>
-            Would you say you know a lot of facts, that maybe you shouldnt? Or,
-            would you consider youself as someone who is just really good at
-            guessing? Either way, this game is for you! There will be 3 cards
-            placed in front of you - the task is to guess which order they
-            should be in, based off of the scores, images, and titles. Make
-            sense? Give it a try!
+            There will be 3 cards placed in front of you - the task is to guess which order they should be in, based off of the scores, images, and titles. Make sense? Give it a try!
           </p>
         </div>
         <div className="preview-container">
@@ -24,6 +19,11 @@ function LandingPage() {
         <Link className="btn" to={"/game"}>
           Play!
         </Link>
+        <div className="team">
+          <h3>Adam Turi</h3>
+          <h3>Dani Bravo</h3>
+          <h3>August Colonna</h3>
+        </div>
       </div>
     </div>
   );

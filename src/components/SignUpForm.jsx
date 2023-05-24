@@ -20,7 +20,7 @@ function SignUpForm() {
   };
 
   return (
-    <div>
+    <div >
       <h1>Sign up</h1>
       <form onSubmit={handleSubmit}>
         <label>
