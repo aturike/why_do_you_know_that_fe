@@ -10,8 +10,6 @@ function DeckDetails() {
   const navigate = useNavigate();
   const { deckId } = useParams();
   const [thisDeck, setThisDeck] = useState();
-
-  const [userId, setUserId] = useState("");
   const { tokenInfo } = useContext(SessionContext);
 
   const fetchOneDeck = async () => {
@@ -47,7 +45,7 @@ function DeckDetails() {
 
   return thisDeck ? (
     <div>
-      <Link to={`/decklist/${userId}`}>Back to the list</Link>
+      <Link to={`/decklist/${tokenInfo.payload._id}`}>Back to the list</Link>
       <div className="cardDiv">
         <h1>Title: {thisDeck.title}</h1>
         <h2>Question: {thisDeck.question}</h2>

@@ -1,14 +1,14 @@
-import NavBar from "../components/Navbar";
 import { Link } from "react-router-dom";
 
 function LandingPage() {
   return (
     <div>
-      <NavBar />
       <div className="landing-page-section">
         <div className="directions">
           <p>
-            There will be 3 cards placed in front of you - the task is to guess which order they should be in, based off of the scores, images, and titles. Make sense? Give it a try!
+            There will be 3 cards placed in front of you - the task is to guess
+            which order they should be in, based off of the scores, images, and
+            titles. Make sense? Give it a try!
           </p>
         </div>
         <div className="preview-container">

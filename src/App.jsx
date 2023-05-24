@@ -4,26 +4,49 @@ import SignupPage from "./pages/Signup";
 import LoginPage from "./pages/LoginPage";
 import Profile from "./pages/Profile";
 import Game from "./pages/Game";
-import Lose from "./pages/Lose";
-import Win from "./pages/Win";
-import HighScore from "./pages/HighScore";
 import LandingPage from "./pages/LandingPage";
 import DeckList from "./pages/DeckList";
 import DeckDetails from "./pages/DeckDetails";
 import FormTest from "./pages/FormTest";
 import PrivateRoute from "./components/PrivateRoute";
 import UpdateDeckForm from "./pages/UpdateDeckForm";
+import NavBar from "./components/Navbar";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/signup" element={<SignupPage />} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route
+        path="/"
+        element={
+          <div>
+            <NavBar />
+            <LandingPage />
+          </div>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <div>
+            <NavBar />
+            <SignupPage />
+          </div>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <div>
+            <NavBar />
+            <LoginPage />
+          </div>
+        }
+      />
       <Route
         path="/profile"
         element={
           <PrivateRoute>
+            <NavBar />
             <Profile />
           </PrivateRoute>
         }
@@ -32,6 +55,7 @@ function App() {
         path="/decklist/:userId"
         element={
           <PrivateRoute>
+            <NavBar />
             <DeckList />
           </PrivateRoute>
         }
@@ -40,26 +64,34 @@ function App() {
         path="/deckdetails/:deckId"
         element={
           <PrivateRoute>
+            <NavBar />
             <DeckDetails />
           </PrivateRoute>
         }
       />
-      <Route path="/game" element={<Game />} />
-      <Route path="/game/:userId" element={<Game />} />
-      <Route path="/lose" element={<Lose />} />
-      <Route path="/win" element={<Win />} />
       <Route
-        path="/highscore"
+        path="/game"
         element={
-          <PrivateRoute>
-            <HighScore />
-          </PrivateRoute>
+          <div>
+            <NavBar />
+            <Game />
+          </div>
+        }
+      />
+      <Route
+        path="/game/:userId"
+        element={
+          <div>
+            <NavBar />
+            <Game />
+          </div>
         }
       />
       <Route
         path="/createdeck"
         element={
           <PrivateRoute>
+            <NavBar />
             <FormTest />
           </PrivateRoute>
         }
@@ -68,6 +100,7 @@ function App() {
         path="/updatedeck/:deckId"
         element={
           <PrivateRoute>
+            <NavBar />
             <UpdateDeckForm />
           </PrivateRoute>
         }

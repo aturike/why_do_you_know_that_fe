@@ -19,22 +19,11 @@ const SessionContextProvider = ({ children }) => {
         Authorization: `Bearer ${currentToken}`,
       },
     };
-    const response = await axios.post(
+    const response = await axios.get(
       "https://why-do-i-know-that.adaptable.app/auth/verify",
-      {},
       headers
     );
-
-    // const response = await fetch(
-    //   "https://why-do-i-know-that.adaptable.app/auth/verify",
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${currentToken}`,
-    //     },
-    //   }
     if (response.status === 200) {
-      // const parsed = await response.json();
-
       setToken(currentToken);
       setIsLoggedIn(true);
       setTokenInfo(response.data);

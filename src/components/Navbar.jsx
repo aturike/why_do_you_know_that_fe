@@ -30,7 +30,7 @@ function NavBar() {
               <Link to="/profile">Profile</Link>
             </li>
           )}
-          {token && (
+          {tokenInfo && tokenInfo.payload && (
             <li>
               <Link to={`/decklist/${tokenInfo.payload._id}`}>Decks</Link>
             </li>

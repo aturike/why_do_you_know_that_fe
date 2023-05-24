@@ -66,7 +66,9 @@ function DeckList() {
           <h2>{deck.title}</h2>
         </Link>
       ))}
-      <button onClick={handlePlayGame}>Play your game</button>
+      {filteredDecks.length > 0 && (
+        <button onClick={handlePlayGame}>Play your game</button>
+      )}
     </div>
   );
 }

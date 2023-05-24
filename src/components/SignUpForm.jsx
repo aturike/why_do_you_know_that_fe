@@ -21,15 +21,8 @@ function SignUpForm(props) {
       "https://why-do-i-know-that.adaptable.app/auth/signup",
       { email, username, password }
     );
+    console.log(response);
 
-    // const response = await fetch(
-    //   "https://why-do-i-know-that.adaptable.app/auth/signup",
-    //   {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ email, username, password }),
-    //   }
-    // );
     if (response.status === 201) {
       if (props.setsignupShow) {
         props.setsignupShow.toggle();
@@ -51,7 +44,7 @@ function SignUpForm(props) {
   };
 
   return (
-    <div>
+    <div className="signup-form">
       <h1>Sign up</h1>
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={isError}>
@@ -124,7 +117,9 @@ function SignUpForm(props) {
             <FormErrorMessage>Passwords are not matching</FormErrorMessage>
           )}
         </FormControl>
-        <button type="submit">Sign Up</button>
+        <button className="signup-btn" type="submit">
+          Sign Up
+        </button>
       </form>
     </div>
   );

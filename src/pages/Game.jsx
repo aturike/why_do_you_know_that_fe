@@ -69,12 +69,12 @@ function Game() {
     try {
       if (!userId) {
         const { data } = await axios.get(
-          "https://why-do-i-know-that.adaptable.app/random/admin"
+          "https://why-do-i-know-that.adaptable.app/decks/random/admin"
         );
         setrandomDecks(data);
       } else {
         const { data } = await axios.get(
-          `https://why-do-i-know-that.adaptable.app/random/${userId}`
+          `https://why-do-i-know-that.adaptable.app/decks/random/${userId}`
         );
         setrandomDecks(data);
       }
