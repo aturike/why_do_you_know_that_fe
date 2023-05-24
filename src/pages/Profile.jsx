@@ -1,6 +1,7 @@
 import { SessionContext } from "../contexts/SessionContext";
 import { useContext } from "react";
 import NavBar from "../components/Navbar";
+import MyHighScore from "../components/MyHighScore";
 function Profile() {
   const { logout, tokenInfo } = useContext(SessionContext);
 
@@ -16,6 +17,8 @@ function Profile() {
       <button type="button" onClick={logout}>
         Log Out
       </button>
+
+      <MyHighScore />
     </div>
   );
 }

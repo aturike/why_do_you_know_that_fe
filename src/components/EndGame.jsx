@@ -5,9 +5,8 @@ import { useBoolean } from "@chakra-ui/react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
-function EndGame({ score, lives, gameId }) {
+function EndGame({ score, lives, gameId, gameUserName }) {
   const [userName, setuserName] = useState("");
-  const [creatorName, setcreatorName] = useState("main");
   const { tokenInfo } = useContext(SessionContext);
   const [loginShow, setLoginShow] = useBoolean();
   const [signupShow, setsignupShow] = useBoolean();
@@ -17,7 +16,6 @@ function EndGame({ score, lives, gameId }) {
     if (tokenInfo && tokenInfo.payload) {
       setuserName(tokenInfo.payload.username);
     }
-    console.log("test");
   }, [tokenInfo]);
 
   useEffect(() => {
@@ -29,18 +27,12 @@ function EndGame({ score, lives, gameId }) {
       const sendHighscore = {
         userId: tokenInfo.payload._id,
         username: tokenInfo.payload.username,
+        gameUserName: gameUserName,
         gameId: gameId,
         score: score,
       };
       try {
         await axios.post("http://localhost:5005/leaderboard", sendHighscore);
-
-        if (gameId) {
-          const { data } = await axios.get(
-            `http://localhost:5005/auth/user/${gameId}`
-          );
-          setcreatorName(data.username);
-        }
       } catch (error) {
         console.log(error);
       }
@@ -52,7 +44,7 @@ function EndGame({ score, lives, gameId }) {
       <div>
         {lives === 0 ? <h1>Lose {userName}!</h1> : <h1>Win {userName}!</h1>}
         <h2>
-          Registered highscore: {score} on {creatorName}`s game
+          Registered highscore: {score} on {gameUserName}`s game
         </h2>
       </div>
     );
@@ -61,7 +53,7 @@ function EndGame({ score, lives, gameId }) {
       <div>
         {lives === 0 ? <h1>Lose!</h1> : <h1>Win!</h1>}
         <h2>
-          Unregistered highscore: {score} on {creatorName}`s game
+          Unregistered highscore: {score} on {gameUserName}`s game
         </h2>
         <h2>Do you want to register your score? Please login or Sign up</h2>
         {isSignedup && <h2>Sign up complete, please log in</h2>}
