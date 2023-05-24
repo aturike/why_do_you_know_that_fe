@@ -28,7 +28,7 @@ function LoginForm(props) {
   };
 
   return (
-    <div>
+    <div className="login-form">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -49,7 +49,7 @@ function LoginForm(props) {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-        <button type="submit">Login</button>
+        <button className="login-btn" type="submit">Login</button>
       </form>
     </div>
   );

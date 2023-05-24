@@ -8,7 +8,7 @@ function NavBar() {
 
   return (
     <div>
-      <div className="navBar wavy">
+      <div className="navBar">
         <div className="logo">
           <Link to="/">
             <span>Why</span> Do You Know that?
