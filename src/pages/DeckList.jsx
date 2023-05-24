@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { SessionContext } from "../contexts/SessionContext";
 
 function DeckList() {
   const [allDecks, setAllDecks] = useState([]);
   const [filteredDecks, setFilteredDecks] = useState([]);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const { tokenInfo } = useContext(SessionContext);
 
   const fetchDecks = async () => {
     try {
@@ -36,6 +39,10 @@ function DeckList() {
     filterList(event.target.value);
   };
 
+  const handlePlayGame = () => {
+    navigate(`/game/${tokenInfo.payload._id}`);
+  };
+
   useEffect(() => {
     fetchDecks();
   }, []);
@@ -57,6 +64,7 @@ function DeckList() {
           <h2>{deck.title}</h2>
         </Link>
       ))}
+      <button onClick={handlePlayGame}>Play your game</button>
     </div>
   );
 }

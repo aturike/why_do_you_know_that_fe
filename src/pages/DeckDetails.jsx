@@ -12,6 +12,7 @@ function DeckDetails() {
   const [thisDeck, setThisDeck] = useState();
 
   const [userId, setUserId] = useState("");
+  const { tokenInfo } = useContext(SessionContext);
 
   const fetchOneDeck = async () => {
     try {
@@ -31,7 +32,7 @@ function DeckDetails() {
       );
       if (response.status === 200) {
         setThisDeck(response.data);
-        navigate("/decklist");
+        navigate(`/decklist/${tokenInfo.payload._id}`);
       }
     } catch (error) {
       console.log(error);
@@ -40,12 +41,6 @@ function DeckDetails() {
 
   useEffect(() => {
     fetchOneDeck();
-  }, []);
-
-  const { tokenInfo } = useContext(SessionContext);
-
-  useEffect(() => {
-    setUserId(tokenInfo.payload._id);
   }, []);
 
   return thisDeck ? (

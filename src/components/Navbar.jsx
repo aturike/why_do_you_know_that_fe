@@ -4,11 +4,10 @@ import { SessionContext } from "../contexts/SessionContext";
 import { useContext } from "react";
 
 function NavBar() {
-  const { token } = useContext(SessionContext);
+  const { token, tokenInfo } = useContext(SessionContext);
 
   return (
     <div>
-      
       <div className="navBar wavy">
         <div className="logo">
           <Link to="/">
@@ -33,7 +32,7 @@ function NavBar() {
           )}
           {token && (
             <li>
-              <Link to="/decklist">Decks</Link>
+              <Link to={`/decklist/${tokenInfo.payload._id}`}>Decks</Link>
             </li>
           )}
           {token && (

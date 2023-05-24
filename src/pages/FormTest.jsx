@@ -19,6 +19,7 @@ function FormTest() {
   const [formFields, setFormFields] = useState(false);
   const [cardFields, setCardFields] = useState(false);
   const [valueFields, setValueFields] = useState(false);
+  const { tokenInfo } = useContext(SessionContext);
 
   const findDuplicates = (array) => {
     const newArray = array.filter(
@@ -40,8 +41,6 @@ function FormTest() {
     }
   }, [title, question, cardFields]);
 
-  const { tokenInfo } = useContext(SessionContext);
-
   useEffect(() => {
     setUserId(tokenInfo.payload._id);
   }, []);
@@ -59,7 +58,7 @@ function FormTest() {
     try {
       const response = await axios.post("http://localhost:5005/decks", payload);
       if (response.status === 201) {
-        navigate("/decklist");
+        navigate(`/decklist/${tokenInfo.payload._id}`);
       }
     } catch (error) {
       console.log(error);

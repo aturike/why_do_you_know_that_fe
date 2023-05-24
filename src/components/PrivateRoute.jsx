@@ -9,13 +9,7 @@ function PrivateRoute({ children }) {
     return <Navigate to="/login" />;
   }
 
-  return isLoading ? (
-    <h1>You are not signed in</h1>
-  ) : (
-    <>
-      <h1>{children}</h1>
-    </>
-  );
+  return isLoading ? <h1>You are not signed in</h1> : <div>{children}</div>;
 }
 
 export default PrivateRoute;

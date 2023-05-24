@@ -25,7 +25,7 @@ function FormCardTest({
   };
 
   useEffect(() => {
-    if (img.length > 0 && text.length > 0 && value > 0) {
+    if (img.length > 0 && text.length > 0 && value) {
       setCardFields(true);
     } else {
       setCardFields(false);
