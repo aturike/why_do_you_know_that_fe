@@ -8,17 +8,6 @@ function UpdateDeckForm() {
   const navigate = useNavigate();
   const { deckId } = useParams();
   const [thisDeck, setThisDeck] = useState();
-
-  // const [title, setTitle] = useState("");
-  // const [question, setQuestion] = useState("");
-  // const [cards, setCards] = useState([
-  //   { text: "", value: 0, img: "" },
-  //   { text: "", value: 0, img: "" },
-  //   { text: "", value: 0, img: "" },
-  //   { text: "", value: 0, img: "" },
-  //   { text: "", value: 0, img: "" },
-  // ]);
-
   const [formFields, setFormFields] = useState(false);
   const [cardFields, setCardFields] = useState(false);
   const [valueFields, setValueFields] = useState(true);
@@ -28,7 +17,6 @@ function UpdateDeckForm() {
       const response = await axios.get(`http://localhost:5005/decks/${deckId}`);
       if (response.status === 200) {
         setThisDeck(response.data);
-        console.log(response.data);
       }
     } catch (error) {
       console.log(error);
@@ -55,13 +43,6 @@ function UpdateDeckForm() {
     fetchOneDeck();
   }, []);
 
-  // useEffect(() => {
-  //   if (thisDeck) {
-  //     setTitle(thisDeck.title);
-  //     setQuestion(thisDeck.question);
-  //   }
-  // }, [thisDeck]);
-
   useEffect(() => {
     if (thisDeck) {
       if (
@@ -76,14 +57,6 @@ function UpdateDeckForm() {
     }
   }, [thisDeck, cardFields]);
 
-  useEffect(() => {
-    if (thisDeck) {
-      const mapedArray = thisDeck.cards.map((card) => card.value);
-      console.log(mapedArray);
-      console.log(mapedArray.some((val, i) => mapedArray.indexOf(val) === i));
-    }
-  }, [thisDeck]);
-
   return thisDeck ? (
     <div style={{ border: "1px lightgrey solid", padding: "10px" }}>
       <form onSubmit={handleSubmit}>
@@ -93,7 +66,6 @@ function UpdateDeckForm() {
           name="title"
           value={thisDeck.title}
           onChange={(e) => {
-            // setTitle(e.target.value);
             setThisDeck({ ...thisDeck, title: e.target.value });
           }}
         ></input>
@@ -102,7 +74,6 @@ function UpdateDeckForm() {
           name="question"
           value={thisDeck.question}
           onChange={(e) => {
-            // setQuestion(e.target.value);
             setThisDeck({ ...thisDeck, question: e.target.value });
           }}
         ></input>
@@ -122,41 +93,36 @@ function UpdateDeckForm() {
         thisDeck={thisDeck}
         setThisDeck={setThisDeck}
         index={0}
-        // cards={cards}
-        // setCards={setCards}
         setCardFields={setCardFields}
+        setValueFields={setValueFields}
       />
       <UpdateCardForm
         thisDeck={thisDeck}
         setThisDeck={setThisDeck}
         index={1}
-        // cards={cards}
-        // setCards={setCards}
         setCardFields={setCardFields}
+        setValueFields={setValueFields}
       />
       <UpdateCardForm
         thisDeck={thisDeck}
         setThisDeck={setThisDeck}
         index={2}
-        // cards={cards}
-        // setCards={setCards}
         setCardFields={setCardFields}
+        setValueFields={setValueFields}
       />
       <UpdateCardForm
         thisDeck={thisDeck}
         setThisDeck={setThisDeck}
         index={3}
-        // cards={cards}
-        // setCards={setCards}
         setCardFields={setCardFields}
+        setValueFields={setValueFields}
       />
       <UpdateCardForm
         thisDeck={thisDeck}
         setThisDeck={setThisDeck}
         index={4}
-        // cards={cards}
-        // setCards={setCards}
         setCardFields={setCardFields}
+        setValueFields={setValueFields}
       />
     </div>
   ) : (

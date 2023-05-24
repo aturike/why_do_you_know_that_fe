@@ -20,9 +20,19 @@ function FormTest() {
   const [cardFields, setCardFields] = useState(false);
   const [valueFields, setValueFields] = useState(false);
 
+  const findDuplicates = (array) => {
+    const newArray = array.filter(
+      (item, index) => array.indexOf(item) !== index
+    );
+    console.log(array);
+    console.log(newArray);
+    console.log(newArray.length === 0);
+    return newArray.length === 0;
+  };
+
   useEffect(() => {
     const mapedArray = cards.map((card) => card.value);
-    setValueFields(new Set(mapedArray).size === mapedArray.length);
+    setValueFields(findDuplicates(mapedArray));
   }, [cards]);
 
   useEffect(() => {

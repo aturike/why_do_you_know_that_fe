@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
-function UpdateCardForm({ setThisDeck, thisDeck, index, setCardFields }) {
+function UpdateCardForm({
+  setValueFields,
+  setThisDeck,
+  thisDeck,
+  index,
+  setCardFields,
+}) {
   const [img, setImage] = useState(thisDeck.cards[index].img);
   const [text, setText] = useState(thisDeck.cards[index].text);
   const [value, setValue] = useState(thisDeck.cards[index].value);
@@ -15,7 +21,6 @@ function UpdateCardForm({ setThisDeck, thisDeck, index, setCardFields }) {
     };
     copyArray[index] = updatedObject;
     setThisDeck({ ...thisDeck, cards: copyArray });
-    // setCards(copyArray);
   };
 
   useEffect(() => {
@@ -25,6 +30,17 @@ function UpdateCardForm({ setThisDeck, thisDeck, index, setCardFields }) {
       setCardFields(false);
     }
   }, [img, text, value]);
+
+  const findDuplicates = (array) => {
+    const newArray = array.splice(index, 1);
+    const found = array.includes(Number(newArray[0]));
+    return found;
+  };
+
+  useEffect(() => {
+    const mapedArray = thisDeck.cards.map((card) => card.value);
+    setValueFields(!findDuplicates(mapedArray));
+  }, [value]);
 
   return (
     <form
