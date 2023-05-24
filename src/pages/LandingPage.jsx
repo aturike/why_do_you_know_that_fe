@@ -11,19 +11,19 @@ function LandingPage() {
         </p>
       </div>
       <div className="preview-container">
-        <div className="card-preview two animate-flicker">
+        <div className="card-preview  animate-flicker">
           <h1>?</h1>
         </div>
         <div className="card-preview one">
           <h1>1</h1>
         </div>
-        <div className="card-preview two animate-flicker">
+        <div className="card-preview green animate-flicker">
           <h1>?</h1>
         </div>
         <div className="card-preview three">
           <h1>3</h1>
         </div>
-        <div className="card-preview two animate-flicker">
+        <div className="card-preview  animate-flicker">
           <h1>?</h1>
         </div>
       </div>
