@@ -14,7 +14,9 @@ function UpdateDeckForm() {
 
   const fetchOneDeck = async () => {
     try {
-      const response = await axios.get(`http://localhost:5005/decks/${deckId}`);
+      const response = await axios.get(
+        `https://why-do-i-know-that.adaptable.app/decks/${deckId}`
+      );
       if (response.status === 200) {
         setThisDeck(response.data);
       }
@@ -28,7 +30,7 @@ function UpdateDeckForm() {
     const payload = thisDeck;
     try {
       const response = await axios.put(
-        `http://localhost:5005/decks/${deckId}`,
+        `https://why-do-i-know-that.adaptable.app/decks/${deckId}`,
         payload
       );
       if (response.status === 200) {

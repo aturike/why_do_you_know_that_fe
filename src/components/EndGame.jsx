@@ -32,7 +32,10 @@ function EndGame({ score, lives, gameId, gameUserName }) {
         score: score,
       };
       try {
-        await axios.post("http://localhost:5005/leaderboard", sendHighscore);
+        await axios.post(
+          "https://why-do-i-know-that.adaptable.app/leaderboard",
+          sendHighscore
+        );
       } catch (error) {
         console.log(error);
       }

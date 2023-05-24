@@ -6,6 +6,7 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function SignUpForm(props) {
   const [email, setEmail] = useState("");
@@ -16,11 +17,19 @@ function SignUpForm(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:5005/auth/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, username, password }),
-    });
+    const response = await axios.post(
+      "https://why-do-i-know-that.adaptable.app/auth/signup",
+      { email, username, password }
+    );
+
+    // const response = await fetch(
+    //   "https://why-do-i-know-that.adaptable.app/auth/signup",
+    //   {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ email, username, password }),
+    //   }
+    // );
     if (response.status === 201) {
       if (props.setsignupShow) {
         props.setsignupShow.toggle();
@@ -42,7 +51,7 @@ function SignUpForm(props) {
   };
 
   return (
-    <div >
+    <div>
       <h1>Sign up</h1>
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={isError}>

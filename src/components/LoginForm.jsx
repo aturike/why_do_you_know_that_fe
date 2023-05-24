@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
+import axios from "axios";
 
 function LoginForm(props) {
   const navigate = useNavigate();
@@ -11,19 +12,18 @@ function LoginForm(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:5005/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-    if (response.status == 200) {
-      const tokenFromResponse = await response.json();
-      setToken(tokenFromResponse);
+    const response = await axios.post(
+      "https://why-do-i-know-that.adaptable.app/auth/login",
+      { username, password }
+    );
+
+    if (response.status === 200) {
+      setToken(response.data);
       if (!props.gameUserName) {
         navigate("/");
       }
-    } else if (response.status == 401) {
-      console.log("no");
+    } else if (response.status === 401) {
+      console.log("response.status");
     }
   };
 

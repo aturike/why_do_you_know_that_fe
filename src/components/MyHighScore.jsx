@@ -15,13 +15,13 @@ function MyHighScore() {
     const userId = tokenInfo.payload._id;
     try {
       const userScores = await axios.get(
-        `http://localhost:5005/leaderboard/user/${userId}`
+        `https://why-do-i-know-that.adaptable.app/leaderboard/user/${userId}`
       );
       userScores.data.sort((a, b) => b.score - a.score).slice(0, 5);
 
       setmyHighScoreList(userScores.data);
       const gameScores = await axios.get(
-        `http://localhost:5005/leaderboard/game/${userId}`
+        `https://why-do-i-know-that.adaptable.app/leaderboard/game/${userId}`
       );
 
       gameScores.data.sort((a, b) => b.score - a.score).slice(0, 5);

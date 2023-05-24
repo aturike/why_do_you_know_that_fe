@@ -16,7 +16,9 @@ function DeckDetails() {
 
   const fetchOneDeck = async () => {
     try {
-      const response = await axios.get(`http://localhost:5005/decks/${deckId}`);
+      const response = await axios.get(
+        `https://why-do-i-know-that.adaptable.app/decks/${deckId}`
+      );
       if (response.status === 200) {
         setThisDeck(response.data);
       }
@@ -28,7 +30,7 @@ function DeckDetails() {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5005/decks/${deckId}`
+        `https://why-do-i-know-that.adaptable.app/decks/${deckId}`
       );
       if (response.status === 200) {
         setThisDeck(response.data);

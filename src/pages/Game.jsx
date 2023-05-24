@@ -42,7 +42,7 @@ function Game() {
     if (userId) {
       try {
         const { data } = await axios.get(
-          `http://localhost:5005/auth/user/${userId}`
+          `https://why-do-i-know-that.adaptable.app/auth/user/${userId}`
         );
         setcreatorName(data.username);
       } catch (error) {
@@ -69,12 +69,12 @@ function Game() {
     try {
       if (!userId) {
         const { data } = await axios.get(
-          "http://localhost:5005/decks/random/admin"
+          "https://why-do-i-know-that.adaptable.app/random/admin"
         );
         setrandomDecks(data);
       } else {
         const { data } = await axios.get(
-          `http://localhost:5005/decks/random/${userId}`
+          `https://why-do-i-know-that.adaptable.app/random/${userId}`
         );
         setrandomDecks(data);
       }

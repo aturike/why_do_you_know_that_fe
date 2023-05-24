@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,16 +14,30 @@ const SessionContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const verifyToken = async (currentToken) => {
-    const response = await fetch("http://localhost:5005/auth/verify", {
+    const headers = {
       headers: {
         Authorization: `Bearer ${currentToken}`,
       },
-    });
+    };
+    const response = await axios.post(
+      "https://why-do-i-know-that.adaptable.app/auth/verify",
+      {},
+      headers
+    );
+
+    // const response = await fetch(
+    //   "https://why-do-i-know-that.adaptable.app/auth/verify",
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${currentToken}`,
+    //     },
+    //   }
     if (response.status === 200) {
-      const parsed = await response.json();
+      // const parsed = await response.json();
+
       setToken(currentToken);
       setIsLoggedIn(true);
-      setTokenInfo(parsed);
+      setTokenInfo(response.data);
     }
     setIsLoading(false);
   };

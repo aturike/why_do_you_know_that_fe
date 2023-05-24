@@ -56,7 +56,10 @@ function FormTest() {
     };
 
     try {
-      const response = await axios.post("http://localhost:5005/decks", payload);
+      const response = await axios.post(
+        "https://why-do-i-know-that.adaptable.app/decks",
+        payload
+      );
       if (response.status === 201) {
         navigate(`/decklist/${tokenInfo.payload._id}`);
       }

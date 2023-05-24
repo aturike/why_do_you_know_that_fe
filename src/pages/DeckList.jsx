@@ -12,7 +12,9 @@ function DeckList() {
 
   const fetchDecks = async () => {
     try {
-      const response = await axios.get("http://localhost:5005/decks");
+      const response = await axios.get(
+        "https://why-do-i-know-that.adaptable.app/decks"
+      );
       if (response.status === 200) {
         setAllDecks(response.data);
         setFilteredDecks(response.data);
