@@ -16,7 +16,9 @@ Anti-flash white: #F0F0F0
   background-image: url("./assets/layered-waves-haikei.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  /*background: linear-gradient(#5800ff, #f0f0f0);*/
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
 }
 
 .navBar {
