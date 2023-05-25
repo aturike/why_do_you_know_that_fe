@@ -34,33 +34,33 @@ function MyHighScore() {
 
   if (myHighScoreList && gameHighscore) {
     return (
-      <div>
+      <div className="profileText">
         <div>
-          <h2>My Highscore</h2>
-          <div>
-            <ul>
+          <h2 className="mainText">My Highscore</h2>
+          <div className="columns">
+            <ul className="listed">
               {myHighScoreList.map((highscore) => (
                 <li key={highscore._id + "score"}>Score: {highscore.score}</li>
               ))}
             </ul>
-            <ul>
+            <ul className="listed">
               {myHighScoreList.map((highscore) => (
-                <li key={highscore._id + "game"}>
+                <li className="listElement" key={highscore._id + "game"}>
                   On {highscore.gameUserName}`s game
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <div>
-          <h2>My Game`s Highscore</h2>
+        <div className="columns">
+          <h2 className="mainText">My Game's Highscore</h2>
           <div>
-            <ul>
+            <ul className="listed">
               {gameHighscore.map((highscore) => (
                 <li key={highscore._id + "score"}>{highscore.score}</li>
               ))}
             </ul>
-            <ul>
+            <ul className="listed">
               {gameHighscore.map((highscore) => (
                 <li key={highscore._id + "user"}>by {highscore.username}</li>
               ))}
