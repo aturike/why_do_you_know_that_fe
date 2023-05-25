@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 function FormCardTest({
@@ -12,8 +13,34 @@ function FormCardTest({
   const [text, setText] = useState(cards[index].text);
   const [value, setValue] = useState(cards[index].value);
 
-  const handleCard = (event) => {
+  const uploadImage = async (event) => {
     event.preventDefault();
+    console.log("mat rules");
+    const fData = new FormData();
+
+    const image = event.target[0].files[0];
+    fData.append("imageUrl", image);
+    try {
+      const response = await axios.post(
+        "https://why-do-i-know-that.adaptable.app/decks/cloudinary",
+        fData
+      );
+      const copyArray = [...cards];
+      const copyObject = copyArray[index];
+      const updatedObject = {
+        ...copyObject,
+        img: response.data,
+      };
+      copyArray[index] = updatedObject;
+      setImage(response.data);
+      setCards(copyArray);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCard = (event) => {
     const copyArray = [...cards];
     const copyObject = copyArray[index];
     const updatedObject = {
@@ -33,17 +60,20 @@ function FormCardTest({
   }, [img, text, value]);
 
   return (
-    <form style={{ border: "1px lightgrey solid", padding: "10px" }}>
+    <form
+      onSubmit={uploadImage}
+      encType="multipart/form-data"
+      style={{ border: "1px lightgrey solid", padding: "10px" }}
+    >
       <h3>Card {index + 1}</h3>
       <label> Picture: </label>
       <input
         name="img"
-        value={img}
-        onChange={(e) => {
-          handleCard(e);
-          setImage(e.target.value);
-        }}
+        type="file"
+        accept="image/jpg, image/png"
+        // value={img}
       ></input>
+      <button type="submit">BUTTON</button>
       <label> Text: </label>
       <input
         name="text"
