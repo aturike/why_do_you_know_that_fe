@@ -168,15 +168,16 @@ Anti-flash white: #F0F0F0
 .signup-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: 1000px;
+  height: 60dvh;
+  padding-top: 2rem;
 }
 
 .signup-form h1 {
   color: #f0f0f0;
   font-family: "Titan One", cursive;
-  font-size: 3rem;
+  font-size: clamp(2rem, 4dvw, 3rem);
   padding-bottom: 20px;
 }
 
@@ -184,23 +185,26 @@ Anti-flash white: #F0F0F0
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 15px;
 }
 
 .signup-form label {
+  display: grid;
+  gap: 5px;
   color: #f0f0f0;
+  text-align: center;
   font-family: "Titan One", cursive;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 3dvw, 1.5rem);
 }
 
 .signup-form input {
   border-radius: 10px;
   background-color: #5800ff;
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 3dvw, 1rem);
 }
 
 .signup-btn {
-  padding: 15px;
+  padding: 8px;
   border: none;
   background-color: #5800ff;
   border-radius: 20px;
@@ -209,8 +213,7 @@ Anti-flash white: #F0F0F0
   font-size: 1.2rem;
   transition: transform 0.8s;
   cursor: pointer;
-  width: 50%;
-  height: 20%;
+  width: 80%;
   text-align: center;
   font-family: "Titan One", cursive;
 }

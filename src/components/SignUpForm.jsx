@@ -13,6 +13,7 @@ function SignUpForm(props) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isInvalidSignup, setIsinvalidSignup] = useState(false);
 
   const [showInstructions, setshowInstructions] = useState({
     email: false,
@@ -34,18 +35,24 @@ function SignUpForm(props) {
     }
 
     if (trueCount === 0) {
-      const response = await axios.post(
-        "https://why-do-i-know-that.adaptable.app/auth/signup",
-        { email, username, password }
-      );
+      try {
+        const response = await axios.post(
+          "https://why-do-i-know-that.adaptable.app/auth/signup",
+          { email, username, password }
+        );
 
-      if (response.status === 201) {
-        if (props.setsignupShow) {
-          props.setsignupShow.toggle();
-          props.setLoginShow.toggle();
-          props.setisSignedup(true);
-        } else {
-          navigate("/login");
+        if (response.status === 201) {
+          if (props.setsignupShow) {
+            props.setsignupShow.toggle();
+            props.setLoginShow.toggle();
+            props.setisSignedup(true);
+          } else {
+            navigate("/login");
+          }
+        }
+      } catch (error) {
+        if (error.response.status === 409) {
+          setIsinvalidSignup(true);
         }
       }
     }
@@ -77,7 +84,7 @@ function SignUpForm(props) {
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={isError}>
           <FormLabel>
-            Email address:
+            Email address
             <input
               type="email"
               required
@@ -95,7 +102,7 @@ function SignUpForm(props) {
           )}
 
           <FormLabel>
-            Username:
+            Username
             <input
               type="text"
               required
@@ -110,8 +117,11 @@ function SignUpForm(props) {
               Enter the username we will make fun of
             </FormHelperText>
           )}
+          {isInvalidSignup && (
+            <FormErrorMessage>Username already exisist</FormErrorMessage>
+          )}
           <FormLabel>
-            Password:
+            Password
             <input
               type="password"
               required
@@ -156,7 +166,7 @@ function SignUpForm(props) {
           )}
 
           <FormLabel>
-            Repeat Password:
+            Repeat Password
             <input
               type="password"
               required
