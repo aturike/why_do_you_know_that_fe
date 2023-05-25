@@ -104,6 +104,54 @@ h4 {
   font-size: 2.7rem;
 }
 
+.win-or-lose {
+  color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.win-or-lose span {
+  font-size: 4rem;
+  color: #FFC600;
+  text-shadow: #f0f0f0 0 5px 10px;
+}
+
+.win-or-lose h1 {
+  font-size: 4rem;
+}
+
+.win-or-lose h2 {
+  font-size: 1.5rem;
+  padding-bottom: 20px;
+}
+
+.win-lose-btn {
+  padding: 15px;
+  margin: 10px;
+  border: none;
+  background-color: #5800ff;
+  border-radius: 20px;
+  color: #f0f0f0;
+  font-weight: 400;
+  font-size: 1.2rem;
+  transition: transform 0.8s;
+  cursor: pointer;
+  width: 6rem;
+  text-align: center;
+  font-family: "Titan One", cursive;
+}
+
+.win-lose-btn:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  color: #5800ff;
+  transform: scale(0.9);
+  width: 6rem;
+  font-family: "Titan One", cursive;
+}
+
 @media only screen and (max-width: 472px) {
   .Card {
     display: grid;
