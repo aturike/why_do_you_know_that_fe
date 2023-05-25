@@ -82,8 +82,11 @@ function SignUpForm(props) {
 
   return (
     <div className="signup-form">
-      <Text fontSize={{ base: "1.5rem", md: "2rem", lg: "3rem" }}>
-        <h1>Sign up</h1>
+      <Text
+        fontSize={{ base: "1.5rem", md: "2rem", lg: "3rem" }}
+        className="signup-form-text"
+      >
+        Sign up
       </Text>
       {trueCount > 0 && <h1>Fill out the form before submitting</h1>}
       <form onSubmit={handleSubmit}>

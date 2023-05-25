@@ -6,14 +6,14 @@ import "../Game.css";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Card from "../components/Card";
 import EndGame from "../components/EndGame";
+import heart from "../assets/heart.svg";
 
 function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
   const [gameSet, setgameSet] = useState([]);
   const [creatorName, setcreatorName] = useState("main");
   const [score, setscore] = useState(0);
-  //to test lives = 100
-  const [lives, setlives] = useState(100);
+  const [lives, setlives] = useState(3);
   const navigate = useNavigate();
   const timeout = 1000;
   const showNumberofCards = 3;
@@ -118,9 +118,29 @@ function Game() {
     }
   };
 
+  const renderHearts = (n) => {
+    const heartArr = [];
+
+    for (let i = 0; i < n; i++) {
+      heartArr.push({ id: Math.floor(Math.random() * 1000) });
+    }
+
+    return heartArr;
+  };
+
   if (randomDecks[score] && score < randomDecks.length && lives > 0) {
     return (
       <div>
+        <div className="heart-div">
+          {renderHearts(lives).map((life) => (
+            <img
+              className="heart-img"
+              key={life.id}
+              src={heart}
+              alt="heart-icon"
+            ></img>
+          ))}
+        </div>
         <DragDropContext onDragEnd={handleDropEnd}>
           <div>
             <div className="score-board">
@@ -157,7 +177,8 @@ function Game() {
                                   >
                                     <Card
                                       isDragging={snapshot.isDragging}
-                                      element={element} target={true}
+                                      element={element}
+                                      target={true}
                                     />
                                   </div>
                                 );
@@ -169,7 +190,13 @@ function Game() {
                       </Droppable>
                     );
                   } else {
-                    return <Card key={element._id} element={element} target={false} />;
+                    return (
+                      <Card
+                        key={element._id}
+                        element={element}
+                        target={false}
+                      />
+                    );
                   }
                 } else {
                   return (
@@ -183,7 +210,8 @@ function Game() {
                             innerRef={provided.innerRef}
                             {...provided.droppableProps}
                             isDraggingOver={snapshot.isDraggingOver}
-                            target={false}>
+                            target={false}
+                          >
                             {provided.placeholder}
                           </Card>
                         );

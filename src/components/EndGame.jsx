@@ -47,7 +47,8 @@ function EndGame({ score, lives, gameId, gameUserName }) {
       <div className="win-or-lose">
         {lives === 0 ? <h1>Lose {userName}!</h1> : <h1>Win {userName}!</h1>}
         <h2>
-          Registered highscore: <br></br><span>{score}</span>  <br></br>on {gameUserName}`s game
+          Registered highscore: <br></br>
+          <span>{score}</span> <br></br>on {gameUserName}`s game
         </h2>
       </div>
     );
@@ -56,32 +57,37 @@ function EndGame({ score, lives, gameId, gameUserName }) {
       <div className="win-or-lose">
         {lives === 0 ? <h1>Lose!</h1> : <h1>Win!</h1>}
         <h2>
-          Unregistered highscore:<br></br><span>{score}</span>  <br></br> on {gameUserName}`s game!
+          Unregistered highscore:<br></br>
+          <span>{score}</span> <br></br> on {gameUserName}`s game!
         </h2>
         <h2>Do you want to register your score? Please login or Sign up</h2>
         {isSignedup && <h2>Sign up complete, please log in</h2>}
-        <button className="win-lose-btn"
-          onClick={() => {
-            setLoginShow.toggle();
-            if (signupShow) {
-              setsignupShow.toggle();
-            }
-          }}
-        >
-          Log in
-        </button>
-        <button className="win-lose-btn"
-          onClick={() => {
-            if (!isSignedup) {
-              setsignupShow.toggle();
-              if (loginShow) {
-                setLoginShow.toggle();
+        <div className="win-lose-container">
+          <button
+            className="win-lose-btn"
+            onClick={() => {
+              setLoginShow.toggle();
+              if (signupShow) {
+                setsignupShow.toggle();
               }
-            }
-          }}
-        >
-          Sign up
-        </button>
+            }}
+          >
+            Log in
+          </button>
+          <button
+            className="win-lose-btn"
+            onClick={() => {
+              if (!isSignedup) {
+                setsignupShow.toggle();
+                if (loginShow) {
+                  setLoginShow.toggle();
+                }
+              }
+            }}
+          >
+            Sign up
+          </button>
+        </div>
         {loginShow && <LoginForm gameUserName={setuserName} />}
         {signupShow && (
           <SignUpForm
