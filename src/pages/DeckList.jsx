@@ -14,7 +14,7 @@ function DeckList() {
   const fetchDecks = async () => {
     try {
       const response = await axios.get(
-        `https://why-do-i-know-that.adaptable.app/decks/${tokenInfo.payload._id}`
+        `https://why-do-i-know-that.adaptable.app/decks/user/${tokenInfo.payload._id}`
       );
       if (response.status === 200) {
         setAllDecks(response.data);
