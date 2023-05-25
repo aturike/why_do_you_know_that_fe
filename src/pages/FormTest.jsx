@@ -54,7 +54,7 @@ function FormTest() {
       userId,
       cards,
     };
-
+    console.log(payload);
     try {
       const response = await axios.post(
         "https://why-do-i-know-that.adaptable.app/decks",
@@ -70,7 +70,7 @@ function FormTest() {
 
   return (
     <div style={{ border: "1px lightgrey solid", padding: "10px" }}>
-      <form onSubmit={handleSubmit}>
+      <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <h3>New deck</h3>
         <label>Title: </label>
         <input

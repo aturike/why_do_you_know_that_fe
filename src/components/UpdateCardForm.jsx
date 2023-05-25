@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 function UpdateCardForm({
@@ -10,6 +11,34 @@ function UpdateCardForm({
   const [img, setImage] = useState(thisDeck.cards[index].img);
   const [text, setText] = useState(thisDeck.cards[index].text);
   const [value, setValue] = useState(thisDeck.cards[index].value);
+
+  //upload image
+  const uploadImage = async (event) => {
+    event.preventDefault();
+    console.log("mat rules");
+    const fData = new FormData();
+
+    const image = event.target[0].files[0];
+    fData.append("imageUrl", image);
+    try {
+      const response = await axios.post(
+        "https://why-do-i-know-that.adaptable.app/decks/cloudinary",
+        fData
+      );
+      const copyArray = [...thisDeck.cards];
+      const copyObject = copyArray[index];
+      const updatedObject = {
+        ...copyObject,
+        img: response.data,
+      };
+      copyArray[index] = updatedObject;
+      setThisDeck({ ...thisDeck, cards: copyArray });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // upload image
 
   const handleCard = (event) => {
     event.preventDefault();
@@ -44,19 +73,18 @@ function UpdateCardForm({
 
   return (
     <form
-      onSubmit={handleCard}
+      onSubmit={uploadImage}
       style={{ border: "1px lightgrey solid", padding: "10px" }}
     >
       <h3>Card {index + 1}</h3>
       <label> Picture: </label>
       <input
         name="img"
-        value={img}
-        onChange={(e) => {
-          handleCard(e);
-          setImage(e.target.value);
-        }}
+        type="file"
+        accept="image/jpg, image/png"
+        // value={img}
       ></input>
+      <button type="submit">submit image</button>
       <label> Text: </label>
       <input
         name="text"
