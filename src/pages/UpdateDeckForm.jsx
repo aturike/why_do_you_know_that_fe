@@ -62,18 +62,18 @@ function UpdateDeckForm() {
   return thisDeck ? (
     <div className="formMain">
       <form className="deckForm" onSubmit={handleSubmit}>
-        <label className="mainText">Title </label>
+        <label className="mainText fontBasics">Title </label>
         <input
-          className="mainInputs"
+          className="mainInputs fontBasics inputG"
           name="title"
           value={thisDeck.title}
           onChange={(e) => {
             setThisDeck({ ...thisDeck, title: e.target.value });
           }}
         ></input>
-        <label className="mainText">Question </label>
+        <label className="mainText fontBasics">Question </label>
         <input
-          className="mainInputs"
+          className="mainInputs fontBasics inputG"
           name="question"
           value={thisDeck.question}
           onChange={(e) => {
@@ -136,7 +136,7 @@ function UpdateDeckForm() {
       </Link>
     </div>
   ) : (
-    <h2>LOADING INFO...</h2>
+    <h2 className="fontBasics">LOADING INFO...</h2>
   );
 }
 

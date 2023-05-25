@@ -76,19 +76,19 @@ function FormTest() {
         encType="multipart/form-data"
         onSubmit={handleSubmit}
       >
-        <h1>Create a new DECK</h1>
-        <label className="mainText">Title </label>
+        <h1 className="largeFont fontBasics">NEW DECK</h1>
+        <label className="mainText fontBasics">Title </label>
         <input
-          className="mainInputs"
+          className="mainInputs fontBasics inputG"
           name="title"
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
         ></input>
-        <label className="mainText">Question </label>
+        <label className="mainText fontBasics">Question </label>
         <input
-          className="mainInputs"
+          className="mainInputs fontBasics inputG"
           name="question"
           value={question}
           onChange={(e) => {

@@ -52,27 +52,32 @@ function DeckList() {
 
   return (
     <div className="mainList">
-      <h1>Decklist</h1>
       <Link className="navButton" to="/createdeck">
         Create a new deck!
       </Link>
+      {filteredDecks && filteredDecks.length > 0 && (
+        <button className="navButton" onClick={handlePlayGame}>
+          Play your game
+        </button>
+      )}
 
+      <h1 className="largeFont fontBasics">Decklist</h1>
       <input
+        className="search fontBasics inputG"
         type="text"
         name="search"
+        placeholder="search"
         value={search}
         onChange={handleSearch}
       ></input>
-      <hr />
-      {filteredDecks &&
-        filteredDecks.map((deck) => (
-          <Link key={deck._id} to={`/deckdetails/${deck._id}`}>
-            <h2>{deck.title}</h2>
-          </Link>
-        ))}
-      {filteredDecks && filteredDecks.length > 0 && (
-        <button onClick={handlePlayGame}>Play your game</button>
-      )}
+      <div>
+        {filteredDecks &&
+          filteredDecks.map((deck) => (
+            <Link key={deck._id} to={`/deckdetails/${deck._id}`}>
+              <h2 className="fontBasics">{deck.title}</h2>
+            </Link>
+          ))}
+      </div>
     </div>
   );
 }

@@ -66,20 +66,21 @@ function FormCardTest({
       onSubmit={uploadImage}
       encType="multipart/form-data"
     >
-      <h3 className="mainText">Card {index + 1}</h3>
-      <label> Picture </label>
+      <h3 className="mainText fontBasics">Card {index + 1}</h3>
+      <label className="fontBasics"> Picture </label>
       <input
-        className="fileInput"
+        className="fileInput fontBasics inputG"
         name="img"
         type="file"
         accept="image/jpg, image/png"
         // value={img}
       ></input>
-      <button className="submitImage" type="submit">
+      <button className="submitImage inputG" type="submit">
         Submit Image
       </button>
-      <label> Text </label>
+      <label className="fontBasics"> Text </label>
       <input
+        className="fontBasics inputG"
         name="text"
         value={text}
         onChange={(e) => {
@@ -87,8 +88,9 @@ function FormCardTest({
           setText(e.target.value);
         }}
       ></input>
-      <label> Value </label>
+      <label className="fontBasics"> Value </label>
       <input
+        className="fontBasics inputG"
         type="number"
         name="value"
         value={value}
