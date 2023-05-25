@@ -17,14 +17,14 @@ function NavBar() {
         <Link to="/">
           <Flex
             className="logo"
-            fontSize={{ base: "1rem", md: "1.7rem", lg: "2.5rem" }}
+            fontSize={{ base: "1.2rem", md: "1.7rem", lg: "2.5rem" }}
             wrap={"no-wrap"}
             gap={"10px"}
             align={"center"}
             justify={"center"}
           >
             <Text
-              fontSize={{ base: "1.5rem", md: "2.2rem", lg: "4rem" }}
+              fontSize={{ base: "1.7rem", md: "2.2rem", lg: "4rem" }}
               align={"center"}
             >
               <span>Why</span>
