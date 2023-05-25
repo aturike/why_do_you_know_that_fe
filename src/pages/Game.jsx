@@ -123,8 +123,10 @@ function Game() {
       <div>
         <DragDropContext onDragEnd={handleDropEnd}>
           <div>
-            <h4>Score: {score}</h4>
+            <div className="score-board">
+            <h4>Score:<span> {score}</span></h4>
             <h3>{randomDecks[score].question}</h3>
+            </div>
             <div className="game-grid">
               {gameSet.map((element, index) => {
                 if (element.value) {
