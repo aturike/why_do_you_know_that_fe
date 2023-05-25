@@ -14,7 +14,7 @@ function DeckList() {
   const fetchDecks = async () => {
     try {
       const response = await axios.get(
-        "https://why-do-i-know-that.adaptable.app/decks"
+        `https://why-do-i-know-that.adaptable.app/decks/${tokenInfo.payload._id}`
       );
       if (response.status === 200) {
         setAllDecks(response.data);
@@ -63,13 +63,14 @@ function DeckList() {
         value={search}
         onChange={handleSearch}
       ></input>
-
-      {filteredDecks.map((deck) => (
-        <Link key={deck._id} to={`/deckdetails/${deck._id}`}>
-          <h2>{deck.title}</h2>
-        </Link>
-      ))}
-      {filteredDecks.length > 0 && (
+      <hr />
+      {filteredDecks &&
+        filteredDecks.map((deck) => (
+          <Link key={deck._id} to={`/deckdetails/${deck._id}`}>
+            <h2>{deck.title}</h2>
+          </Link>
+        ))}
+      {filteredDecks && filteredDecks.length > 0 && (
         <button onClick={handlePlayGame}>Play your game</button>
       )}
     </div>

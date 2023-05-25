@@ -2,7 +2,13 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
-import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
+import {
+  Box,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Text,
+} from "@chakra-ui/react";
 
 function LoginForm(props) {
   const navigate = useNavigate();
@@ -26,15 +32,20 @@ function LoginForm(props) {
         }
       }
     } catch (error) {
+      if (error.response.status === 401 && error.response.data) {
+        console.log(error);
+      }
       console.log(error);
     }
   };
   return (
     <div className="signup-form">
-      <h1>Login</h1>
+      <Text fontSize={{ base: "1.2rem", md: "2rem", lg: "3rem" }}>
+        <h1>Login</h1>
+      </Text>
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={true}>
-          <FormLabel>
+          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
             Username
             <input
               type="text"
@@ -46,7 +57,7 @@ function LoginForm(props) {
           {isInvalidLogin === "incorrect username" && (
             <FormErrorMessage>Username incorrect</FormErrorMessage>
           )}
-          <FormLabel>
+          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
             Password
             <input
               type="password"
@@ -59,8 +70,14 @@ function LoginForm(props) {
             <FormErrorMessage>Incorrect password</FormErrorMessage>
           )}
         </FormControl>
+
         <button className="signup-btn" type="submit">
-          Login
+          <Box
+            padding={{ base: "5px", md: "8px" }}
+            fontSize={{ base: "1rem", lg: "1.5rem" }}
+          >
+            Login
+          </Box>
         </button>
       </form>
     </div>
