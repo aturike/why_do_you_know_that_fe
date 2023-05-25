@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SessionContext } from "../contexts/SessionContext";
+import "../Deck.css";
 
 function DeckList() {
   const [allDecks, setAllDecks] = useState([]);
@@ -50,17 +51,19 @@ function DeckList() {
   }, []);
 
   return (
-    <div>
+    <div className="mainList">
       <h1>Decklist</h1>
-      <Link to="/createdeck">Create a new deck!</Link>
-      <hr />
+      <Link className="navButton" to="/createdeck">
+        Create a new deck!
+      </Link>
+
       <input
         type="text"
         name="search"
         value={search}
         onChange={handleSearch}
       ></input>
-      <hr />
+
       {filteredDecks.map((deck) => (
         <Link key={deck._id} to={`/deckdetails/${deck._id}`}>
           <h2>{deck.title}</h2>

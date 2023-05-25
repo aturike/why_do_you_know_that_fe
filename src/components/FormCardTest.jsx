@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "../Deck.css";
 
 function FormCardTest({
   cards,
@@ -61,20 +62,23 @@ function FormCardTest({
 
   return (
     <form
+      className="cardForm"
       onSubmit={uploadImage}
       encType="multipart/form-data"
-      style={{ border: "1px lightgrey solid", padding: "10px" }}
     >
-      <h3>Card {index + 1}</h3>
-      <label> Picture: </label>
+      <h3 className="mainText">Card {index + 1}</h3>
+      <label> Picture </label>
       <input
+        className="fileInput"
         name="img"
         type="file"
         accept="image/jpg, image/png"
         // value={img}
       ></input>
-      <button type="submit">BUTTON</button>
-      <label> Text: </label>
+      <button className="submitImage" type="submit">
+        Submit Image
+      </button>
+      <label> Text </label>
       <input
         name="text"
         value={text}
@@ -83,7 +87,7 @@ function FormCardTest({
           setText(e.target.value);
         }}
       ></input>
-      <label> Value: </label>
+      <label> Value </label>
       <input
         type="number"
         name="value"

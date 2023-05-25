@@ -60,72 +60,80 @@ function UpdateDeckForm() {
   }, [thisDeck, cardFields]);
 
   return thisDeck ? (
-    <div style={{ border: "1px lightgrey solid", padding: "10px" }}>
-      <form onSubmit={handleSubmit}>
-        <h3>Update deck</h3>
-        <label>Title: </label>
+    <div className="formMain">
+      <form className="deckForm" onSubmit={handleSubmit}>
+        <label className="mainText">Title </label>
         <input
+          className="mainInputs"
           name="title"
           value={thisDeck.title}
           onChange={(e) => {
             setThisDeck({ ...thisDeck, title: e.target.value });
           }}
         ></input>
-        <label>Question: </label>
+        <label className="mainText">Question </label>
         <input
+          className="mainInputs"
           name="question"
           value={thisDeck.question}
           onChange={(e) => {
             setThisDeck({ ...thisDeck, question: e.target.value });
           }}
         ></input>
-        {formFields ? (
-          valueFields ? (
-            <button type="submit">Update deck</button>
+        <div className="creationContainer">
+          {formFields ? (
+            valueFields ? (
+              <button type="submit" className="submitDeck">
+                Update deck
+              </button>
+            ) : (
+              <h2 className="errorText">Values must be different</h2>
+            )
           ) : (
-            <h2>Values must be different</h2>
-          )
-        ) : (
-          <h2>fill all fields please</h2>
-        )}
-        <Link to={`/deckdetails/${deckId}`}>Go back!</Link>
+            <h2 className="errorText">fill all fields please</h2>
+          )}
+        </div>
       </form>
-
-      <UpdateCardForm
-        thisDeck={thisDeck}
-        setThisDeck={setThisDeck}
-        index={0}
-        setCardFields={setCardFields}
-        setValueFields={setValueFields}
-      />
-      <UpdateCardForm
-        thisDeck={thisDeck}
-        setThisDeck={setThisDeck}
-        index={1}
-        setCardFields={setCardFields}
-        setValueFields={setValueFields}
-      />
-      <UpdateCardForm
-        thisDeck={thisDeck}
-        setThisDeck={setThisDeck}
-        index={2}
-        setCardFields={setCardFields}
-        setValueFields={setValueFields}
-      />
-      <UpdateCardForm
-        thisDeck={thisDeck}
-        setThisDeck={setThisDeck}
-        index={3}
-        setCardFields={setCardFields}
-        setValueFields={setValueFields}
-      />
-      <UpdateCardForm
-        thisDeck={thisDeck}
-        setThisDeck={setThisDeck}
-        index={4}
-        setCardFields={setCardFields}
-        setValueFields={setValueFields}
-      />
+      <div className="cardContainer">
+        <UpdateCardForm
+          thisDeck={thisDeck}
+          setThisDeck={setThisDeck}
+          index={0}
+          setCardFields={setCardFields}
+          setValueFields={setValueFields}
+        />
+        <UpdateCardForm
+          thisDeck={thisDeck}
+          setThisDeck={setThisDeck}
+          index={1}
+          setCardFields={setCardFields}
+          setValueFields={setValueFields}
+        />
+        <UpdateCardForm
+          thisDeck={thisDeck}
+          setThisDeck={setThisDeck}
+          index={2}
+          setCardFields={setCardFields}
+          setValueFields={setValueFields}
+        />
+        <UpdateCardForm
+          thisDeck={thisDeck}
+          setThisDeck={setThisDeck}
+          index={3}
+          setCardFields={setCardFields}
+          setValueFields={setValueFields}
+        />
+        <UpdateCardForm
+          thisDeck={thisDeck}
+          setThisDeck={setThisDeck}
+          index={4}
+          setCardFields={setCardFields}
+          setValueFields={setValueFields}
+        />
+      </div>
+      <Link className="navButton" to={`/deckdetails/${deckId}`}>
+        Go back!
+      </Link>
     </div>
   ) : (
     <h2>LOADING INFO...</h2>

@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import FormCardTest from "../components/FormCardTest";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
+import "../Deck.css";
 
 function FormTest() {
   const navigate = useNavigate();
@@ -69,71 +70,87 @@ function FormTest() {
   };
 
   return (
-    <div style={{ border: "1px lightgrey solid", padding: "10px" }}>
-      <form encType="multipart/form-data" onSubmit={handleSubmit}>
-        <h3>New deck</h3>
-        <label>Title: </label>
+    <div className="formMain">
+      <form
+        className="deckForm"
+        encType="multipart/form-data"
+        onSubmit={handleSubmit}
+      >
+        <h1>Create a new DECK</h1>
+        <label className="mainText">Title </label>
         <input
+          className="mainInputs"
           name="title"
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
         ></input>
-        <label>Question: </label>
+        <label className="mainText">Question </label>
         <input
+          className="mainInputs"
           name="question"
           value={question}
           onChange={(e) => {
             setQuestion(e.target.value);
           }}
         ></input>
-        {formFields ? (
-          valueFields ? (
-            <button type="submit">Create deck</button>
+        <div className="creationContainer">
+          {" "}
+          {formFields ? (
+            valueFields ? (
+              <button type="submit" className="submitDeck">
+                Create deck!
+              </button>
+            ) : (
+              <h2 className="errorText">Values must be different</h2>
+            )
           ) : (
-            <h2>Values must be different</h2>
-          )
-        ) : (
-          <h2>fill all fields please</h2>
-        )}
+            <h2 className="errorText">fill all fields please</h2>
+          )}
+        </div>
       </form>
+      <div className="cardContainer">
+        <FormCardTest
+          index={0}
+          cards={cards}
+          setCards={setCards}
+          setCardFields={setCardFields}
+          setValueFields={setValueFields}
+        />
+        <FormCardTest
+          index={1}
+          cards={cards}
+          setCards={setCards}
+          setCardFields={setCardFields}
+          setValueFields={setValueFields}
+        />
+        <FormCardTest
+          index={2}
+          cards={cards}
+          setCards={setCards}
+          setCardFields={setCardFields}
+          setValueFields={setValueFields}
+        />
+        <FormCardTest
+          index={3}
+          cards={cards}
+          setCards={setCards}
+          setCardFields={setCardFields}
+          setValueFields={setValueFields}
+        />
+        <FormCardTest
+          index={4}
+          cards={cards}
+          setCards={setCards}
+          setCardFields={setCardFields}
+          setValueFields={setValueFields}
+        />
+      </div>
 
-      <FormCardTest
-        index={0}
-        cards={cards}
-        setCards={setCards}
-        setCardFields={setCardFields}
-        setValueFields={setValueFields}
-      />
-      <FormCardTest
-        index={1}
-        cards={cards}
-        setCards={setCards}
-        setCardFields={setCardFields}
-        setValueFields={setValueFields}
-      />
-      <FormCardTest
-        index={2}
-        cards={cards}
-        setCards={setCards}
-        setCardFields={setCardFields}
-        setValueFields={setValueFields}
-      />
-      <FormCardTest
-        index={3}
-        cards={cards}
-        setCards={setCards}
-        setCardFields={setCardFields}
-        setValueFields={setValueFields}
-      />
-      <FormCardTest
-        index={4}
-        cards={cards}
-        setCards={setCards}
-        setCardFields={setCardFields}
-        setValueFields={setValueFields}
-      />
+      <Link className="navButton" to={`/decklist/${tokenInfo.payload._id}`}>
+        Go back!
+      </Link>
     </div>
   );
 }
