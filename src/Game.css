@@ -1,11 +1,27 @@
+/*----COLORS
+black: #000000
+Electric indigo: #5800FF
+Tiffany Blue: #98DFD6
+Mikado Yellow: #FFC600
+Anti-flash white: #F0F0F0
+font-family: "Titan One", cursive;
+----*/
+
+* {
+  font-family: "Titan One", cursive;
+}
+
 .game-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  column-gap: 15px;
+  row-gap: 100px;
+  place-items: center;
 }
 
 .game-grid div {
-  height: 10rem;
-  border: 1px solid black;
+  height: 13rem;
 }
 
 .game-grid > div:last-child {
@@ -15,10 +31,107 @@
 .Card {
   height: 200px;
   width: 150px;
-  border: 1px solid black;
   border-radius: 5%;
+  box-shadow: #f0f0f0 0 0 10px;
+  transition: transform 0.6s;
+  text-align: center;
+  background-color: #f0f0f0;
+}
+
+.Card img {
+  height: 60px;
+}
+
+.Card:hover {
+  transform: scale(1.2);
+}
+
+.Card:active {
+  box-shadow: #f0f0f0 0 0 60px;
 }
 
 .Card-drop {
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Card-drop p {
+  text-align: center;
+  font-size: 10rem;
+  color: #f0f0f0;
+  text-shadow: #f0f0f0 0px 0px 10px;
+}
+
+.animate-pulse {
+  -webkit-animation: pulseAnimation 4s infinite;
+  -moz-animation: pulseAnimation 4s infinite;
+  -o-animation: pulseAnimation 4s infinite;
+  animation: pulseAnimation 4s infinite;
+}
+
+@keyframes pulseAnimation {
+  0% {
+    scale: 1.3;
+  }
+  50% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.3;
+  }
+}
+@-o-keyframes pulseAnimation {
+  0% {
+    scale: 1.1;
+  }
+  50% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.1;
+  }
+}
+@-moz-keyframes pulseAnimation {
+  0% {
+    scale: 1.1;
+  }
+  50% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.1;
+  }
+}
+@-webkit-keyframes pulseAnimation {
+  0% {
+    scale: 1.1;
+  }
+  50% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.1;
+  }
+}
+
+.score-board {
+  color: #f0f0f0;
+  text-align: center;
+  padding: 30px;
+}
+
+.score-board h4 {
+  font-size: 3rem;
+  text-shadow: #5800ff 0 5px 10px;
+}
+
+.score-board span {
+  color: #5800ff;
+  text-shadow: #f0f0f0 0 5px 10px;
+}
+
+.score-board h3 {
+  font-size: 2.7rem;
 }
