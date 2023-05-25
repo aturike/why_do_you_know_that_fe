@@ -104,6 +104,7 @@ function SignUpForm(props) {
             <FormHelperText
               style={{ color: "white" }}
               fontSize={{ base: "0.5rem", md: "0.8rem" }}
+              textAlign={"center"}
             >
               Enter the email you'd like to receive the newsletter on.
             </FormHelperText>
@@ -124,12 +125,16 @@ function SignUpForm(props) {
             <FormHelperText
               style={{ color: "white" }}
               fontSize={{ base: "0.5rem", md: "0.8rem" }}
+              textAlign={"center"}
             >
               Enter the username we will make fun of
             </FormHelperText>
           )}
           {isInvalidSignup && (
-            <FormErrorMessage fontSize={{ base: "0.5rem", md: "0.8rem" }}>
+            <FormErrorMessage
+              fontSize={{ base: "0.5rem", md: "0.8rem" }}
+              textAlign={"center"}
+            >
               Username already exisist
             </FormErrorMessage>
           )}
@@ -145,40 +150,52 @@ function SignUpForm(props) {
             />
           </FormLabel>
           {showInstructions.password && (
-            <div>
+            <div className="password-ctr">
               {!minLengthRegex.test(password) ? (
-                <FormErrorMessage fontSize={{ base: "0.5rem", md: "0.8rem" }}>
+                <FormErrorMessage
+                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  textAlign={"center"}
+                >
                   Password has to be at least 6 characters long
                 </FormErrorMessage>
               ) : (
                 <FormHelperText
                   style={{ color: "lightgreen" }}
                   fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  textAlign={"center"}
                 >
                   <CheckIcon /> Password has to be at least 6 characters long
                 </FormHelperText>
               )}
               {!specialCharRegex.test(password) ? (
-                <FormErrorMessage fontSize={{ base: "0.5rem", md: "0.8rem" }}>
+                <FormErrorMessage
+                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  textAlign={"center"}
+                >
                   Password has to contain at least one special character
                 </FormErrorMessage>
               ) : (
                 <FormHelperText
                   style={{ color: "lightgreen" }}
                   fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  textAlign={"center"}
                 >
                   <CheckIcon /> Password has to contain at least one special
                   character
                 </FormHelperText>
               )}
               {!uppercaseRegex.test(password) ? (
-                <FormErrorMessage fontSize={{ base: "0.5rem", md: "0.8rem" }}>
+                <FormErrorMessage
+                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  textAlign={"center"}
+                >
                   Password has to contain at least one capital letter
                 </FormErrorMessage>
               ) : (
                 <FormHelperText
                   style={{ color: "lightgreen" }}
                   fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  textAlign={"center"}
                 >
                   <CheckIcon /> Password has to contain at least one capital
                   letter
@@ -204,11 +221,15 @@ function SignUpForm(props) {
                 <FormHelperText
                   style={{ color: "lightgreen" }}
                   fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  textAlign={"center"}
                 >
                   <CheckIcon /> Passwords are matching
                 </FormHelperText>
               ) : (
-                <FormErrorMessage fontSize={{ base: "0.5rem", md: "0.8rem" }}>
+                <FormErrorMessage
+                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  textAlign={"center"}
+                >
                   Passwords are not matching
                 </FormErrorMessage>
               )}

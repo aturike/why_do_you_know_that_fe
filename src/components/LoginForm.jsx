@@ -4,12 +4,12 @@ import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
 import {
   Box,
-  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Text,
 } from "@chakra-ui/react";
+import "../login-signup.css";
 
 function LoginForm(props) {
   const navigate = useNavigate();
@@ -33,15 +33,22 @@ function LoginForm(props) {
         }
       }
     } catch (error) {
-      if (error.response.status === 401 && error.response.data) {
-        console.log(error);
+      if (
+        error.response.status === 401 &&
+        error.response.data === "invalid password"
+      ) {
+        setIsinvalidLogin("invalid password");
+      } else {
+        setIsinvalidLogin("invalid username");
       }
       console.log(error);
     }
   };
   return (
     <div className="signup-form">
-      <Text fontSize={{ base: "1.2rem", md: "2rem", lg: "3rem" }}>Login</Text>
+      <Text fontSize={{ base: "1.2rem", md: "2rem", lg: "3rem" }}>
+        <h1>Login</h1>
+      </Text>
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={true}>
           <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
@@ -54,7 +61,12 @@ function LoginForm(props) {
             />
           </FormLabel>
           {isInvalidLogin === "incorrect username" && (
-            <FormErrorMessage>Username incorrect</FormErrorMessage>
+            <FormErrorMessage
+              fontSize={{ base: "0.5rem", md: "0.8rem" }}
+              textAlign={"center"}
+            >
+              Username incorrect
+            </FormErrorMessage>
           )}
           <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
             Password
@@ -66,7 +78,12 @@ function LoginForm(props) {
             />
           </FormLabel>
           {isInvalidLogin === "incorrect password" && (
-            <FormErrorMessage>Incorrect password</FormErrorMessage>
+            <FormErrorMessage
+              fontSize={{ base: "0.5rem", md: "0.8rem" }}
+              textAlign={"center"}
+            >
+              Incorrect password
+            </FormErrorMessage>
           )}
         </FormControl>
 

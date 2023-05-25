@@ -1,7 +1,6 @@
 .signup-form h1 {
   color: #f0f0f0;
   font-family: "Titan One", cursive;
-  padding-bottom: 20px;
   text-align: center;
 }
 
@@ -17,7 +16,8 @@
   -ms-animation: fadein 2s;
   -o-animation: fadein 2s;
   animation: fadein 2s;
-  height: 80dvh;
+  height: 60dvh;
+  width: 60%;
 }
 
 .signup-form label {
@@ -45,7 +45,7 @@
   font-weight: 400;
   transition: transform 0.8s;
   cursor: pointer;
-  width: 4rem;
+  width: 100px;
   text-align: center;
   font-family: "Titan One", cursive;
 }
@@ -54,6 +54,12 @@
   background-color: #f0f0f0;
   color: #5800ff;
   transform: scale(0.9);
-  width: 70%;
+  width: 100px;
   font-family: "Titan One", cursive;
+}
+.password-ctr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
