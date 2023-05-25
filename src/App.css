@@ -367,6 +367,7 @@ font-family: "Titan One", cursive;
 }
 
 .signup-form label {
+  display: grid;
   color: #f0f0f0;
   font-family: "Titan One", cursive;
   font-size: clamp(1rem, 3dvw, 1.5rem);
