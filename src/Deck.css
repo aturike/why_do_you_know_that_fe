@@ -12,7 +12,6 @@ font-family: "Titan One", cursive;
 /* DECK FORMS */
 
 .formMain {
-  padding-top: 150px;
   margin: 20px;
   display: flex;
   flex-direction: column;
@@ -38,7 +37,8 @@ font-family: "Titan One", cursive;
 .largeFont {
   font-size: 2.5rem;
 }
-*/ .fontBasics {
+
+.fontBasics {
   color: #f0f0f0;
   font-family: "Titan One", cursive;
   margin: 0px;
@@ -51,7 +51,7 @@ font-family: "Titan One", cursive;
   font-size: 0.85rem;
   height: 30px;
 }
-*/ .fileInput {
+.fileInput {
   background-color: transparent;
 }
 
@@ -114,7 +114,7 @@ font-family: "Titan One", cursive;
   width: 100%;
 }
 
-/* input::file-selector-button {
+input::file-selector-button {
   padding: 0 5px 0 5px;
   border: none;
   background-color: #f5018a;
@@ -129,7 +129,7 @@ font-family: "Titan One", cursive;
   height: 100%;
   width: 50%;
   min-width: 109px;
-} */
+}
 
 .cardForm {
   width: 18%;
@@ -162,7 +162,6 @@ font-family: "Titan One", cursive;
 /* DECK LIST */
 
 .mainList {
-  padding-top: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,7 +178,6 @@ font-family: "Titan One", cursive;
 /* DECK DETAILS  */
 
 .mainDetails {
-  padding-top: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -192,7 +190,6 @@ font-family: "Titan One", cursive;
 }
 
 .cardDetails {
-  width: 18%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -200,6 +197,7 @@ font-family: "Titan One", cursive;
   border-radius: 10px;
   padding: "10px";
   padding: 10px;
+  width: 18%;
   min-width: 200px;
 }
 

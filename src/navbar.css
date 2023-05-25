@@ -31,8 +31,13 @@
   transform: scale(1.2);
 }
 
+.navBar {
+  position: relative;
+  top: 35px;
+}
+
 .banner {
-  background-image: url("./assets/layered-waves-haikei-banner.svg");
+  background-image: url("./assets/layered-waves-haikeiDani.svg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 200px;
