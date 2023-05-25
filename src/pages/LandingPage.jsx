@@ -11,20 +11,20 @@ function LandingPage() {
         </p>
       </div>
       <div className="preview-container">
-        <div className="card-preview  animate-flicker">
-          <h1>?</h1>
+        <div className="question-mark animate-flicker">
+          <p>?</p>
         </div>
         <div className="card-preview one">
           <h1>1</h1>
         </div>
-        <div className="card-preview green animate-flicker">
-          <h1>?</h1>
+        <div className="question-mark animate-flicker">
+          <p>?</p>
         </div>
         <div className="card-preview three">
           <h1>3</h1>
         </div>
-        <div className="card-preview  animate-flicker">
-          <h1>?</h1>
+        <div className="question-mark animate-flicker">
+          <p>?</p>
         </div>
       </div>
       <div className="card-preview bottom-card animate-pulse">
