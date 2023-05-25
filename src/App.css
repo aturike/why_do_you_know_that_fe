@@ -285,18 +285,18 @@ font-family: "Titan One", cursive;
   line-height: 2rem;
 }
 
-.signup-form {
+/* .signup-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 700px;
-  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 2s; /* Firefox < 16 */
-  -ms-animation: fadein 2s; /* Internet Explorer */
-  -o-animation: fadein 2s; /* Opera < 12.1 */
+  -webkit-animation: fadein 2s; 
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s; 
+  -o-animation: fadein 2s; 
   animation: fadein 2s;
-}
+} */
 
 @keyframes fadein {
   from {
@@ -347,26 +347,26 @@ font-family: "Titan One", cursive;
   }
 }
 
-.signup-form h1 {
+/* .signup-form h1 {
   color: #f0f0f0;
   font-family: "Titan One", cursive;
-  /* font-size: clamp(2rem, 4dvw, 3rem); */
+  font-size: clamp(2rem, 4dvw, 3rem);
   padding-bottom: 20px;
-}
+} */
 
-.signup-form form {
+/* .signup-form form {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 2s; /* Firefox < 16 */
-  -ms-animation: fadein 2s; /* Internet Explorer */
-  -o-animation: fadein 2s; /* Opera < 12.1 */
+  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s; 
+  -o-animation: fadein 2s; 
   animation: fadein 2s;
-}
+} */
 
-.signup-form label {
+/* .signup-form label {
   display: grid;
   color: #f0f0f0;
   font-family: "Titan One", cursive;
@@ -381,7 +381,7 @@ font-family: "Titan One", cursive;
 }
 
 .signup-btn {
-  /* padding: 15px; */
+  padding: 15px;
   border: none;
   background-color: #5800ff;
   border-radius: 20px;
@@ -402,18 +402,18 @@ font-family: "Titan One", cursive;
   transform: scale(0.9);
   width: 70%;
   font-family: "Titan One", cursive;
-}
+} */
 
-.login-form {
+/* .login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 700px;
-  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 2s; /* Firefox < 16 */
-  -ms-animation: fadein 2s; /* Internet Explorer */
-  -o-animation: fadein 2s; /* Opera < 12.1 */
+  -webkit-animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -ms-animation: fadein 2s;
+  -o-animation: fadein 2s;
   animation: fadein 2s;
 }
 
@@ -428,9 +428,9 @@ font-family: "Titan One", cursive;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-}
+} */
 
-.login-form label {
+/* .login-form label {
   color: #f0f0f0;
   font-family: "Titan One", cursive;
   font-size: 1.5rem;
@@ -465,4 +465,4 @@ font-family: "Titan One", cursive;
   width: 50%;
   height: 20%;
   font-family: "Titan One", cursive;
-}
+} */

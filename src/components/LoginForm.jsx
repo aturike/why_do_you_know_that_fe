@@ -4,6 +4,7 @@ import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
 import {
   Box,
+  Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -40,9 +41,7 @@ function LoginForm(props) {
   };
   return (
     <div className="signup-form">
-      <Text fontSize={{ base: "1.2rem", md: "2rem", lg: "3rem" }}>
-        <h1>Login</h1>
-      </Text>
+      <Text fontSize={{ base: "1.2rem", md: "2rem", lg: "3rem" }}>Login</Text>
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={true}>
           <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>

@@ -17,6 +17,7 @@ function DeckList() {
         `https://why-do-i-know-that.adaptable.app/decks/user/${tokenInfo.payload._id}`
       );
       if (response.status === 200) {
+        console.log(response.data);
         setAllDecks(response.data);
         setFilteredDecks(response.data);
       }

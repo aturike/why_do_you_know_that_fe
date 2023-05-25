@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CheckIcon } from "@chakra-ui/icons";
+import "../login-signup.css";
 
 function SignUpForm(props) {
   const [email, setEmail] = useState("");
@@ -81,7 +82,7 @@ function SignUpForm(props) {
 
   return (
     <div className="signup-form">
-      <Text fontSize={{ base: "1.2rem", md: "2rem", lg: "3rem" }}>
+      <Text fontSize={{ base: "1.5rem", md: "2rem", lg: "3rem" }}>
         <h1>Sign up</h1>
       </Text>
       {trueCount > 0 && <h1>Fill out the form before submitting</h1>}
