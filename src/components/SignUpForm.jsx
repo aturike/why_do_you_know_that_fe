@@ -4,6 +4,8 @@ import {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
+  Text,
+  Box,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -79,11 +81,13 @@ function SignUpForm(props) {
 
   return (
     <div className="signup-form">
-      <h1>Sign up</h1>
+      <Text fontSize={{ base: "1.2rem", md: "2rem", lg: "3rem" }}>
+        <h1>Sign up</h1>
+      </Text>
       {trueCount > 0 && <h1>Fill out the form before submitting</h1>}
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={isError}>
-          <FormLabel>
+          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
             Email address
             <input
               type="email"
@@ -96,12 +100,15 @@ function SignUpForm(props) {
           </FormLabel>
 
           {showInstructions.email && (
-            <FormHelperText style={{ color: "white" }}>
+            <FormHelperText
+              style={{ color: "white" }}
+              fontSize={{ base: "0.5rem", md: "0.8rem" }}
+            >
               Enter the email you'd like to receive the newsletter on.
             </FormHelperText>
           )}
 
-          <FormLabel>
+          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
             Username
             <input
               type="text"
@@ -113,14 +120,19 @@ function SignUpForm(props) {
             />
           </FormLabel>
           {showInstructions.username && (
-            <FormHelperText style={{ color: "white" }}>
+            <FormHelperText
+              style={{ color: "white" }}
+              fontSize={{ base: "0.5rem", md: "0.8rem" }}
+            >
               Enter the username we will make fun of
             </FormHelperText>
           )}
           {isInvalidSignup && (
-            <FormErrorMessage>Username already exisist</FormErrorMessage>
+            <FormErrorMessage fontSize={{ base: "0.5rem", md: "0.8rem" }}>
+              Username already exisist
+            </FormErrorMessage>
           )}
-          <FormLabel>
+          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
             Password
             <input
               type="password"
@@ -134,30 +146,39 @@ function SignUpForm(props) {
           {showInstructions.password && (
             <div>
               {!minLengthRegex.test(password) ? (
-                <FormErrorMessage>
+                <FormErrorMessage fontSize={{ base: "0.5rem", md: "0.8rem" }}>
                   Password has to be at least 6 characters long
                 </FormErrorMessage>
               ) : (
-                <FormHelperText style={{ color: "lightgreen" }}>
+                <FormHelperText
+                  style={{ color: "lightgreen" }}
+                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                >
                   <CheckIcon /> Password has to be at least 6 characters long
                 </FormHelperText>
               )}
               {!specialCharRegex.test(password) ? (
-                <FormErrorMessage>
+                <FormErrorMessage fontSize={{ base: "0.5rem", md: "0.8rem" }}>
                   Password has to contain at least one special character
                 </FormErrorMessage>
               ) : (
-                <FormHelperText style={{ color: "lightgreen" }}>
+                <FormHelperText
+                  style={{ color: "lightgreen" }}
+                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                >
                   <CheckIcon /> Password has to contain at least one special
                   character
                 </FormHelperText>
               )}
               {!uppercaseRegex.test(password) ? (
-                <FormErrorMessage>
+                <FormErrorMessage fontSize={{ base: "0.5rem", md: "0.8rem" }}>
                   Password has to contain at least one capital letter
                 </FormErrorMessage>
               ) : (
-                <FormHelperText style={{ color: "lightgreen" }}>
+                <FormHelperText
+                  style={{ color: "lightgreen" }}
+                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                >
                   <CheckIcon /> Password has to contain at least one capital
                   letter
                 </FormHelperText>
@@ -165,7 +186,7 @@ function SignUpForm(props) {
             </div>
           )}
 
-          <FormLabel>
+          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
             Repeat Password
             <input
               type="password"
@@ -179,17 +200,27 @@ function SignUpForm(props) {
           {showInstructions.passwordRepeat && (
             <div>
               {!isError.passwordRepeat ? (
-                <FormHelperText style={{ color: "lightgreen" }}>
+                <FormHelperText
+                  style={{ color: "lightgreen" }}
+                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                >
                   <CheckIcon /> Passwords are matching
                 </FormHelperText>
               ) : (
-                <FormErrorMessage>Passwords are not matching</FormErrorMessage>
+                <FormErrorMessage fontSize={{ base: "0.5rem", md: "0.8rem" }}>
+                  Passwords are not matching
+                </FormErrorMessage>
               )}
             </div>
           )}
         </FormControl>
         <button className="signup-btn" type="submit">
-          Sign Up
+          <Box
+            padding={{ base: "5px", md: "8px" }}
+            fontSize={{ base: "1rem", lg: "1.5rem" }}
+          >
+            Sign up
+          </Box>
         </button>
       </form>
     </div>
