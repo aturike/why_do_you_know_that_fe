@@ -211,12 +211,7 @@ font-family: "Titan One", cursive;
   font-family: "Titan One", cursive;
   font-size: clamp(2rem, 4dvw, 3rem);
   padding-bottom: 20px;
-<<<<<<< HEAD
-} 
-=======
 }
-*/
->>>>>>> styleDeckAgain
 
 /* .signup-form form {
   display: flex;
@@ -527,6 +522,7 @@ font-family: "Titan One", cursive;
   color: #f0f0f0;
   font-family: "Titan One", cursive;
   margin: 0px;
+  text-align: center;
 }
 
 .profileButton {
@@ -544,4 +540,17 @@ font-family: "Titan One", cursive;
   height: 30px;
   width: 18%;
   min-width: 200px;
+}
+
+.columns {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 5px;
+}
+
+.listed {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
 }
