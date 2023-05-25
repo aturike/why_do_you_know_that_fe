@@ -26,3 +26,14 @@
   gap: 30px;
   margin-right: 90px;
 }
+
+.navBar li:hover {
+  transform: scale(1.2);
+}
+
+.banner {
+  background-image: url("./assets/layered-waves-haikei-banner.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+}

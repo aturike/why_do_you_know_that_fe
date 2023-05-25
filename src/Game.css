@@ -14,14 +14,14 @@ font-family: "Titan One", cursive;
 .game-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   column-gap: 15px;
   row-gap: 100px;
   place-items: center;
 }
 
 .game-grid div {
-  height: 13rem;
+  height: 18rem;
+  width: 12rem;
 }
 
 .game-grid > div:last-child {
@@ -29,21 +29,33 @@ font-family: "Titan One", cursive;
 }
 
 .Card {
+  display: grid;
+  place-items: center;
+  row-gap: 5px;
   height: 200px;
   width: 150px;
   border-radius: 5%;
   box-shadow: #f0f0f0 0 0 10px;
   transition: transform 0.6s;
   text-align: center;
-  background-color: #f0f0f0;
+  background-color: #5800ff;
 }
 
 .Card img {
-  height: 60px;
+  height: 150px;
+  border-radius: 4px;
+  box-shadow: #f0f0f0 2px 0 20px;
+}
+
+.Card h2,
+h4 {
+  color: #f0f0f0;
+  font-size: 1.1rem;
 }
 
 .Card:hover {
   transform: scale(1.2);
+  box-shadow: #f0f0f0 0 0 20px;
 }
 
 .Card:active {
@@ -59,7 +71,7 @@ font-family: "Titan One", cursive;
 
 .Card-drop p {
   text-align: center;
-  font-size: 10rem;
+  font-size: 8rem;
   color: #f0f0f0;
   text-shadow: #f0f0f0 0px 0px 10px;
 }
@@ -69,6 +81,63 @@ font-family: "Titan One", cursive;
   -moz-animation: pulseAnimation 4s infinite;
   -o-animation: pulseAnimation 4s infinite;
   animation: pulseAnimation 4s infinite;
+}
+
+.score-board {
+  color: #f0f0f0;
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.score-board h4 {
+  font-size: 3.5rem;
+}
+
+.score-board span {
+  color: #5800ff;
+  text-shadow: #f0f0f0 0 5px 10px;
+  font-size: 3rem;
+}
+
+.score-board h3 {
+  font-size: 2.7rem;
+}
+
+@media only screen and (max-width: 472px) {
+  .Card {
+    display: grid;
+    place-items: center;
+    row-gap: 5px;
+    height: 100px;
+    width: 75px;
+    border-radius: 5%;
+    box-shadow: #f0f0f0 0 0 10px;
+    transition: transform 0.6s;
+    text-align: center;
+    background-color: #5800ff;
+  }
+
+  .Card img {
+    height: 50px;
+    border-radius: 4px;
+    box-shadow: #f0f0f0 2px 0 20px;
+  }
+
+  .Card h2,
+  h4 {
+    color: #f0f0f0;
+    font-size: 1.1rem;
+  }
+
+  .Card:hover {
+    transform: scale(1.2);
+    box-shadow: #f0f0f0 0 0 20px;
+  }
+
+  .Card:active {
+    box-shadow: #f0f0f0 0 0 60px;
+  }
 }
 
 @keyframes pulseAnimation {
@@ -114,24 +183,4 @@ font-family: "Titan One", cursive;
   100% {
     scale: 1.1;
   }
-}
-
-.score-board {
-  color: #f0f0f0;
-  text-align: center;
-  padding: 30px;
-}
-
-.score-board h4 {
-  font-size: 3rem;
-  text-shadow: #5800ff 0 5px 10px;
-}
-
-.score-board span {
-  color: #5800ff;
-  text-shadow: #f0f0f0 0 5px 10px;
-}
-
-.score-board h3 {
-  font-size: 2.7rem;
 }

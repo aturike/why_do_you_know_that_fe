@@ -124,8 +124,10 @@ function Game() {
         <DragDropContext onDragEnd={handleDropEnd}>
           <div>
             <div className="score-board">
-            <h4>Score:<span> {score}</span></h4>
-            <h3>{randomDecks[score].question}</h3>
+              <h4>
+                Score:<span> {score}</span>
+              </h4>
+              <h3>{randomDecks[score].question}</h3>
             </div>
             <div className="game-grid">
               {gameSet.map((element, index) => {
@@ -155,7 +157,7 @@ function Game() {
                                   >
                                     <Card
                                       isDragging={snapshot.isDragging}
-                                      element={element}
+                                      element={element} target={true}
                                     />
                                   </div>
                                 );
@@ -167,7 +169,7 @@ function Game() {
                       </Droppable>
                     );
                   } else {
-                    return <Card key={element._id} element={element} />;
+                    return <Card key={element._id} element={element} target={false} />;
                   }
                 } else {
                   return (
@@ -181,7 +183,7 @@ function Game() {
                             innerRef={provided.innerRef}
                             {...provided.droppableProps}
                             isDraggingOver={snapshot.isDraggingOver}
-                          >
+                            target={false}>
                             {provided.placeholder}
                           </Card>
                         );

@@ -12,7 +12,7 @@ function NavBar() {
   const { token, tokenInfo } = useContext(SessionContext);
 
   return (
-    <div>
+    <div className="banner">
       <Flex className="navBar" align={"center"} justify={"center"}>
         <Link to="/">
           <Flex
@@ -68,7 +68,7 @@ function NavBar() {
         <Box display={{ base: "block", md: "none" }}>
           <Menu>
             <MenuButton
-              colorScheme="blue"
+              colorScheme=""
               as={IconButton}
               aria-label="Options"
               icon={<HamburgerIcon />}
