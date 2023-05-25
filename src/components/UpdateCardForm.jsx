@@ -73,20 +73,21 @@ function UpdateCardForm({
 
   return (
     <form className="cardForm" onSubmit={uploadImage}>
-      <h3 className="mainText">Card {index + 1}</h3>
-      <label> Picture </label>
+      <h3 className="mainText fontBasics">Card {index + 1}</h3>
+      <label className="fontBasics"> Picture </label>
       <input
-        className="fileInput"
+        className="fileInput fontBasics inputG"
         name="img"
         type="file"
         accept="image/jpg, image/png"
         // value={img}
       ></input>
-      <button className="submitImage" type="submit">
+      <button className="submitImage fontBasics inputG" type="submit">
         submit image
       </button>
-      <label> Text </label>
+      <label className="fontBasics"> Text </label>
       <input
+        className="fontBasics inputG"
         name="text"
         value={text}
         onChange={(e) => {
@@ -94,7 +95,7 @@ function UpdateCardForm({
           setText(e.target.value);
         }}
       ></input>
-      <label> Value </label>
+      <label className="fontBasics"> Value </label>
       <input
         type="number"
         name="value"

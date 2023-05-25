@@ -44,21 +44,32 @@ function DeckDetails() {
   }, []);
 
   return thisDeck ? (
-    <div>
-      <Link to={`/decklist/${tokenInfo.payload._id}`}>Back to the list</Link>
+    <div className="mainDetails">
+      <Link className="navButton" to={`/decklist/${tokenInfo.payload._id}`}>
+        Back to the list
+      </Link>
       <div className="cardDiv">
-        <h1>Title: {thisDeck.title}</h1>
-        <h2>Question: {thisDeck.question}</h2>
-        {thisDeck.cards.map((card) => (
-          <div className="cardDiv" key={card._id}>
-            <img src={card.img} />
-            <h3>Text: {card.text}</h3>
-            <h3>Value: {card.value}</h3>
-          </div>
-        ))}
+        <div className="centerText">
+          <h1 className="largeFont fontBasics">Title: {thisDeck.title}</h1>
+          <h2 className="fontBasics">Question: {thisDeck.question}</h2>
+        </div>
+
+        <div className="cardContainer">
+          {thisDeck.cards.map((card) => (
+            <div className="cardDetails" key={card._id}>
+              <img className="deckImg" src={card.img} />
+              <h3 className="fontBasics">Text: {card.text}</h3>
+              <h3 className="fontBasics">Value: {card.value}</h3>
+            </div>
+          ))}
+        </div>
       </div>
-      <button onClick={handleDelete}>Delete this deck</button>
-      <Link to={`/updatedeck/${deckId}`}>Edit this deck</Link>
+      <button className="navButton" onClick={handleDelete}>
+        Delete this deck
+      </button>
+      <Link className="navButton" to={`/updatedeck/${deckId}`}>
+        Edit this deck
+      </Link>
     </div>
   ) : (
     <p>Loading data...</p>
