@@ -7,16 +7,18 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Card from "../components/Card";
 import EndGame from "../components/EndGame";
 import heart from "../assets/heart.svg";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
+import Confetti from "react-confetti";
 
 function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
   const [gameSet, setgameSet] = useState([]);
   const [creatorName, setcreatorName] = useState("main");
+  const [isConfetti, setIsConfetti] = useState(false);
   const [score, setscore] = useState(0);
   const [lives, setlives] = useState(3);
   const navigate = useNavigate();
-  const timeout = 1000;
+  const timeout = 2000;
   const showNumberofCards = 3;
   const { userId } = useParams();
 
@@ -37,6 +39,7 @@ function Game() {
         );
       }
     }
+    setIsConfetti(false);
   }, [randomDecks, score]);
 
   const fetchCreatorName = async () => {
@@ -61,6 +64,8 @@ function Game() {
     ];
 
     setgameSet(updategameSet);
+    setIsConfetti(true);
+
     setTimeout(() => {
       setscore(score + 1);
     }, timeout);
@@ -132,6 +137,14 @@ function Game() {
   if (randomDecks[score] && score < randomDecks.length && lives > 0) {
     return (
       <div>
+        {isConfetti && (
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            initialVelocityY={{ min: 10, max: 30 }}
+            // initialVelocityX={1000}
+          />
+        )}
         <div className="heart-div">
           {renderHearts(lives).map((life) => (
             <img
@@ -145,10 +158,15 @@ function Game() {
         <DragDropContext onDragEnd={handleDropEnd}>
           <div>
             <div className="score-board">
-              <h4>
-                Score:<span> {score}</span>
-              </h4>
-              <h3>{randomDecks[score].question}</h3>
+              <Text fontSize={{ base: "2rem", md: "3.5rem" }}>
+                Score:
+                <span>
+                  <Text fontSize={{ base: "1.5rem", md: "3rem" }}>{score}</Text>
+                </span>
+              </Text>
+              <Text fontSize={{ base: "1.2rem", md: "2.7rem" }}>
+                {randomDecks[score].question}
+              </Text>
             </div>
             <SimpleGrid
               className="game-grid"
