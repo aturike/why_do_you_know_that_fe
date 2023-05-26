@@ -7,15 +7,18 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Card from "../components/Card";
 import EndGame from "../components/EndGame";
 import heart from "../assets/heart.svg";
+import { Box, SimpleGrid, Text } from "@chakra-ui/react";
+import Confetti from "react-confetti";
 
 function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
   const [gameSet, setgameSet] = useState([]);
   const [creatorName, setcreatorName] = useState("main");
+  const [isConfetti, setIsConfetti] = useState(false);
   const [score, setscore] = useState(0);
   const [lives, setlives] = useState(3);
   const navigate = useNavigate();
-  const timeout = 1000;
+  const timeout = 2000;
   const showNumberofCards = 3;
   const { userId } = useParams();
 
@@ -36,6 +39,7 @@ function Game() {
         );
       }
     }
+    setIsConfetti(false);
   }, [randomDecks, score]);
 
   const fetchCreatorName = async () => {
@@ -60,6 +64,8 @@ function Game() {
     ];
 
     setgameSet(updategameSet);
+    setIsConfetti(true);
+
     setTimeout(() => {
       setscore(score + 1);
     }, timeout);
@@ -131,6 +137,14 @@ function Game() {
   if (randomDecks[score] && score < randomDecks.length && lives > 0) {
     return (
       <div>
+        {isConfetti && (
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            initialVelocityY={{ min: 10, max: 30 }}
+            // initialVelocityX={1000}
+          />
+        )}
         <div className="heart-div">
           {renderHearts(lives).map((life) => (
             <img
@@ -144,12 +158,23 @@ function Game() {
         <DragDropContext onDragEnd={handleDropEnd}>
           <div>
             <div className="score-board">
-              <h4>
-                Score:<span> {score}</span>
-              </h4>
-              <h3>{randomDecks[score].question}</h3>
+              <Text fontSize={{ base: "2rem", md: "3.5rem" }}>
+                Score:
+                <span>
+                  <Text fontSize={{ base: "1.5rem", md: "3rem" }}>{score}</Text>
+                </span>
+              </Text>
+              <Text fontSize={{ base: "1.2rem", md: "2.7rem" }}>
+                {randomDecks[score].question}
+              </Text>
             </div>
-            <div className="game-grid">
+            <SimpleGrid
+              className="game-grid"
+              templateColumns={{
+                base: "repeat(5, 1fr)",
+                md: "repeat(5, 1fr)",
+              }}
+            >
               {gameSet.map((element, index) => {
                 if (element.value) {
                   if (index === gameSet.length - 1) {
@@ -159,9 +184,11 @@ function Game() {
                         droppableId={index + "target-column"}
                       >
                         {(provided) => (
-                          <div
+                          <Box
                             ref={provided.innerRef}
                             {...provided.droppableProps}
+                            w={{ base: "6.5rem", md: "12rem" }}
+                            h={{ base: "8rem", md: "18rem" }}
                           >
                             <Draggable
                               key={element._id}
@@ -170,22 +197,24 @@ function Game() {
                             >
                               {(provided, snapshot) => {
                                 return (
-                                  <div
+                                  <Box
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
+                                    w={{ base: "6.5rem", md: "12rem" }}
+                                    h={{ base: "8rem", md: "18rem" }}
                                   >
                                     <Card
                                       isDragging={snapshot.isDragging}
                                       element={element}
                                       target={true}
                                     />
-                                  </div>
+                                  </Box>
                                 );
                               }}
                             </Draggable>
                             {provided.placeholder}
-                          </div>
+                          </Box>
                         )}
                       </Droppable>
                     );
@@ -220,7 +249,7 @@ function Game() {
                   );
                 }
               })}
-            </div>
+            </SimpleGrid>
           </div>
         </DragDropContext>
       </div>

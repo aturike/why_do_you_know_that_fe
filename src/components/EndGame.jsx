@@ -4,6 +4,7 @@ import axios from "axios";
 import { useBoolean } from "@chakra-ui/react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
+import Confetti from "react-confetti";
 
 function EndGame({ score, lives, gameId, gameUserName }) {
   const [userName, setuserName] = useState("");
@@ -50,6 +51,9 @@ function EndGame({ score, lives, gameId, gameUserName }) {
           Registered highscore: <br></br>
           <span>{score}</span> <br></br>on {gameUserName}`s game
         </h2>
+        {lives !== 0 && (
+          <Confetti width={window.innerWidth} height={window.innerHeight} />
+        )}
       </div>
     );
   } else {

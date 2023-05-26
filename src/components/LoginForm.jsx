@@ -36,7 +36,7 @@ function LoginForm(props) {
       if (error.response.data === "incorrect password") {
         setIsinvalidLogin("incorrect password");
       } else {
-        setIsinvalidLogin("invalid username");
+        setIsinvalidLogin("incorrect username");
       }
     }
   };
@@ -50,7 +50,7 @@ function LoginForm(props) {
       </Text>
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={true}>
-          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
+          <FormLabel fontSize={{ base: "1.2rem", lg: "1.5rem" }}>
             Username
             <input
               type="text"
@@ -61,14 +61,14 @@ function LoginForm(props) {
           </FormLabel>
           {isInvalidLogin === "incorrect username" && (
             <FormErrorMessage
-              fontSize={{ base: "0.5rem", md: "0.8rem" }}
+              fontSize={{ base: "0.8rem", md: "1rem" }}
               textAlign={"center"}
               display={"block"}
             >
               Username incorrect
             </FormErrorMessage>
           )}
-          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
+          <FormLabel fontSize={{ base: "1.2rem", lg: "1.5rem" }}>
             Password
             <input
               type="password"
@@ -79,7 +79,7 @@ function LoginForm(props) {
           </FormLabel>
           {isInvalidLogin === "incorrect password" && (
             <FormErrorMessage
-              fontSize={{ base: "0.5rem", md: "0.8rem" }}
+              fontSize={{ base: "0.8rem", md: "1rem" }}
               textAlign={"center"}
               display={"block"}
             >

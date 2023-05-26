@@ -6,6 +6,7 @@ import {
   FormHelperText,
   Text,
   Box,
+  Flex,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -91,7 +92,7 @@ function SignUpForm(props) {
       {trueCount > 0 && <h1>Fill out the form before submitting</h1>}
       <form onSubmit={handleSubmit}>
         <FormControl isInvalid={isError}>
-          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
+          <FormLabel fontSize={{ base: "1.2rem", lg: "1.5rem" }}>
             Email address
             <input
               type="email"
@@ -106,14 +107,14 @@ function SignUpForm(props) {
           {showInstructions.email && (
             <FormHelperText
               style={{ color: "white" }}
-              fontSize={{ base: "0.5rem", md: "0.8rem" }}
+              fontSize={{ base: "0.8rem", md: "1rem" }}
               textAlign={"center"}
             >
               Enter the email you'd like to receive the newsletter on.
             </FormHelperText>
           )}
 
-          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
+          <FormLabel fontSize={{ base: "1.2rem", lg: "1.5rem" }}>
             Username
             <input
               type="text"
@@ -127,7 +128,7 @@ function SignUpForm(props) {
           {showInstructions.username && (
             <FormHelperText
               style={{ color: "white" }}
-              fontSize={{ base: "0.5rem", md: "0.8rem" }}
+              fontSize={{ base: "0.8rem", md: "1rem" }}
               textAlign={"center"}
             >
               Enter the username we will make fun of
@@ -135,13 +136,13 @@ function SignUpForm(props) {
           )}
           {isInvalidSignup && (
             <FormErrorMessage
-              fontSize={{ base: "0.5rem", md: "0.8rem" }}
+              fontSize={{ base: "0.8rem", md: "1rem" }}
               textAlign={"center"}
             >
               Username already exisist
             </FormErrorMessage>
           )}
-          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
+          <FormLabel fontSize={{ base: "1.2rem", lg: "1.5rem" }}>
             Password
             <input
               type="password"
@@ -156,7 +157,7 @@ function SignUpForm(props) {
             <div className="password-ctr">
               {!minLengthRegex.test(password) ? (
                 <FormErrorMessage
-                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  fontSize={{ base: "0.8rem", md: "1rem" }}
                   textAlign={"center"}
                 >
                   Password has to be at least 6 characters long
@@ -164,7 +165,7 @@ function SignUpForm(props) {
               ) : (
                 <FormHelperText
                   style={{ color: "lightgreen" }}
-                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  fontSize={{ base: "0.8rem", md: "1rem" }}
                   textAlign={"center"}
                 >
                   <CheckIcon /> Password has to be at least 6 characters long
@@ -172,7 +173,7 @@ function SignUpForm(props) {
               )}
               {!specialCharRegex.test(password) ? (
                 <FormErrorMessage
-                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  fontSize={{ base: "0.8rem", md: "1rem" }}
                   textAlign={"center"}
                 >
                   Password has to contain at least one special character
@@ -180,7 +181,7 @@ function SignUpForm(props) {
               ) : (
                 <FormHelperText
                   style={{ color: "lightgreen" }}
-                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  fontSize={{ base: "0.8rem", md: "1rem" }}
                   textAlign={"center"}
                 >
                   <CheckIcon /> Password has to contain at least one special
@@ -189,7 +190,7 @@ function SignUpForm(props) {
               )}
               {!uppercaseRegex.test(password) ? (
                 <FormErrorMessage
-                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  fontSize={{ base: "0.8rem", md: "1rem" }}
                   textAlign={"center"}
                 >
                   Password has to contain at least one capital letter
@@ -197,7 +198,7 @@ function SignUpForm(props) {
               ) : (
                 <FormHelperText
                   style={{ color: "lightgreen" }}
-                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  fontSize={{ base: "0.8rem", md: "1rem" }}
                   textAlign={"center"}
                 >
                   <CheckIcon /> Password has to contain at least one capital
@@ -207,7 +208,7 @@ function SignUpForm(props) {
             </div>
           )}
 
-          <FormLabel fontSize={{ base: "1rem", lg: "1.5rem" }}>
+          <FormLabel fontSize={{ base: "1.2rem", lg: "1.5rem" }}>
             Repeat Password
             <input
               type="password"
@@ -219,24 +220,24 @@ function SignUpForm(props) {
             />
           </FormLabel>
           {showInstructions.passwordRepeat && (
-            <div>
+            <Flex justify={"center"}>
               {!isError.passwordRepeat ? (
                 <FormHelperText
                   style={{ color: "lightgreen" }}
-                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  fontSize={{ base: "0.8rem", md: "1rem" }}
                   textAlign={"center"}
                 >
                   <CheckIcon /> Passwords are matching
                 </FormHelperText>
               ) : (
                 <FormErrorMessage
-                  fontSize={{ base: "0.5rem", md: "0.8rem" }}
+                  fontSize={{ base: "0.8rem", md: "1rem" }}
                   textAlign={"center"}
                 >
                   Passwords are not matching
                 </FormErrorMessage>
               )}
-            </div>
+            </Flex>
           )}
         </FormControl>
         <button className="signup-btn" type="submit">

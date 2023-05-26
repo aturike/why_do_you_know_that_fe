@@ -11,6 +11,7 @@ function UpdateCardForm({
   const [img, setImage] = useState(thisDeck.cards[index].img);
   const [text, setText] = useState(thisDeck.cards[index].text);
   const [value, setValue] = useState(thisDeck.cards[index].value);
+  const [isSubmited, setIsSubmited] = useState(false);
 
   //upload image
   const uploadImage = async (event) => {
@@ -27,13 +28,15 @@ function UpdateCardForm({
       );
       const copyArray = [...thisDeck.cards];
       const copyObject = copyArray[index];
-      const updatedObject = {
-        ...copyObject,
-        img: response.data,
-      };
-      copyArray[index] = updatedObject;
-      setThisDeck({ ...thisDeck, cards: copyArray });
-      console.log(response.data);
+      if (response.status === 201) {
+        const updatedObject = {
+          ...copyObject,
+          img: response.data,
+        };
+        copyArray[index] = updatedObject;
+        setThisDeck({ ...thisDeck, cards: copyArray });
+        setIsSubmited(true);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -82,9 +85,15 @@ function UpdateCardForm({
         accept="image/jpg, image/png"
         // value={img}
       ></input>
-      <button className="submitImage fontBasics inputG" type="submit">
-        submit image
-      </button>
+      {isSubmited ? (
+        <button className="submitImage inputG" type="submit">
+          Submited!
+        </button>
+      ) : (
+        <button className="submitImage inputG" type="submit">
+          Submit Image
+        </button>
+      )}
       <label className="fontBasics"> Text </label>
       <input
         className="fontBasics inputG"

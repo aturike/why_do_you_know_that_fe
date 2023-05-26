@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../navbar.css";
 
 import { SessionContext } from "../contexts/SessionContext";
@@ -71,7 +71,7 @@ function NavBar() {
               colorScheme=""
               as={IconButton}
               aria-label="Options"
-              icon={<HamburgerIcon />}
+              icon={<HamburgerIcon boxSize={6} />}
             />
             <MenuList>
               {!token && (

@@ -124,7 +124,7 @@ font-family: "Titan One", cursive;
 }
 
 .question-mark p {
-  font-size: 7rem;
+  /* font-size: 7rem; */
   color: #f0f0f0;
   font-family: "Titan One", cursive;
 }
@@ -144,9 +144,9 @@ font-family: "Titan One", cursive;
 .directions p {
   font-family: "Titan One", cursive;
   text-align: center;
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   color: #f0f0f0;
-  width: 60%;
+  /* width: 60%; */
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 2s; /* Firefox < 16 */
   -ms-animation: fadein 2s; /* Internet Explorer */
@@ -166,7 +166,7 @@ font-family: "Titan One", cursive;
   border-radius: 20px;
   color: #f0f0f0;
   font-weight: 400;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   transition: transform 0.8s;
   cursor: pointer;
   width: 20%;
