@@ -13,20 +13,37 @@ function MyHighScore() {
 
   const fetchMyHighScore = async () => {
     const userId = tokenInfo.payload._id;
+    const isAdmin = tokenInfo.payload.isAdmin;
+
     try {
       const userScores = await axios.get(
         `https://why-do-i-know-that.adaptable.app/leaderboard/user/${userId}`
       );
-      userScores.data.sort((a, b) => b.score - a.score).slice(0, 5);
 
-      setmyHighScoreList(userScores.data);
-      const gameScores = await axios.get(
-        `https://why-do-i-know-that.adaptable.app/leaderboard/game/${userId}`
-      );
+      const sliceduserScores = userScores.data
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 5);
 
-      gameScores.data.sort((a, b) => b.score - a.score).slice(0, 5);
+      setmyHighScoreList(sliceduserScores);
 
-      setgameHighscore(gameScores.data);
+      if (isAdmin) {
+        const gameScores = await axios.get(
+          `https://why-do-i-know-that.adaptable.app/leaderboard/game/admin`
+        );
+
+        const slicedGameScores = gameScores.data
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 5);
+        setgameHighscore(slicedGameScores);
+      } else {
+        const gameScores = await axios.get(
+          `https://why-do-i-know-that.adaptable.app/leaderboard/game/${userId}`
+        );
+        const slicedGameScores = gameScores.data
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 5);
+        setgameHighscore(slicedGameScores);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +76,9 @@ function MyHighScore() {
           <div className="columns">
             <ul className="listed">
               {gameHighscore.map((highscore) => (
-                <li key={highscore._id + "score"}>{highscore.score}</li>
+                <li key={highscore._id + "score"}>
+                  Score: {highscore.score} -
+                </li>
               ))}
             </ul>
             <ul className="listed">
