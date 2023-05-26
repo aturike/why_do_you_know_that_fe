@@ -40,7 +40,9 @@ function MyHighScore() {
           <div className="columns">
             <ul className="listed">
               {myHighScoreList.map((highscore) => (
-                <li key={highscore._id + "score"}>Score: {highscore.score}</li>
+                <li key={highscore._id + "score"}>
+                  Score: {highscore.score} -
+                </li>
               ))}
             </ul>
             <ul className="listed">
@@ -52,9 +54,9 @@ function MyHighScore() {
             </ul>
           </div>
         </div>
-        <div className="columns">
+        <div>
           <h2 className="mainText">My Game's Highscore</h2>
-          <div>
+          <div className="columns">
             <ul className="listed">
               {gameHighscore.map((highscore) => (
                 <li key={highscore._id + "score"}>{highscore.score}</li>

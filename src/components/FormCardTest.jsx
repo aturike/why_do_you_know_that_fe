@@ -13,6 +13,7 @@ function FormCardTest({
   const [img, setImage] = useState(cards[index].img);
   const [text, setText] = useState(cards[index].text);
   const [value, setValue] = useState(cards[index].value);
+  const [isSubmited, setIsSubmited] = useState(false);
 
   const uploadImage = async (event) => {
     event.preventDefault();
@@ -28,14 +29,16 @@ function FormCardTest({
       );
       const copyArray = [...cards];
       const copyObject = copyArray[index];
-      const updatedObject = {
-        ...copyObject,
-        img: response.data,
-      };
-      copyArray[index] = updatedObject;
-      setImage(response.data);
-      setCards(copyArray);
-      console.log(response.data);
+      if (response.status === 201) {
+        const updatedObject = {
+          ...copyObject,
+          img: response.data,
+        };
+        copyArray[index] = updatedObject;
+        setImage(response.data);
+        setCards(copyArray);
+        setIsSubmited(true);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -75,9 +78,16 @@ function FormCardTest({
         accept="image/jpg, image/png"
         // value={img}
       ></input>
-      <button className="submitImage inputG" type="submit">
-        Submit Image
-      </button>
+      {isSubmited ? (
+        <button className="submitImage inputG" type="submit">
+          Submited!
+        </button>
+      ) : (
+        <button className="submitImage inputG" type="submit">
+          Submit Image
+        </button>
+      )}
+
       <label className="fontBasics"> Text </label>
       <input
         className="fontBasics inputG"
