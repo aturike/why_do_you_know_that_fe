@@ -1,0 +1,15 @@
+img {
+  height: 100px;
+}
+
+.cardDiv {
+  border: solid lightgray 1px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.cardDiv h1,
+h2,
+h3 {
+  margin: 0;
+}
