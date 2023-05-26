@@ -1,3 +1,5 @@
+import { Box, Text } from "@chakra-ui/react";
+
 function Card({
   element,
   isDragging,
@@ -16,23 +18,41 @@ function Card({
 
   if (element) {
     return (
-      <div style={stylesDrag} className="Card">
+      <Box
+        style={stylesDrag}
+        className="Card"
+        w={{ base: "4.5rem", md: "12rem" }}
+        h={{ base: "8rem", md: "18rem" }}
+      >
         <img src={element.img} />
-        <h2>{element.text}</h2>
-        {!target && <h4>{element.value}</h4>}
-      </div>
+        <Text className="Card-text" fontSize={{ base: "0.8rem", md: "1.1rem" }}>
+          {element.text}
+        </Text>
+        {!target && (
+          <Text
+            className="Card-text"
+            fontSize={{ base: "0.8rem", md: "1.1rem" }}
+          >
+            {element.value}
+          </Text>
+        )}
+      </Box>
     );
   } else {
     return (
-      <div
+      <Box
         className="Card-drop animate-pulse "
         ref={innerRef}
         style={stylesDrop}
       >
-        {isDraggingOver ? <p></p> : <p>?</p>}
+        {isDraggingOver ? (
+          <Text></Text>
+        ) : (
+          <Text fontSize={{ base: "2rem", md: "8rem" }}>?</Text>
+        )}
 
         {children}
-      </div>
+      </Box>
     );
   }
 }

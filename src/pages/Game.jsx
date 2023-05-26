@@ -7,6 +7,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Card from "../components/Card";
 import EndGame from "../components/EndGame";
 import heart from "../assets/heart.svg";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 
 function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
@@ -149,7 +150,13 @@ function Game() {
               </h4>
               <h3>{randomDecks[score].question}</h3>
             </div>
-            <div className="game-grid">
+            <SimpleGrid
+              className="game-grid"
+              templateColumns={{
+                base: "repeat(5, 1fr)",
+                md: "repeat(5, 1fr)",
+              }}
+            >
               {gameSet.map((element, index) => {
                 if (element.value) {
                   if (index === gameSet.length - 1) {
@@ -159,9 +166,11 @@ function Game() {
                         droppableId={index + "target-column"}
                       >
                         {(provided) => (
-                          <div
+                          <Box
                             ref={provided.innerRef}
                             {...provided.droppableProps}
+                            w={{ base: "6.5rem", md: "12rem" }}
+                            h={{ base: "8rem", md: "18rem" }}
                           >
                             <Draggable
                               key={element._id}
@@ -170,22 +179,24 @@ function Game() {
                             >
                               {(provided, snapshot) => {
                                 return (
-                                  <div
+                                  <Box
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
+                                    w={{ base: "6.5rem", md: "12rem" }}
+                                    h={{ base: "8rem", md: "18rem" }}
                                   >
                                     <Card
                                       isDragging={snapshot.isDragging}
                                       element={element}
                                       target={true}
                                     />
-                                  </div>
+                                  </Box>
                                 );
                               }}
                             </Draggable>
                             {provided.placeholder}
-                          </div>
+                          </Box>
                         )}
                       </Droppable>
                     );
@@ -220,7 +231,7 @@ function Game() {
                   );
                 }
               })}
-            </div>
+            </SimpleGrid>
           </div>
         </DragDropContext>
       </div>

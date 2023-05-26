@@ -17,7 +17,7 @@
   -o-animation: fadein 2s;
   animation: fadein 2s;
   height: 60dvh;
-  width: 60%;
+  width: 100%;
 }
 
 .signup-form label {
@@ -45,7 +45,7 @@
   font-weight: 400;
   transition: transform 0.8s;
   cursor: pointer;
-  width: 100px;
+  width: 130px;
   text-align: center;
   font-family: "Titan One", cursive;
 }
@@ -54,7 +54,7 @@
   background-color: #f0f0f0;
   color: #5800ff;
   transform: scale(0.9);
-  width: 100px;
+  width: 130px;
   font-family: "Titan One", cursive;
 }
 .password-ctr {
