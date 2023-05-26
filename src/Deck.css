@@ -72,6 +72,12 @@ font-family: "Titan One", cursive;
   min-width: 110px;
 }
 
+.submitImage:hover {
+  background-color: #f0f0f0;
+  transform: scale(0.9);
+  color: #f5018a;
+}
+
 .creationContainer {
   height: 50px;
   display: flex;
@@ -96,6 +102,12 @@ font-family: "Titan One", cursive;
   width: 18%;
 }
 
+.navButton:hover {
+  background-color: #f0f0f0;
+  transform: scale(0.9);
+  color: #f5018a;
+}
+
 .submitDeck {
   margin-top: 15px;
   padding: 0 5px 0 5px;
@@ -112,6 +124,12 @@ font-family: "Titan One", cursive;
   height: 50px;
   min-width: 200px;
   width: 100%;
+}
+
+.submitDeck:hover {
+  background-color: #f0f0f0;
+  transform: scale(0.9);
+  color: #f5018a;
 }
 
 input::file-selector-button {
