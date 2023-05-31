@@ -50,7 +50,7 @@ font-family: "Titan One", cursive;
   /* font-size: 1.1rem; */
 }
 
-.Card:hover {
+.Card-target:hover {
   transform: scale(1.2);
   box-shadow: #f0f0f0 0 0 20px;
 }
@@ -183,7 +183,7 @@ font-family: "Titan One", cursive;
     color: #f0f0f0;
   }
 
-  .Card:hover {
+  .Card-target:hover {
     transform: scale(1.2);
     box-shadow: #f0f0f0 0 0 20px;
   }

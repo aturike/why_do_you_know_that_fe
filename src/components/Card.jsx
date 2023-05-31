@@ -17,10 +17,17 @@ function Card({
   const stylesDrop = isDraggingOver ? { width: "50%" } : { width: "50%" };
 
   if (element) {
+    let CardClass = "";
+    if (target) {
+      CardClass = "Card Card-target";
+    } else {
+      CardClass = "Card";
+    }
+
     return (
       <Box
         style={stylesDrag}
-        className="Card"
+        className={CardClass}
         w={{ base: "4.5rem", md: "12rem" }}
         h={{ base: "8rem", md: "18rem" }}
       >

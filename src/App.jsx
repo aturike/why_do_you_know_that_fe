@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import UpdateDeckForm from "./pages/UpdateDeckForm";
 import NavBar from "./components/Navbar";
 import CreateDeck from "./pages/CreateDeck";
+import IntroPage from "./pages/IntroPage";
 
 function App() {
   return (
@@ -78,6 +79,16 @@ function App() {
           </div>
         }
       />
+      <Route
+        path="/intro-game"
+        element={
+          <div>
+            <NavBar />
+            <IntroPage />
+          </div>
+        }
+      />
+
       <Route
         path="/game/:userId"
         element={

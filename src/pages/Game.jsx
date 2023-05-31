@@ -158,12 +158,10 @@ function Game() {
         <DragDropContext onDragEnd={handleDropEnd}>
           <div>
             <div className="score-board">
-              <Text fontSize={{ base: "2rem", md: "3.5rem" }}>
-                Score:
-                <span>
-                  <Text fontSize={{ base: "1.5rem", md: "3rem" }}>{score}</Text>
-                </span>
-              </Text>
+              <Text fontSize={{ base: "2rem", md: "3.5rem" }}>Score:</Text>
+              <span>
+                <Text fontSize={{ base: "1.5rem", md: "3rem" }}>{score}</Text>
+              </span>
               <Text fontSize={{ base: "1.2rem", md: "2.7rem" }}>
                 {randomDecks[score].question}
               </Text>
