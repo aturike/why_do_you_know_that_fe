@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "../Deck.css";
 
-function FormCardTest({
+function CreateCardForm({
   cards,
   setCards,
   index,
@@ -113,4 +113,4 @@ function FormCardTest({
   );
 }
 
-export default FormCardTest;
+export default CreateCardForm;

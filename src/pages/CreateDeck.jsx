@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import FormCardTest from "../components/FormCardTest";
+import CreateCardForm from "../components/CreateCardForm";
 import { Link, useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import "../Deck.css";
 
-function FormTest() {
+function CreateDeck() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
@@ -111,35 +111,35 @@ function FormTest() {
         </div>
       </form>
       <div className="cardContainer">
-        <FormCardTest
+        <CreateCardForm
           index={0}
           cards={cards}
           setCards={setCards}
           setCardFields={setCardFields}
           setValueFields={setValueFields}
         />
-        <FormCardTest
+        <CreateCardForm
           index={1}
           cards={cards}
           setCards={setCards}
           setCardFields={setCardFields}
           setValueFields={setValueFields}
         />
-        <FormCardTest
+        <CreateCardForm
           index={2}
           cards={cards}
           setCards={setCards}
           setCardFields={setCardFields}
           setValueFields={setValueFields}
         />
-        <FormCardTest
+        <CreateCardForm
           index={3}
           cards={cards}
           setCards={setCards}
           setCardFields={setCardFields}
           setValueFields={setValueFields}
         />
-        <FormCardTest
+        <CreateCardForm
           index={4}
           cards={cards}
           setCards={setCards}
@@ -155,4 +155,4 @@ function FormTest() {
   );
 }
 
-export default FormTest;
+export default CreateDeck;

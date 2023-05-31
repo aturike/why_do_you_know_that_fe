@@ -7,10 +7,10 @@ import Game from "./pages/Game";
 import LandingPage from "./pages/LandingPage";
 import DeckList from "./pages/DeckList";
 import DeckDetails from "./pages/DeckDetails";
-import FormTest from "./pages/FormTest";
 import PrivateRoute from "./components/PrivateRoute";
 import UpdateDeckForm from "./pages/UpdateDeckForm";
 import NavBar from "./components/Navbar";
+import CreateDeck from "./pages/CreateDeck";
 
 function App() {
   return (
@@ -92,7 +92,7 @@ function App() {
         element={
           <PrivateRoute>
             <NavBar />
-            <FormTest />
+            <CreateDeck />
           </PrivateRoute>
         }
       />
