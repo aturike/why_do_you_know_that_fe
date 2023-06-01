@@ -12,10 +12,14 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function InputModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [gameId, setGameId] = useState();
+
+  console.log(gameId);
   return (
     <>
       <Box className="btn-alt" onClick={onOpen}>
@@ -39,7 +43,12 @@ function InputModal() {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Input fontWeight={"100"}></Input>
+            <Input
+              fontWeight={"100"}
+              onChange={(event) => {
+                setGameId(event.target.value);
+              }}
+            ></Input>
           </ModalBody>
 
           <ModalFooter>
@@ -52,9 +61,15 @@ function InputModal() {
               <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Close</Text>
             </Button>
             <Button variant={"outline"} colorScheme="purple" fontWeight={"400"}>
-              <Link to={"/game"}>
-                <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
-              </Link>
+              {gameId ? (
+                <Link to={"/game/" + gameId}>
+                  <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
+                </Link>
+              ) : (
+                <Link to={"/game"}>
+                  <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
+                </Link>
+              )}
             </Button>
           </ModalFooter>
         </ModalContent>
