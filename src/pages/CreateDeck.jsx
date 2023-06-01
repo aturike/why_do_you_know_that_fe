@@ -6,16 +6,18 @@ import { SessionContext } from "../contexts/SessionContext";
 import "../Deck.css";
 
 function CreateDeck() {
+  const defaultImg =
+    "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image-300x225.jpg";
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [userId, setUserId] = useState("");
   const [cards, setCards] = useState([
-    { text: "", value: 0, img: "" },
-    { text: "", value: 0, img: "" },
-    { text: "", value: 0, img: "" },
-    { text: "", value: 0, img: "" },
-    { text: "", value: 0, img: "" },
+    { text: "", value: 0, img: defaultImg },
+    { text: "", value: 0, img: defaultImg },
+    { text: "", value: 0, img: defaultImg },
+    { text: "", value: 0, img: defaultImg },
+    { text: "", value: 0, img: defaultImg },
   ]);
   const [formFields, setFormFields] = useState(false);
   const [cardFields, setCardFields] = useState(false);
