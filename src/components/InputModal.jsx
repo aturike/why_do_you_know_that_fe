@@ -1,5 +1,7 @@
 import {
+  Box,
   Button,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -7,29 +9,53 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 function InputModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Box className="btn-alt" onClick={onOpen}>
+        <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>
+          Play a custom game!
+        </Text>
+      </Box>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        size={{ base: "xs", md: "lg" }}
+        isCentered="true"
+      >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Place game unique code</ModalHeader>
+          <ModalHeader fontWeight={"400"}>
+            <Text fontSize={{ base: "1rem", md: "1.2rem" }}>
+              Place the game`s unique code and play
+            </Text>
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <input></input>
+            <Input fontWeight={"100"}></Input>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+            <Button
+              bgColor={"#f5018a"}
+              colorScheme="pink"
+              mr={3}
+              onClick={onClose}
+            >
+              <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Close</Text>
             </Button>
-            <Button variant="ghost">Play custom game</Button>
+            <Button variant={"outline"} colorScheme="purple" fontWeight={"400"}>
+              <Link to={"/game"}>
+                <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
+              </Link>
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

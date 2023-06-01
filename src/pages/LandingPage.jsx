@@ -1,6 +1,5 @@
 import { Text, Flex, Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import InputModal from "../components/InputModal";
 
 function LandingPage() {
   return (
@@ -18,10 +17,9 @@ function LandingPage() {
           enjoyable experience.
         </Text>
       </Flex>
-      <Link className="btn" to={"/intro-game/main"}>
+      <Link className="btn" to={"/intro-game"}>
         <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
       </Link>
-      <InputModal />
       <Box className="team" fontSize={{ base: "0.7rem", md: "1rem" }}>
         <h3>Adam Turi</h3>
         <h3>Dani Bravo</h3>
