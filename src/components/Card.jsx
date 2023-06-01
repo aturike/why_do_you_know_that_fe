@@ -48,7 +48,7 @@ function Card({
   } else {
     return (
       <Box
-        className="Card-drop animate-pulse "
+        className="Card-drop animate-pulse"
         ref={innerRef}
         style={stylesDrop}
       >

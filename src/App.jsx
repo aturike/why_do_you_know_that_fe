@@ -80,7 +80,7 @@ function App() {
         }
       />
       <Route
-        path="/intro-game"
+        path="/intro-game/:userId"
         element={
           <div>
             <NavBar />

@@ -154,6 +154,18 @@ font-family: "Titan One", cursive;
   animation: fadein 2s;
 }
 
+.landing-directions {
+  font-family: "Titan One", cursive;
+  text-align: center;
+  height: 40dvh;
+  color: #f0f0f0;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 2s; /* Firefox < 16 */
+  -ms-animation: fadein 2s; /* Internet Explorer */
+  -o-animation: fadein 2s; /* Opera < 12.1 */
+  animation: fadein 2s;
+}
+
 /* .directions {
   display: flex;
   justify-content: center;
@@ -161,6 +173,7 @@ font-family: "Titan One", cursive;
 
 .btn {
   padding: 15px;
+  margin-bottom: 10px;
   border: none;
   background-color: #5800ff;
   border-radius: 20px;

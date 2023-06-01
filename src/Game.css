@@ -42,7 +42,7 @@ font-family: "Titan One", cursive;
 .Card img {
   height: 150px;
   border-radius: 4px;
-  box-shadow: #f0f0f0 2px 0 20px;
+  /* box-shadow: #f0f0f0 2px 0 20px; */
 }
 
 .Card-text {
@@ -78,6 +78,15 @@ font-family: "Titan One", cursive;
   -moz-animation: pulseAnimation 4s infinite;
   -o-animation: pulseAnimation 4s infinite;
   animation: pulseAnimation 4s infinite;
+}
+
+.animate-pullcard {
+  position: relative;
+  margin-bottom: 15px;
+  -webkit-animation: pullcard 4s infinite 4s;
+  -moz-animation: pullcard 4s infinite 4s;
+  -o-animation: pullcard 4s infinite 4s;
+  animation: pullcard 4s infinite 4s;
 }
 
 .score-board {
@@ -176,7 +185,7 @@ font-family: "Titan One", cursive;
   .Card img {
     height: 50px;
     border-radius: 4px;
-    box-shadow: #f0f0f0 2px 0 20px;
+    /* box-shadow: #f0f0f0 2px 0 20px; */
   }
 
   .Card-text {
@@ -235,6 +244,51 @@ font-family: "Titan One", cursive;
   }
   100% {
     scale: 1.1;
+  }
+}
+
+@keyframes pullcard {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -10rem;
+  }
+  100% {
+    top: 0;
+  }
+}
+@-o-keyframes pullcard {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -10rem;
+  }
+  100% {
+    top: 0;
+  }
+}
+@-moz-keyframes pullcard {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -10rem;
+  }
+  100% {
+    top: 0;
+  }
+}
+@-webkit-keyframes pullcard {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -10rem;
+  }
+  100% {
+    top: 0;
   }
 }
 

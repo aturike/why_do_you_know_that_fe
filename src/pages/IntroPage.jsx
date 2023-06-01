@@ -1,15 +1,25 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Card from "../components/Card";
 
 function IntroPage() {
+  const { userId } = useParams();
+
   const firstCard = {
     text: " 1st reference",
     value: 1,
-    img: "../assets/intro-imgs/num1.png",
+    img: "/src/assets/intro-imgs/num1.png",
   };
-  const secondCard = { text: " 2nd reference", value: 3, img: "" };
-  const targetCard = { text: " 1+1", value: 2, img: "" };
+  const secondCard = {
+    text: " 2nd reference",
+    value: 3,
+    img: "/src/assets/intro-imgs/num3.png",
+  };
+  const targetCard = {
+    text: " 1+1",
+    value: 2,
+    img: "/src/assets/intro-imgs/num2.png",
+  };
 
   return (
     <div className="landing-page-section">
@@ -22,7 +32,7 @@ function IntroPage() {
         <Text
           fontSize={{ base: "0.8rem", md: "1.5rem" }}
           lineHeight={"1.6rem"}
-          mb={{ base: "0.8rem", md: "1.5rem" }}
+          mb={{ base: "0.2rem", md: "1.5rem" }}
         >
           You will see two rows of cards. The first row contains the reference
           cards, the second the target card.
@@ -53,12 +63,18 @@ function IntroPage() {
           <Text fontSize={{ base: "3rem", md: "7rem" }}>?</Text>
         </div>
       </div>
-      <div>
+      <div className="animate-pullcard">
         <Card element={targetCard} target={true} />
       </div>
-      <Link className="btn" to={"/game"}>
-        <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
-      </Link>
+      {userId === "main" ? (
+        <Link className="btn" to={"/game"}>
+          <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
+        </Link>
+      ) : (
+        <Link className="btn" to={"/game/" + { userId }}>
+          <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
+        </Link>
+      )}
     </div>
   );
 }
