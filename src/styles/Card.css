@@ -16,7 +16,6 @@
 }
 .border-question-card {
   height: 100%;
-  border: 5px grey solid;
   border-radius: 10px;
   display: flex;
   flex-direction: column;

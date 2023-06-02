@@ -21,8 +21,8 @@ function Card({
     return (
       <Box
         className="card"
-        w={{ base: "100px", md: "100px", lg: "200px" }}
-        h={{ base: "140px", md: "140px", lg: "280px" }}
+        w={{ base: "90px", md: "110px", lg: "200px" }}
+        h={{ base: "140px", md: "154px", lg: "280px" }}
       >
         <div className="border">
           <div className="top">
@@ -61,8 +61,9 @@ function Card({
       <Box
         ref={innerRef}
         className="border-question-card"
-        w={{ base: "110px", md: "110px", lg: "210px" }}
-        h={{ base: "140px", md: "140px", lg: "280px" }}
+        border={{ base: "none", md: "5px grey solid" }}
+        w={{ base: "10px", md: "120px", lg: "210px" }}
+        h={{ base: "140px", md: "154px", lg: "280px" }}
       >
         <Text fontSize={{ base: "3rem", lg: "7rem" }}>?</Text>
       </Box>

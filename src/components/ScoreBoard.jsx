@@ -4,7 +4,7 @@ function ScoreBoard({ children, score }) {
   return (
     <Flex
       align={"center"}
-      justify={"end"}
+      justify={{ base: "center", md: "end" }}
       fontSize={{ base: "0.8rem", md: "0.8rem", lg: "1.5rem" }}
       gap={"10px"}
       p={{ base: "5px", lg: "10px" }}
