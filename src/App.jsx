@@ -74,7 +74,6 @@ function App() {
         path="/game"
         element={
           <div>
-            <NavBar />
             <Game />
           </div>
         }
@@ -93,7 +92,6 @@ function App() {
         path="/game/:userId"
         element={
           <div>
-            <NavBar />
             <Game />
           </div>
         }

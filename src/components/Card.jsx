@@ -20,10 +20,9 @@ function Card({
   if (element) {
     return (
       <Box
-        style={stylesDrag}
         className="card"
-        w={{ base: "100px", md: "150px", lg: "200px" }}
-        h={{ base: "140px", md: "210px", lg: "280px" }}
+        w={{ base: "100px", md: "100px", lg: "200px" }}
+        h={{ base: "140px", md: "140px", lg: "280px" }}
       >
         <div className="border">
           <div className="top">
@@ -31,7 +30,7 @@ function Card({
           </div>
           <div className="center">
             <Text
-              fontSize={{ base: "0.8rem", md: "0.8em", lg: "1.5rem" }}
+              fontSize={{ base: "0.8rem", md: "0.8em", lg: "1.2rem" }}
               align={"center"}
             >
               {element.text}
@@ -40,14 +39,14 @@ function Card({
           <div className="bot">
             {!target ? (
               <Text
-                fontSize={{ base: "0.8rem", md: "1rem", lg: "1.2rem" }}
+                fontSize={{ base: "0.8rem", md: "1rem", lg: "1.5rem" }}
                 align={"center"}
               >
                 {element.value}
               </Text>
             ) : (
               <Text
-                fontSize={{ base: "0.8rem", md: "1rem", lg: "1.2rem" }}
+                fontSize={{ base: "0.8rem", md: "1rem", lg: "1.5rem" }}
                 align={"center"}
               >
                 ?
@@ -62,9 +61,10 @@ function Card({
       <Box
         ref={innerRef}
         className="border-question-card"
-        w={{ base: "100%", lg: "80%" }}
+        w={{ base: "110px", md: "110px", lg: "210px" }}
+        h={{ base: "140px", md: "140px", lg: "280px" }}
       >
-        <Text fontSize={{ base: "3rem", md: "7rem" }}>?</Text>
+        <Text fontSize={{ base: "3rem", lg: "7rem" }}>?</Text>
       </Box>
 
       // <Box

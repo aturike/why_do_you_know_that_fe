@@ -1,4 +1,4 @@
-import { Flex, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Flex, Grid, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import InputModal from "../components/InputModal";
@@ -81,6 +81,7 @@ function IntroPage() {
           templateColumns="repeat(5, 1fr)"
           templateRows="repeat(2, 1fr)"
           gap={"5px"}
+          rowGap={"2dvw"}
           pl={"10px"}
           p={"10px"}
         >

@@ -40,5 +40,12 @@
   background-image: url("../assets/layered-waves-haikeiDani.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 200px;
+  height: 25dvh;
+}
+
+.banner-turn-mobile {
+  background-image: url("../assets/layered-waves-haikeiDani.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 10dvh;
 }
