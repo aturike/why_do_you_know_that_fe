@@ -39,7 +39,6 @@ function InputModal() {
       } catch (error) {
         setInputInvalid(true);
         setIsLoading(false);
-        console.log(error);
       }
     }
   };
