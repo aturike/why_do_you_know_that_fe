@@ -1,7 +1,6 @@
 import { SessionContext } from "../contexts/SessionContext";
 import { useContext } from "react";
 import MyHighScore from "../components/MyHighScore";
-import "../App.css";
 function Profile() {
   const { logout, tokenInfo } = useContext(SessionContext);
 

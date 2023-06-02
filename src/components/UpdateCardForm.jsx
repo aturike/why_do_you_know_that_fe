@@ -12,14 +12,17 @@ function UpdateCardForm({
   const [text, setText] = useState(thisDeck.cards[index].text);
   const [value, setValue] = useState(thisDeck.cards[index].value);
   const [isSubmited, setIsSubmited] = useState(false);
+  const [isUrl, setIsUrl] = useState(false);
+
+  const defaultImg =
+    "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image-300x225.jpg";
 
   //upload image
   const uploadImage = async (event) => {
     event.preventDefault();
     console.log("mat rules");
     const fData = new FormData();
-
-    const image = event.target[0].files[0];
+    const image = event.target[2].files[0];
     fData.append("imageUrl", image);
     try {
       const response = await axios.post(
@@ -47,16 +50,25 @@ function UpdateCardForm({
     event.preventDefault();
     const copyArray = [...thisDeck.cards];
     const copyObject = copyArray[index];
-    const updatedObject = {
-      ...copyObject,
-      [event.target.name]: event.target.value,
-    };
+    let updatedObject;
+    if (event.target.name === "img" && event.target.value.length === 0) {
+      updatedObject = {
+        ...copyObject,
+        img: defaultImg,
+      };
+    } else {
+      updatedObject = {
+        ...copyObject,
+        [event.target.name]: event.target.value,
+      };
+    }
+
     copyArray[index] = updatedObject;
     setThisDeck({ ...thisDeck, cards: copyArray });
   };
 
   useEffect(() => {
-    if (img.length > 0 && text.length > 0 && value > 0) {
+    if (text.length > 0 && value > 0) {
       setCardFields(true);
     } else {
       setCardFields(false);
@@ -77,23 +89,79 @@ function UpdateCardForm({
   return (
     <form className="cardForm" onSubmit={uploadImage}>
       <h3 className="mainText fontBasics">Card {index + 1}</h3>
+      <img
+        src={thisDeck.cards[index].img}
+        onError={(event) => {
+          event.target.src = defaultImg;
+          event.onerror = null;
+        }}
+      />
       <label className="fontBasics"> Picture </label>
-      <input
-        className="fileInput fontBasics inputG"
-        name="img"
-        type="file"
-        accept="image/jpg, image/png"
-        // value={img}
-      ></input>
-      {isSubmited ? (
+      {isUrl ? (
+        <div className="imageForm">
+          <button
+            className="imageButtonOn inputG"
+            type="button"
+            onClick={() => setIsUrl(true)}
+          >
+            Copy Url
+          </button>
+          <button
+            className="imageButtonOff inputG"
+            type="button"
+            onClick={() => setIsUrl(false)}
+          >
+            Upload file
+          </button>
+        </div>
+      ) : (
+        <div className="imageForm">
+          <button
+            className="imageButtonOff inputG"
+            type="button"
+            onClick={() => setIsUrl(true)}
+          >
+            Copy Url
+          </button>
+          <button
+            className="imageButtonOn inputG"
+            type="button"
+            onClick={() => setIsUrl(false)}
+          >
+            Upload file
+          </button>
+        </div>
+      )}
+      {isUrl && (
+        <input
+          className="fontBasics inputG"
+          name="img"
+          value={img}
+          onChange={(e) => {
+            handleCard(e);
+            setImage(e.target.value);
+          }}
+        ></input>
+      )}
+      {!isUrl && (
+        <input
+          className="fileInput fontBasics inputG"
+          name="img"
+          type="file"
+          accept="image/jpg, image/png"
+          // value={img}
+        ></input>
+      )}
+
+      {isSubmited && !isUrl ? (
         <button className="submitImage inputG" type="submit">
           Submited!
         </button>
-      ) : (
+      ) : !isUrl ? (
         <button className="submitImage inputG" type="submit">
           Submit Image
         </button>
-      )}
+      ) : null}
       <label className="fontBasics"> Text </label>
       <input
         className="fontBasics inputG"
@@ -106,6 +174,7 @@ function UpdateCardForm({
       ></input>
       <label className="fontBasics"> Value </label>
       <input
+        className="fontBasics inputG"
         type="number"
         name="value"
         value={value}

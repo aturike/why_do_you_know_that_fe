@@ -1,46 +1,38 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Text, Flex, Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function LandingPage() {
   return (
-    <div className="landing-page-section">
-      <Box className="directions" w={{ base: "80%", md: "60%" }}>
-        <Text fontSize={{ base: "0.8rem", md: "1.5rem" }}>
-          There will be 3 cards placed in front of you - the task is to guess
-          which order they should be in, based off of the scores, images, and
-          titles. Make sense? Give it a try!
+    <Box className="landing-page-section">
+      <Flex
+        className="landing-directions"
+        w={{ base: "90%", md: "65%" }}
+        flexDir={"column"}
+        justify={"center"}
+      >
+        <Text
+          fontSize={{ base: "1rem", lg: "1.5rem" }}
+          lineHeight={{ base: "2rem", lg: "2.5rem" }}
+        >
+          "Why do You know that" is a captivating online card game that
+          stimulates critical thinking as players evaluate and rank a diverse
+          range of intriguing scenarios, offering an intellectually engaging and
+          enjoyable experience.
         </Text>
-      </Box>
-      <div className="preview-container">
-        <div className="question-mark animate-flicker">
-          <Text fontSize={{ base: "3rem", md: "7rem" }}>?</Text>
-        </div>
-        <div className="card-preview one">
-          <h1>1</h1>
-        </div>
-        <div className="question-mark animate-flicker">
-          <Text fontSize={{ base: "3rem", md: "7rem" }}>?</Text>
-        </div>
-        <div className="card-preview three">
-          <h1>3</h1>
-        </div>
-        <div className="question-mark animate-flicker">
-          <Text fontSize={{ base: "3rem", md: "7rem" }}>?</Text>
-        </div>
-      </div>
-      <div className="card-preview bottom-card animate-pulse">
-        <h1>2</h1>
-      </div>
-      <Link className="btn" to={"/game"}>
+      </Flex>
+      <Link className="btn" to={"/intro-game"}>
         <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
       </Link>
-
-      <div className="team">
+      <Flex
+        className="team"
+        fontSize={{ base: "0.8rem", lg: "1rem" }}
+        gap={"20px"}
+      >
         <h3>Adam Turi</h3>
         <h3>Dani Bravo</h3>
         <h3>August Colonna</h3>
-      </div>
-    </div>
+      </Flex>
+    </Box>
   );
 }
 

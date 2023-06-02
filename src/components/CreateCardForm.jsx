@@ -1,26 +1,27 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "../Deck.css";
+import "../styles/Deck.css";
 
-function FormCardTest({
+function CreateCardForm({
   cards,
   setCards,
   index,
   setCardFields,
   setValueFields,
 }) {
-  //  TRY WITH STATES
   const [img, setImage] = useState(cards[index].img);
   const [text, setText] = useState(cards[index].text);
   const [value, setValue] = useState(cards[index].value);
   const [isSubmited, setIsSubmited] = useState(false);
+  const [isUrl, setIsUrl] = useState(false);
+
+  const defaultImg =
+    "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image-300x225.jpg";
 
   const uploadImage = async (event) => {
     event.preventDefault();
-    console.log("mat rules");
     const fData = new FormData();
-
-    const image = event.target[0].files[0];
+    const image = event.target[2].files[0];
     fData.append("imageUrl", image);
     try {
       const response = await axios.post(
@@ -47,10 +48,19 @@ function FormCardTest({
   const handleCard = (event) => {
     const copyArray = [...cards];
     const copyObject = copyArray[index];
-    const updatedObject = {
-      ...copyObject,
-      [event.target.name]: event.target.value,
-    };
+    let updatedObject;
+    if (event.target.name === "img" && event.target.value.length === 0) {
+      updatedObject = {
+        ...copyObject,
+        img: defaultImg,
+      };
+    } else {
+      updatedObject = {
+        ...copyObject,
+        [event.target.name]: event.target.value,
+      };
+    }
+
     copyArray[index] = updatedObject;
     setCards(copyArray);
   };
@@ -63,6 +73,12 @@ function FormCardTest({
     }
   }, [img, text, value]);
 
+  useEffect(() => {
+    if (img.length === 0) {
+      setImage(defaultImg);
+    }
+  }, [img]);
+
   return (
     <form
       className="cardForm"
@@ -70,23 +86,79 @@ function FormCardTest({
       encType="multipart/form-data"
     >
       <h3 className="mainText fontBasics">Card {index + 1}</h3>
+      <img
+        src={cards[index].img}
+        onError={(event) => {
+          event.target.src = defaultImg;
+          event.onerror = null;
+        }}
+      />
       <label className="fontBasics"> Picture </label>
-      <input
-        className="fileInput fontBasics inputG"
-        name="img"
-        type="file"
-        accept="image/jpg, image/png"
-        // value={img}
-      ></input>
-      {isSubmited ? (
+      {isUrl ? (
+        <div className="imageForm">
+          <button
+            className="imageButtonOn inputG"
+            type="button"
+            onClick={() => setIsUrl(true)}
+          >
+            Copy Url
+          </button>
+          <button
+            className="imageButtonOff inputG"
+            type="button"
+            onClick={() => setIsUrl(false)}
+          >
+            Upload file
+          </button>
+        </div>
+      ) : (
+        <div className="imageForm">
+          <button
+            className="imageButtonOff inputG"
+            type="button"
+            onClick={() => setIsUrl(true)}
+          >
+            Copy Url
+          </button>
+          <button
+            className="imageButtonOn inputG"
+            type="button"
+            onClick={() => setIsUrl(false)}
+          >
+            Upload file
+          </button>
+        </div>
+      )}
+      {isUrl && (
+        <input
+          className="fontBasics inputG"
+          name="img"
+          // value={img}
+          placeholder="Copy your url"
+          onChange={(e) => {
+            setImage(e.target.value);
+            handleCard(e);
+          }}
+        ></input>
+      )}
+      {!isUrl && (
+        <input
+          className="fileInput fontBasics inputG"
+          name="img"
+          type="file"
+          accept="image/jpg, image/png"
+          // value={img}
+        ></input>
+      )}
+      {isSubmited && !isUrl ? (
         <button className="submitImage inputG" type="submit">
           Submited!
         </button>
-      ) : (
+      ) : !isUrl ? (
         <button className="submitImage inputG" type="submit">
           Submit Image
         </button>
-      )}
+      ) : null}
 
       <label className="fontBasics"> Text </label>
       <input
@@ -113,4 +185,4 @@ function FormCardTest({
   );
 }
 
-export default FormCardTest;
+export default CreateCardForm;

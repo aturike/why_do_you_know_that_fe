@@ -9,7 +9,7 @@ import {
   FormLabel,
   Text,
 } from "@chakra-ui/react";
-import "../login-signup.css";
+import "../styles/login-signup.css";
 
 function LoginForm(props) {
   const navigate = useNavigate();

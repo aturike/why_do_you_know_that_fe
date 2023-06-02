@@ -42,7 +42,7 @@ font-family: "Titan One", cursive;
 .Card img {
   height: 150px;
   border-radius: 4px;
-  box-shadow: #f0f0f0 2px 0 20px;
+  /* box-shadow: #f0f0f0 2px 0 20px; */
 }
 
 .Card-text {
@@ -50,7 +50,7 @@ font-family: "Titan One", cursive;
   /* font-size: 1.1rem; */
 }
 
-.Card:hover {
+.Card-target:hover {
   transform: scale(1.2);
   box-shadow: #f0f0f0 0 0 20px;
 }
@@ -78,6 +78,14 @@ font-family: "Titan One", cursive;
   -moz-animation: pulseAnimation 4s infinite;
   -o-animation: pulseAnimation 4s infinite;
   animation: pulseAnimation 4s infinite;
+}
+
+.animate-pullcard {
+  position: relative;
+  -webkit-animation: pullcard 4s infinite 4s;
+  -moz-animation: pullcard 4s infinite 4s;
+  -o-animation: pullcard 4s infinite 4s;
+  animation: pullcard 4s infinite 4s;
 }
 
 .score-board {
@@ -176,14 +184,14 @@ font-family: "Titan One", cursive;
   .Card img {
     height: 50px;
     border-radius: 4px;
-    box-shadow: #f0f0f0 2px 0 20px;
+    /* box-shadow: #f0f0f0 2px 0 20px; */
   }
 
   .Card-text {
     color: #f0f0f0;
   }
 
-  .Card:hover {
+  .Card-target:hover {
     transform: scale(1.2);
     box-shadow: #f0f0f0 0 0 20px;
   }
@@ -238,6 +246,51 @@ font-family: "Titan One", cursive;
   }
 }
 
+@keyframes pullcard {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -100%;
+  }
+  100% {
+    top: 0;
+  }
+}
+@-o-keyframes pullcard {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -100%;
+  }
+  100% {
+    top: 0;
+  }
+}
+@-moz-keyframes pullcard {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -100%;
+  }
+  100% {
+    top: 0;
+  }
+}
+@-webkit-keyframes pullcard {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -100%;
+  }
+  100% {
+    top: 0;
+  }
+}
+
 .heart-div {
   display: flex;
   gap: 5px;
@@ -247,5 +300,5 @@ font-family: "Titan One", cursive;
 }
 
 .heart-img {
-  height: 40px;
+  height: 20px;
 }

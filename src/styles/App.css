@@ -19,53 +19,6 @@ font-family: "Titan One", cursive;
   overflow: scroll;
 }
 
-/* .navBar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  width: 100vw;
-  height: 200px;
-  margin-bottom: 20px;
-}
-
-.logo {
-  font-family: "Titan One", cursive;
-  font-size: 2.5rem;
-  font-weight: 600;
-  transition: transform 0.6s;
-  margin-left: 90px;
-}
-
-.logo:hover {
-  transform: scale(0.85);
-}
-
-.logo span {
-  color: #f0f0f0;
-  font-size: 4rem;
-  font-weight: 900;
-  text-shadow: #000000 0 0 10px;
-}
-
-.navBar ul {
-  list-style: none;
-  font-family: "Titan One", cursive;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  font-size: 1.5rem;
-  color: #f0f0f0;
-  transition: transform 1s;
-  gap: 30px;
-  margin-right: 90px;
-}
-
-.navBar li:hover {
-  transform: scale(1.2);
-} */
-
 .preview-container {
   display: flex;
   flex-direction: row;
@@ -124,7 +77,6 @@ font-family: "Titan One", cursive;
 }
 
 .question-mark p {
-  /* font-size: 7rem; */
   color: #f0f0f0;
   font-family: "Titan One", cursive;
 }
@@ -138,7 +90,7 @@ font-family: "Titan One", cursive;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 10px;
 }
 
 .directions p {
@@ -154,13 +106,21 @@ font-family: "Titan One", cursive;
   animation: fadein 2s;
 }
 
-.directions {
-  display: flex;
-  justify-content: center;
+.landing-directions {
+  font-family: "Titan One", cursive;
+  text-align: center;
+  height: 40dvh;
+  color: #f0f0f0;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 2s; /* Firefox < 16 */
+  -ms-animation: fadein 2s; /* Internet Explorer */
+  -o-animation: fadein 2s; /* Opera < 12.1 */
+  animation: fadein 2s;
 }
 
 .btn {
   padding: 15px;
+  margin-bottom: 10px;
   border: none;
   background-color: #5800ff;
   border-radius: 20px;
@@ -170,16 +130,45 @@ font-family: "Titan One", cursive;
   transition: transform 0.8s;
   cursor: pointer;
   width: 20%;
+  min-width: 100px;
   height: 20%;
   text-align: center;
   font-family: "Titan One", cursive;
 }
+.btn-alt {
+  padding: 15px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #f5018a;
+  border-radius: 20px;
+  color: #f0f0f0;
+  font-weight: 400;
+  /* font-size: 1.2rem; */
+  transition: transform 0.8s;
+  cursor: pointer;
+  width: 40%;
+  min-width: 250px;
+  height: 20%;
+  text-align: center;
+  font-family: "Titan One", cursive;
+}
+
 .btn:hover {
   cursor: pointer;
   background-color: #f0f0f0;
   color: #5800ff;
   transform: scale(0.9);
   width: 20%;
+  height: 20%;
+  font-family: "Titan One", cursive;
+}
+
+.btn-alt:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  color: #f5018a;
+  transform: scale(0.9);
+  width: 40%;
   height: 20%;
   font-family: "Titan One", cursive;
 }
@@ -193,137 +182,11 @@ font-family: "Titan One", cursive;
   line-height: 2rem;
 }
 
-/* .signup-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 700px;
-  -webkit-animation: fadein 2s; 
-  -moz-animation: fadein 2s;
-  -ms-animation: fadein 2s; 
-  -o-animation: fadein 2s; 
-  animation: fadein 2s;
-} */
-
 .signup-form h1 {
   color: #f0f0f0;
   font-family: "Titan One", cursive;
   font-size: clamp(2rem, 4dvw, 3rem);
   padding-bottom: 20px;
-}
-
-/* .signup-form form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  -webkit-animation: fadein 2s;
-  -moz-animation: fadein 2s;
-  -ms-animation: fadein 2s; 
-  -o-animation: fadein 2s; 
-  animation: fadein 2s;
-} */
-
-/* .signup-form label {
-  display: grid;
-  color: #f0f0f0;
-  font-family: "Titan One", cursive;
-  font-size: clamp(1rem, 3dvw, 1.5rem);
-}
-
-.signup-form input {
-  margin-left: 10px;
-  border-radius: 10px;
-  background-color: #5800ff;
-  font-size: 1rem;
-}
-
-.signup-btn {
-  padding: 15px;
-  border: none;
-  background-color: #5800ff;
-  border-radius: 20px;
-  color: #f0f0f0;
-  font-weight: 400;
-  font-size: 1.2rem;
-  transition: transform 0.8s;
-  cursor: pointer;
-  width: 50%;
-  height: 20%;
-  text-align: center;
-  font-family: "Titan One", cursive;
-}
-.signup-btn:hover {
-  cursor: pointer;
-  background-color: #f0f0f0;
-  color: #5800ff;
-  transform: scale(0.9);
-  width: 70%;
-  font-family: "Titan One", cursive;
-} */
-
-/* .login-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 700px;
-  -webkit-animation: fadein 2s;
-  -moz-animation: fadein 2s;
-  -ms-animation: fadein 2s;
-  -o-animation: fadein 2s;
-  animation: fadein 2s;
-}
-
-.login-form h1 {
-  color: #f0f0f0;
-  font-family: "Titan One", cursive;
-  font-size: 3rem;
-  padding-bottom: 20px;
-}
-.login-form form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-} */
-
-/* .login-form label {
-  color: #f0f0f0;
-  font-family: "Titan One", cursive;
-  font-size: 1.5rem;
-}
-
-.login-form input {
-  border-radius: 10px;
-  background-color: #5800ff;
-  font-size: 1rem;
-}
-
-.login-btn {
-  padding: 15px;
-  border: none;
-  background-color: #5800ff;
-  border-radius: 20px;
-  color: #f0f0f0;
-  font-weight: 400;
-  font-size: 1.2rem;
-  transition: transform 0.8s;
-  cursor: pointer;
-  width: 50%;
-  height: 20%;
-  text-align: center;
-  font-family: "Titan One", cursive;
-}
-.login-btn:hover {
-  cursor: pointer;
-  background-color: #f0f0f0;
-  color: #5800ff;
-  transform: scale(0.9);
-  width: 50%;
-  height: 20%;
-  font-family: "Titan One", cursive;
 }
 
 /* MEDIA QUERY FOR LANDING PAGE - MOBILE */
@@ -356,8 +219,8 @@ font-family: "Titan One", cursive;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 50px;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     width: 100%;
     padding: 30px;
   }

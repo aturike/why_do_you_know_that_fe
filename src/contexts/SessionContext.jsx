@@ -31,6 +31,7 @@ const SessionContextProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  //This is out of the useEffect in order to log in after winning/losing the game
   const localToken = localStorage.getItem("authToken");
 
   useEffect(() => {

@@ -2,13 +2,16 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import gameCardsSelect from "../Hooks/gamedata";
-import "../Game.css";
+import "../styles/Game.css";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Card from "../components/Card";
 import EndGame from "../components/EndGame";
 import heart from "../assets/heart.svg";
-import { Box, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import Confetti from "react-confetti";
+import { useWindowSize } from "@uidotdev/usehooks";
+import NavBar from "../components/Navbar";
+import ScoreBoard from "../components/ScoreBoard";
 
 function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
@@ -21,6 +24,7 @@ function Game() {
   const timeout = 2000;
   const showNumberofCards = 3;
   const { userId } = useParams();
+  const windowProps = useWindowSize();
 
   useEffect(() => {
     fetchRandomDeck();
@@ -136,123 +140,168 @@ function Game() {
 
   if (randomDecks[score] && score < randomDecks.length && lives > 0) {
     return (
-      <div>
+      <Box>
+        {windowProps.height < 800 ? (
+          <NavBar gameNav={true}>
+            <ScoreBoard score={score}>
+              {renderHearts(lives).map((life) => (
+                <img
+                  className="heart-img"
+                  key={life.id}
+                  src={heart}
+                  alt="heart-icon"
+                ></img>
+              ))}
+            </ScoreBoard>
+          </NavBar>
+        ) : (
+          <NavBar />
+        )}
         {isConfetti && (
           <Confetti
             width={window.innerWidth}
             height={window.innerHeight}
             initialVelocityY={{ min: 10, max: 30 }}
-            // initialVelocityX={1000}
           />
         )}
-        <div className="heart-div">
-          {renderHearts(lives).map((life) => (
-            <img
-              className="heart-img"
-              key={life.id}
-              src={heart}
-              alt="heart-icon"
-            ></img>
-          ))}
-        </div>
-        <DragDropContext onDragEnd={handleDropEnd}>
-          <div>
-            <div className="score-board">
-              <Text fontSize={{ base: "2rem", md: "3.5rem" }}>
-                Score:
-                <span>
-                  <Text fontSize={{ base: "1.5rem", md: "3rem" }}>{score}</Text>
-                </span>
-              </Text>
-              <Text fontSize={{ base: "1.2rem", md: "2.7rem" }}>
+        <Box display={{ base: "none", md: "block" }}>
+          <DragDropContext onDragEnd={handleDropEnd}>
+            <div>
+              <Text
+                fontSize={{ base: "1rem", md: "1.7rem", lg: "2.7rem" }}
+                align={"center"}
+                color={"#f0f0f0"}
+              >
                 {randomDecks[score].question}
               </Text>
-            </div>
-            <SimpleGrid
-              className="game-grid"
-              templateColumns={{
-                base: "repeat(5, 1fr)",
-                md: "repeat(5, 1fr)",
-              }}
-            >
-              {gameSet.map((element, index) => {
-                if (element.value) {
-                  if (index === gameSet.length - 1) {
-                    return (
-                      <Droppable
-                        key={element._id}
-                        droppableId={index + "target-column"}
-                      >
-                        {(provided) => (
-                          <Box
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                            w={{ base: "6.5rem", md: "12rem" }}
-                            h={{ base: "8rem", md: "18rem" }}
+              {windowProps.height > 800 && (
+                <ScoreBoard score={score}>
+                  {renderHearts(lives).map((life) => (
+                    <img
+                      className="heart-img"
+                      key={life.id}
+                      src={heart}
+                      alt="heart-icon"
+                    ></img>
+                  ))}
+                </ScoreBoard>
+              )}
+
+              <Grid
+                templateColumns="repeat(5, 1fr)"
+                templateRows="repeat(2, 1fr)"
+                gap={"5px"}
+                rowGap={"2dvh"}
+                pl={"10px"}
+                p={"10px"}
+              >
+                {gameSet.map((element, index) => {
+                  if (element.value) {
+                    if (index === gameSet.length - 1) {
+                      return (
+                        <Flex
+                          key={element._id}
+                          justify={"center"}
+                          style={{
+                            gridColumnStart: "3",
+                            gridColumnEnd: "4",
+                            height: "100%",
+                          }}
+                        >
+                          <Droppable
+                            key={element._id}
+                            droppableId={index + "target-column"}
                           >
-                            <Draggable
-                              key={element._id}
-                              draggableId={element._id}
-                              index={index}
-                            >
-                              {(provided, snapshot) => {
-                                return (
-                                  <Box
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    w={{ base: "6.5rem", md: "12rem" }}
-                                    h={{ base: "8rem", md: "18rem" }}
-                                  >
-                                    <Card
-                                      isDragging={snapshot.isDragging}
-                                      element={element}
-                                      target={true}
-                                    />
-                                  </Box>
-                                );
-                              }}
-                            </Draggable>
-                            {provided.placeholder}
-                          </Box>
-                        )}
-                      </Droppable>
-                    );
+                            {(provided) => (
+                              <Box
+                                ref={provided.innerRef}
+                                {...provided.droppableProps}
+                                style={{
+                                  gridColumnStart: "3",
+                                  gridColumnEnd: "4",
+                                  height: "100%",
+                                }}
+                              >
+                                <Draggable
+                                  key={element._id}
+                                  draggableId={element._id}
+                                  index={index}
+                                >
+                                  {(provided, snapshot) => {
+                                    return (
+                                      <Box
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                      >
+                                        <Card
+                                          isDragging={snapshot.isDragging}
+                                          element={element}
+                                          target={true}
+                                        />
+                                      </Box>
+                                    );
+                                  }}
+                                </Draggable>
+                                {provided.placeholder}
+                              </Box>
+                            )}
+                          </Droppable>
+                        </Flex>
+                      );
+                    } else {
+                      return (
+                        <Flex justify={"center"} key={element._id}>
+                          <Card element={element} target={false} />
+                        </Flex>
+                      );
+                    }
                   } else {
                     return (
-                      <Card
+                      <Droppable
+                        droppableId={index + "index" + element._id}
                         key={element._id}
-                        element={element}
-                        target={false}
-                      />
+                      >
+                        {(provided, snapshot) => {
+                          return (
+                            <Flex justify={"center"}>
+                              <Card
+                                innerRef={provided.innerRef}
+                                {...provided.droppableProps}
+                                isDraggingOver={snapshot.isDraggingOver}
+                                target={false}
+                              >
+                                {provided.placeholder}
+                              </Card>
+                            </Flex>
+                          );
+                        }}
+                      </Droppable>
                     );
                   }
-                } else {
-                  return (
-                    <Droppable
-                      droppableId={index + "index" + element._id}
-                      key={element._id}
-                    >
-                      {(provided, snapshot) => {
-                        return (
-                          <Card
-                            innerRef={provided.innerRef}
-                            {...provided.droppableProps}
-                            isDraggingOver={snapshot.isDraggingOver}
-                            target={false}
-                          >
-                            {provided.placeholder}
-                          </Card>
-                        );
-                      }}
-                    </Droppable>
-                  );
-                }
-              })}
-            </SimpleGrid>
-          </div>
-        </DragDropContext>
-      </div>
+                })}
+              </Grid>
+            </div>
+          </DragDropContext>
+        </Box>
+        <Flex
+          w={"100%"}
+          h={"50dvh"}
+          flexDir={"column"}
+          justify={"center"}
+          display={{ base: "flex", md: "none" }}
+        >
+          <Text
+            fontSize={{ base: "0.8rem", md: "1.5rem" }}
+            lineHeight={"1.6rem"}
+            mb={{ base: "0.2rem", md: "1.5rem" }}
+            align={"center"}
+            color={"white"}
+          >
+            Please turn your device to play the game
+          </Text>
+        </Flex>
+      </Box>
     );
   } else if (score === randomDecks.length && score !== 0) {
     return (

@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./styles/App.css";
 import SignupPage from "./pages/Signup";
 import LoginPage from "./pages/LoginPage";
 import Profile from "./pages/Profile";
@@ -7,10 +7,11 @@ import Game from "./pages/Game";
 import LandingPage from "./pages/LandingPage";
 import DeckList from "./pages/DeckList";
 import DeckDetails from "./pages/DeckDetails";
-import FormTest from "./pages/FormTest";
 import PrivateRoute from "./components/PrivateRoute";
 import UpdateDeckForm from "./pages/UpdateDeckForm";
 import NavBar from "./components/Navbar";
+import CreateDeck from "./pages/CreateDeck";
+import IntroPage from "./pages/IntroPage";
 
 function App() {
   return (
@@ -73,16 +74,24 @@ function App() {
         path="/game"
         element={
           <div>
-            <NavBar />
             <Game />
           </div>
         }
       />
       <Route
-        path="/game/:userId"
+        path="/intro-game"
         element={
           <div>
             <NavBar />
+            <IntroPage />
+          </div>
+        }
+      />
+
+      <Route
+        path="/game/:userId"
+        element={
+          <div>
             <Game />
           </div>
         }
@@ -92,7 +101,7 @@ function App() {
         element={
           <PrivateRoute>
             <NavBar />
-            <FormTest />
+            <CreateDeck />
           </PrivateRoute>
         }
       />

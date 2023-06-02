@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 
-import "../Deck.css";
+import "../styles/Deck.css";
 
 function DeckDetails() {
   const navigate = useNavigate();

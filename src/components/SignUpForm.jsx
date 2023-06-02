@@ -11,7 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CheckIcon } from "@chakra-ui/icons";
-import "../login-signup.css";
+import "../styles/login-signup.css";
 
 function SignUpForm(props) {
   const [email, setEmail] = useState("");

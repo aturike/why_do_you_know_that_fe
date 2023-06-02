@@ -1,21 +1,23 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import FormCardTest from "../components/FormCardTest";
+import CreateCardForm from "../components/CreateCardForm";
 import { Link, useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
-import "../Deck.css";
+import "../styles/Deck.css";
 
-function FormTest() {
+function CreateDeck() {
+  const defaultImg =
+    "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image-300x225.jpg";
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [userId, setUserId] = useState("");
   const [cards, setCards] = useState([
-    { text: "", value: 0, img: "" },
-    { text: "", value: 0, img: "" },
-    { text: "", value: 0, img: "" },
-    { text: "", value: 0, img: "" },
-    { text: "", value: 0, img: "" },
+    { text: "", value: 0, img: defaultImg },
+    { text: "", value: 0, img: defaultImg },
+    { text: "", value: 0, img: defaultImg },
+    { text: "", value: 0, img: defaultImg },
+    { text: "", value: 0, img: defaultImg },
   ]);
   const [formFields, setFormFields] = useState(false);
   const [cardFields, setCardFields] = useState(false);
@@ -111,35 +113,35 @@ function FormTest() {
         </div>
       </form>
       <div className="cardContainer">
-        <FormCardTest
+        <CreateCardForm
           index={0}
           cards={cards}
           setCards={setCards}
           setCardFields={setCardFields}
           setValueFields={setValueFields}
         />
-        <FormCardTest
+        <CreateCardForm
           index={1}
           cards={cards}
           setCards={setCards}
           setCardFields={setCardFields}
           setValueFields={setValueFields}
         />
-        <FormCardTest
+        <CreateCardForm
           index={2}
           cards={cards}
           setCards={setCards}
           setCardFields={setCardFields}
           setValueFields={setValueFields}
         />
-        <FormCardTest
+        <CreateCardForm
           index={3}
           cards={cards}
           setCards={setCards}
           setCardFields={setCardFields}
           setValueFields={setValueFields}
         />
-        <FormCardTest
+        <CreateCardForm
           index={4}
           cards={cards}
           setCards={setCards}
@@ -155,4 +157,4 @@ function FormTest() {
   );
 }
 
-export default FormTest;
+export default CreateDeck;

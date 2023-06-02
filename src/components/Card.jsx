@@ -1,4 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
+import "../styles/Card.css";
 
 function Card({
   element,
@@ -19,40 +20,66 @@ function Card({
   if (element) {
     return (
       <Box
-        style={stylesDrag}
-        className="Card"
-        w={{ base: "4.5rem", md: "12rem" }}
-        h={{ base: "8rem", md: "18rem" }}
+        className="card"
+        w={{ base: "100px", md: "100px", lg: "200px" }}
+        h={{ base: "140px", md: "140px", lg: "280px" }}
       >
-        <img src={element.img} />
-        <Text className="Card-text" fontSize={{ base: "0.8rem", md: "1.1rem" }}>
-          {element.text}
-        </Text>
-        {!target && (
-          <Text
-            className="Card-text"
-            fontSize={{ base: "0.8rem", md: "1.1rem" }}
-          >
-            {element.value}
-          </Text>
-        )}
+        <div className="border">
+          <div className="top">
+            <img className="card-img" src={element.img} />
+          </div>
+          <div className="center">
+            <Text
+              fontSize={{ base: "0.8rem", md: "0.8em", lg: "1.2rem" }}
+              align={"center"}
+            >
+              {element.text}
+            </Text>
+          </div>
+          <div className="bot">
+            {!target ? (
+              <Text
+                fontSize={{ base: "0.8rem", md: "1rem", lg: "1.5rem" }}
+                align={"center"}
+              >
+                {element.value}
+              </Text>
+            ) : (
+              <Text
+                fontSize={{ base: "0.8rem", md: "1rem", lg: "1.5rem" }}
+                align={"center"}
+              >
+                ?
+              </Text>
+            )}
+          </div>
+        </div>
       </Box>
     );
   } else {
     return (
       <Box
-        className="Card-drop animate-pulse "
         ref={innerRef}
-        style={stylesDrop}
+        className="border-question-card"
+        w={{ base: "110px", md: "110px", lg: "210px" }}
+        h={{ base: "140px", md: "140px", lg: "280px" }}
       >
-        {isDraggingOver ? (
-          <Text></Text>
-        ) : (
-          <Text fontSize={{ base: "2rem", md: "8rem" }}>?</Text>
-        )}
-
-        {children}
+        <Text fontSize={{ base: "3rem", lg: "7rem" }}>?</Text>
       </Box>
+
+      // <Box
+      //   // className="Card-drop animate-pulse"
+      //   ref={innerRef}
+      //   style={stylesDrop}
+      // >
+      //   {isDraggingOver ? (
+      //     <Text></Text>
+      //   ) : (
+      //     <Text fontSize={{ base: "2rem", md: "8rem" }}>?</Text>
+      //   )}
+
+      //   {children}
+      // </Box>
     );
   }
 }
