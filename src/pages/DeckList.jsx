@@ -3,6 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SessionContext } from "../contexts/SessionContext";
 import "../Deck.css";
+import "../Deck-Table.css";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+} from "@chakra-ui/react";
 
 function DeckList() {
   const [allDecks, setAllDecks] = useState([]);
@@ -62,7 +73,7 @@ function DeckList() {
         </button>
       )}
 
-      <h1 className="largeFont fontBasics">Decklist</h1>
+      <h1 className="largeFont fontBasics">Decks</h1>
       <input
         className="search fontBasics inputG"
         type="text"
@@ -71,13 +82,35 @@ function DeckList() {
         value={search}
         onChange={handleSearch}
       ></input>
-      <div>
-        {filteredDecks &&
-          filteredDecks.map((deck) => (
-            <Link key={deck._id} to={`/deckdetails/${deck._id}`}>
-              <h2 className="fontBasics">{deck.title}</h2>
-            </Link>
-          ))}
+      <div className="chakra-table-style">
+        <TableContainer  className="fontBasics">
+          <Table variant="unstyled">
+            <TableCaption className="fontBasics">
+              List of Playable Decks
+            </TableCaption>
+            <Thead>
+              <Tr>
+                <Th>Name</Th>
+                <Th>Question</Th>
+                <Th isNumeric>Number of Cards</Th>
+              </Tr>
+            </Thead>
+            <Tbody >
+              {filteredDecks &&
+                filteredDecks.map((deck) => (
+                  <Tr key={deck._id}>
+                    <Link to={`/deckdetails/${deck._id}`}>
+                      <Td className="fontBasics">{deck.title}</Td>
+                    </Link>
+                    <Td className="fontBasics">{deck.question}</Td>
+                    <Td className="fontBasics" isNumeric>
+                      {deck.cards.length}
+                    </Td>
+                  </Tr>
+                ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
       </div>
     </div>
   );
