@@ -82,7 +82,7 @@ function IntroPage() {
           templateRows="repeat(2, 1fr)"
           gap={"5px"}
           pl={"10px"}
-          pr={"10px"}
+          p={"10px"}
         >
           <Flex justify={"center"}>
             <Card />

@@ -61,7 +61,6 @@ function Card({
     return (
       <Box
         ref={innerRef}
-        style={stylesDrop}
         className="border-question-card"
         w={{ base: "100%", lg: "80%" }}
       >
