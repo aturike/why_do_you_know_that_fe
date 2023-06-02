@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SessionContext } from "../contexts/SessionContext";
-import "../Deck.css";
-import "../Deck-Table.css";
+import "../styles/Deck.css";
+import "../styles/Deck-Table.css";
 import {
   Table,
   Thead,
@@ -83,7 +83,7 @@ function DeckList() {
         onChange={handleSearch}
       ></input>
       <div className="chakra-table-style">
-        <TableContainer  className="fontBasics">
+        <TableContainer className="fontBasics">
           <Table variant="unstyled">
             <TableCaption className="fontBasics">
               List of Playable Decks
@@ -95,7 +95,7 @@ function DeckList() {
                 <Th isNumeric>Number of Cards</Th>
               </Tr>
             </Thead>
-            <Tbody >
+            <Tbody>
               {filteredDecks &&
                 filteredDecks.map((deck) => (
                   <Tr key={deck._id}>

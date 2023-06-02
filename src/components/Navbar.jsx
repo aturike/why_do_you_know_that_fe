@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../navbar.css";
+import "../styles/navbar.css";
 
 import { SessionContext } from "../contexts/SessionContext";
 import { useContext } from "react";
@@ -9,7 +9,7 @@ import { IconButton } from "@chakra-ui/button";
 import { Box, Flex, Spacer, Text, UnorderedList } from "@chakra-ui/layout";
 
 function NavBar() {
-  const { token, tokenInfo } = useContext(SessionContext);
+  const { token, tokenInfo, logout } = useContext(SessionContext);
 
   return (
     <div className="banner">
@@ -57,7 +57,12 @@ function NavBar() {
             )}
             {token && (
               <li>
-                <Link to="/createdeck">Create a New Deck</Link>
+                <Link to="/createdeck">New Deck</Link>
+              </li>
+            )}
+            {token && (
+              <li onClick={logout}>
+                <Link to="/">Log out</Link>
               </li>
             )}
             <li>
@@ -96,10 +101,14 @@ function NavBar() {
               )}
               {token && (
                 <Link to="/createdeck">
-                  <MenuItem>Create a New Deck</MenuItem>
+                  <MenuItem>New Deck</MenuItem>
                 </Link>
               )}
-
+              {token && (
+                <Link to="/" onClick={logout}>
+                  <MenuItem>Log out</MenuItem>
+                </Link>
+              )}
               <Link to="/game">
                 <MenuItem>Play</MenuItem>
               </Link>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "../Deck.css";
+import "../styles/Deck.css";
 
 function CreateCardForm({
   cards,

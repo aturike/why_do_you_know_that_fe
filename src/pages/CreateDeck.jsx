@@ -3,7 +3,7 @@ import axios from "axios";
 import CreateCardForm from "../components/CreateCardForm";
 import { Link, useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
-import "../Deck.css";
+import "../styles/Deck.css";
 
 function CreateDeck() {
   const defaultImg =

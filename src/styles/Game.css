@@ -82,7 +82,6 @@ font-family: "Titan One", cursive;
 
 .animate-pullcard {
   position: relative;
-  margin-bottom: 15px;
   -webkit-animation: pullcard 4s infinite 4s;
   -moz-animation: pullcard 4s infinite 4s;
   -o-animation: pullcard 4s infinite 4s;
@@ -252,7 +251,7 @@ font-family: "Titan One", cursive;
     top: 0;
   }
   50% {
-    top: -10rem;
+    top: -100%;
   }
   100% {
     top: 0;
@@ -263,7 +262,7 @@ font-family: "Titan One", cursive;
     top: 0;
   }
   50% {
-    top: -10rem;
+    top: -100%;
   }
   100% {
     top: 0;
@@ -274,7 +273,7 @@ font-family: "Titan One", cursive;
     top: 0;
   }
   50% {
-    top: -10rem;
+    top: -100%;
   }
   100% {
     top: 0;
@@ -285,7 +284,7 @@ font-family: "Titan One", cursive;
     top: 0;
   }
   50% {
-    top: -10rem;
+    top: -100%;
   }
   100% {
     top: 0;
