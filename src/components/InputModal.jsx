@@ -12,14 +12,38 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function InputModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [gameId, setGameId] = useState();
+  const [inputInvalid, setInputInvalid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const handleClick = async () => {
+    setInputInvalid(false);
+    if (!gameId) {
+      setInputInvalid(true);
+    } else {
+      try {
+        setIsLoading(true);
+        const response = await axios.get(
+          `https://why-do-i-know-that.adaptable.app/decks/${gameId}`
+        );
+        console.log(response);
+        if (response.status === 200) {
+          navigate(`/game/${gameId}`);
+        }
+      } catch (error) {
+        setInputInvalid(true);
+        setIsLoading(false);
+        console.log(error);
+      }
+    }
+  };
 
-  console.log(gameId);
   return (
     <>
       <Box className="btn-alt" onClick={onOpen}>
@@ -48,7 +72,13 @@ function InputModal() {
               onChange={(event) => {
                 setGameId(event.target.value);
               }}
+              isInvalid={inputInvalid}
             ></Input>
+            {inputInvalid && (
+              <Text fontSize={{ base: "0.8rem" }} color={"red"}>
+                Invalid game ID
+              </Text>
+            )}
           </ModalBody>
 
           <ModalFooter>
@@ -56,20 +86,22 @@ function InputModal() {
               bgColor={"#f5018a"}
               colorScheme="pink"
               mr={3}
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                setInputInvalid(false);
+              }}
             >
               <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Close</Text>
             </Button>
-            <Button variant={"outline"} colorScheme="purple" fontWeight={"400"}>
-              {gameId ? (
-                <Link to={"/game/" + gameId}>
-                  <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
-                </Link>
-              ) : (
-                <Link to={"/game"}>
-                  <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>Play!</Text>
-                </Link>
-              )}
+            <Button
+              variant={"outline"}
+              colorScheme="purple"
+              fontWeight={"400"}
+              fontSize={{ base: "0.8rem", md: "1.2rem" }}
+              onClick={handleClick}
+              isLoading={isLoading}
+            >
+              Play!
             </Button>
           </ModalFooter>
         </ModalContent>
