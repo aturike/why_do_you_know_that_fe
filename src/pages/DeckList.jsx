@@ -82,8 +82,8 @@ function DeckList() {
         value={search}
         onChange={handleSearch}
       ></input>
-      <div>
-        <TableContainer className="chakra-table-style fontBasics">
+      <div className="chakra-table-style">
+        <TableContainer  className="fontBasics">
           <Table variant="unstyled">
             <TableCaption className="fontBasics">
               List of Playable Decks
@@ -95,7 +95,7 @@ function DeckList() {
                 <Th isNumeric>Number of Cards</Th>
               </Tr>
             </Thead>
-            <Tbody>
+            <Tbody >
               {filteredDecks &&
                 filteredDecks.map((deck) => (
                   <Tr key={deck._id}>

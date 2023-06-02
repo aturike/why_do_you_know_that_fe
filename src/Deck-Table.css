@@ -1,15 +1,19 @@
-.chakra-table {
+.chakra-table-style {
   border: 5px #ffc600 solid;
+  padding: 20px;
   border-radius: 10px;
+  width: 80%;
 }
 
-.chakra-table Th {
+.chakra-table-style Th {
   color: #f0f0f0;
   font-family: "Titan One", cursive;
   font-size: 1.5rem;
   text-align: center;
 }
 
-.chakra-table Td {
+.chakra-table-style Td {
   text-align: center;
 }
+
+
