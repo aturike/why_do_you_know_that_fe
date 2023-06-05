@@ -32,7 +32,6 @@ function InputModal() {
         const response = await axios.get(
           `https://why-do-i-know-that.adaptable.app/decks/${gameId}`
         );
-        console.log(response);
         if (response.status === 200) {
           navigate(`/game/${gameId}`);
         }

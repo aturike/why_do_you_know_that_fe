@@ -7,6 +7,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Card from "../components/Card";
 import EndGame from "../components/EndGame";
 import heart from "../assets/heart.svg";
+import heart2 from "../assets/heart2.svg";
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@uidotdev/usehooks";
@@ -18,6 +19,11 @@ function Game() {
   const [gameSet, setgameSet] = useState([]);
   const [creatorName, setcreatorName] = useState("main");
   const [isConfetti, setIsConfetti] = useState(false);
+  const [gridStyle, setGridStyle] = useState({
+    gridColumnStart: "3",
+    gridColumnEnd: "4",
+    height: "100%",
+  });
   const [score, setscore] = useState(0);
   const [lives, setlives] = useState(3);
   const navigate = useNavigate();
@@ -44,6 +50,11 @@ function Game() {
       }
     }
     setIsConfetti(false);
+    setGridStyle({
+      gridColumnStart: "3",
+      gridColumnEnd: "4",
+      height: "100%",
+    });
   }, [randomDecks, score]);
 
   const fetchCreatorName = async () => {
@@ -64,10 +75,11 @@ function Game() {
       ...gameSet.slice(0, targetIndex),
       ...gameSet.slice(-1),
       ...gameSet.slice(targetIndex + 1, -1),
-      ...gameSet.slice(targetIndex, targetIndex + 1),
     ];
-
-    setgameSet(updategameSet.slice(0, -1));
+    setGridStyle({
+      height: "100%",
+    });
+    setgameSet(updategameSet);
     setIsConfetti(true);
 
     setTimeout(() => {
@@ -141,14 +153,14 @@ function Game() {
   if (randomDecks[score] && score < randomDecks.length && lives > 0) {
     return (
       <Box>
-        {windowProps.height < 800 ? (
+        {windowProps.height < 500 ? (
           <NavBar gameNav={true}>
-            <ScoreBoard score={score}>
+            <ScoreBoard score={score} color={"white"}>
               {renderHearts(lives).map((life) => (
                 <img
                   className="heart-img"
                   key={life.id}
-                  src={heart}
+                  src={heart2}
                   alt="heart-icon"
                 ></img>
               ))}
@@ -175,8 +187,8 @@ function Game() {
               >
                 {randomDecks[score].question}
               </Text>
-              {windowProps.height > 800 && (
-                <ScoreBoard score={score}>
+              {windowProps.height > 500 && (
+                <ScoreBoard score={score} color={"grey"}>
                   {renderHearts(lives).map((life) => (
                     <img
                       className="heart-img"
@@ -203,11 +215,7 @@ function Game() {
                         <Flex
                           key={element._id}
                           justify={"center"}
-                          style={{
-                            gridColumnStart: "3",
-                            gridColumnEnd: "4",
-                            height: "100%",
-                          }}
+                          style={gridStyle}
                         >
                           <Droppable
                             key={element._id}
@@ -217,11 +225,6 @@ function Game() {
                               <Box
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
-                                style={{
-                                  gridColumnStart: "3",
-                                  gridColumnEnd: "4",
-                                  height: "100%",
-                                }}
                               >
                                 <Draggable
                                   key={element._id}
