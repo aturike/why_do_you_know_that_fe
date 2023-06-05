@@ -57,7 +57,6 @@ function CreateDeck() {
       userId,
       cards,
     };
-    console.log(payload);
     try {
       const response = await axios.post(
         "https://why-do-i-know-that.adaptable.app/decks",

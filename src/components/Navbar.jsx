@@ -14,7 +14,7 @@ function NavBar({ children, gameNav }) {
   const { token, tokenInfo, logout } = useContext(SessionContext);
   const windowProps = useWindowSize();
 
-  if (windowProps.height < 800 && gameNav) {
+  if (gameNav) {
     return (
       <div className="banner-turn-mobile">
         <Flex align={"center"} justify={"space-between"}>
@@ -73,7 +73,7 @@ function NavBar({ children, gameNav }) {
   } else {
     return (
       <div className="banner">
-        <Flex className="navBar" align={"center"} justify={"center"}>
+        <Flex className="navBar " align={"center"} justify={"center"}>
           <Link to="/">
             <Flex
               className="logo"

@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 
-function ScoreBoard({ children, score }) {
+function ScoreBoard({ children, score, color }) {
   return (
     <Flex
       align={"center"}
@@ -10,11 +10,11 @@ function ScoreBoard({ children, score }) {
       p={{ base: "5px", lg: "10px" }}
       pr={"5dvw"}
     >
-      <Text color={"grey"}>Lives:</Text>
+      <Text color={color}>Lives:</Text>
       <Flex gap={"5px"} mr={"2dvw"}>
         {children}
       </Flex>
-      <Text color={"grey"}>Score:</Text>
+      <Text color={color}>Score:</Text>
       <Text color={"#5800ff"}>{score}</Text>
     </Flex>
   );

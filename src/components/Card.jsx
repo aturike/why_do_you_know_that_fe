@@ -1,5 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import "../styles/Card.css";
+import { transform } from "framer-motion";
 
 function Card({
   element,
@@ -9,13 +10,11 @@ function Card({
   innerRef,
   target,
 }) {
-  const stylesDrag = isDragging
-    ? {
-        height: "100%",
-      }
-    : { height: "100%" };
+  const stylesDrag = isDragging && "#f0f0f0 0 0 30px";
 
-  const stylesDrop = isDraggingOver ? { width: "50%" } : { width: "50%" };
+  const stylesDrop = isDraggingOver
+    ? { color: "#f0f0f0", transform: "scale(1.2)", border: "5px white solid" }
+    : { color: "grey", transform: "", border: "5px grey solid" };
 
   if (element) {
     return (
@@ -23,6 +22,7 @@ function Card({
         className="card"
         w={{ base: "90px", md: "110px", lg: "200px" }}
         h={{ base: "140px", md: "154px", lg: "280px" }}
+        boxShadow={stylesDrag}
       >
         <div className="border">
           <div className="top">
@@ -61,11 +61,17 @@ function Card({
       <Box
         ref={innerRef}
         className="border-question-card"
-        border={{ base: "none", md: "5px grey solid" }}
-        w={{ base: "10px", md: "120px", lg: "210px" }}
+        border={{ base: "none", md: stylesDrop.border }}
+        w={{ base: "100%", md: "120px", lg: "210px" }}
         h={{ base: "140px", md: "154px", lg: "280px" }}
       >
-        <Text fontSize={{ base: "3rem", lg: "7rem" }}>?</Text>
+        <Text
+          fontSize={{ base: "3rem", lg: "7rem" }}
+          color={stylesDrop.color}
+          transform={stylesDrop.transform}
+        >
+          ?
+        </Text>
       </Box>
 
       // <Box

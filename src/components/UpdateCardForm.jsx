@@ -20,7 +20,6 @@ function UpdateCardForm({
   //upload image
   const uploadImage = async (event) => {
     event.preventDefault();
-    console.log("mat rules");
     const fData = new FormData();
     const image = event.target[2].files[0];
     fData.append("imageUrl", image);
