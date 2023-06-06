@@ -43,7 +43,7 @@ function LoginForm(props) {
   return (
     <div className="signup-form">
       <Text
-        fontSize={{ base: "1.2rem", md: "2rem", lg: "3rem" }}
+        fontSize={{ base: "1.5rem", md: "2rem", lg: "3rem" }}
         className="signup-form-text"
       >
         Login

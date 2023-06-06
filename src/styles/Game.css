@@ -74,18 +74,18 @@ font-family: "Titan One", cursive;
 }
 
 .animate-pulse {
-  -webkit-animation: pulseAnimation 4s infinite;
-  -moz-animation: pulseAnimation 4s infinite;
-  -o-animation: pulseAnimation 4s infinite;
-  animation: pulseAnimation 4s infinite;
+  -webkit-animation: pulseAnimation 2s infinite;
+  -moz-animation: pulseAnimation 2s infinite;
+  -o-animation: pulseAnimation 2s infinite;
+  animation: pulseAnimation 2s infinite;
 }
 
 .animate-pullcard {
   position: relative;
-  -webkit-animation: pullcard 4s infinite 4s;
-  -moz-animation: pullcard 4s infinite 4s;
-  -o-animation: pullcard 4s infinite 4s;
-  animation: pullcard 4s infinite 4s;
+  -webkit-animation: pullcard 4s infinite 2s;
+  -moz-animation: pullcard 4s infinite 2s;
+  -o-animation: pullcard 4s infinite 2s;
+  animation: pullcard 4s infinite 2s;
 }
 
 .score-board {
