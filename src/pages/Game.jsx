@@ -210,7 +210,7 @@ function Game() {
               >
                 {gameSet.map((element, index) => {
                   if (element.value) {
-                    if (index === gameSet.length - 1) {
+                    if (element.target) {
                       return (
                         <Flex
                           key={element._id}
@@ -288,19 +288,6 @@ function Game() {
             </div>
           </DragDropContext>
         </Box>
-        {/* ) : (
-          <Flex w={"100%"} h={"50dvh"} flexDir={"column"} justify={"center"}>
-            <Text
-              fontSize={{ base: "0.8rem", md: "1.5rem" }}
-              lineHeight={"1.6rem"}
-              mb={{ base: "0.2rem", md: "1.5rem" }}
-              align={"center"}
-              color={"white"}
-            >
-              Please turn your device to play the game
-            </Text>
-          </Flex>
-        )} */}
       </Box>
     );
   } else if (score === randomDecks.length && score !== 0) {

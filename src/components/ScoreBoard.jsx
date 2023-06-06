@@ -8,7 +8,7 @@ function ScoreBoard({ children, score, color }) {
       fontSize={{ base: "0.8rem", md: "0.8rem", lg: "1.5rem" }}
       gap={"10px"}
       p={{ base: "5px", lg: "10px" }}
-      pr={"5dvw"}
+      mr={"3dvw"}
     >
       <Text color={color}>Lives:</Text>
       <Flex gap={"5px"} mr={"2dvw"}>

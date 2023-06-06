@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 import axios from "axios";
-import { useBoolean } from "@chakra-ui/react";
+import { Text, useBoolean } from "@chakra-ui/react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import Confetti from "react-confetti";
@@ -59,13 +59,28 @@ function EndGame({ score, lives, gameId, gameUserName }) {
   } else {
     return (
       <div className="win-or-lose">
-        {lives === 0 ? <h1>Lose!</h1> : <h1>Win!</h1>}
-        <h2>
-          Unregistered highscore:<br></br>
-          <span>{score}</span> <br></br> on {gameUserName}`s game!
-        </h2>
-        <h2>Do you want to register your score? Please login or Sign up</h2>
-        {isSignedup && <h2>Sign up complete, please log in</h2>}
+        {!(loginShow || signupShow) && (
+          <div>
+            {lives === 0 ? (
+              <Text fontSize={{ base: "3rem", lg: "4rem" }}>Lose!</Text>
+            ) : (
+              <Text fontSize={{ base: "3rem", lg: "4rem" }}>Win!</Text>
+            )}
+            <Text fontSize={{ base: "1.3rem", lg: "2rem" }} pb={"1rem"}>
+              Unregistered highscore:<br></br>
+              <span>{score}</span> <br></br> on {gameUserName}`s game!
+            </Text>
+          </div>
+        )}
+        <Text fontSize={{ base: "1rem", lg: "1.7rem" }}>
+          Do you want to register your score?
+          <br></br> Please login or Sign up
+        </Text>
+        {isSignedup && (
+          <Text fontSize={{ base: "1rem", lg: "1.7rem" }}>
+            Sign up complete, please log in
+          </Text>
+        )}
         <div className="win-lose-container">
           <button
             className="win-lose-btn"

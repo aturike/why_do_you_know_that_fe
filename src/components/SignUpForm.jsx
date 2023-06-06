@@ -82,174 +82,181 @@ function SignUpForm(props) {
   };
 
   return (
-    <div className="signup-form">
-      <Text
-        fontSize={{ base: "1.5rem", md: "2rem", lg: "3rem" }}
-        className="signup-form-text"
-      >
-        Sign up
-      </Text>
-      {trueCount > 0 && <h1>Fill out the form before submitting</h1>}
-      <form onSubmit={handleSubmit}>
-        <FormControl isInvalid={isError}>
-          <FormLabel fontSize={{ base: "1.2rem", lg: "1.5rem" }}>
-            Email address
-            <input
-              type="email"
-              required
-              value={email}
-              name="email"
-              onChange={(event) => setEmail(event.target.value)}
-              onFocus={handleFocus}
-            />
-          </FormLabel>
+    <Box
+      display={"block"}
+      w={{ base: "95%", md: "65%", lg: "50%", xl: "35%" }}
+      mr={"auto"}
+      ml={"auto"}
+    >
+      <div className="signup-form">
+        <Text
+          fontSize={{ base: "1.5rem", md: "2rem", lg: "3rem" }}
+          className="signup-form-text"
+        >
+          Sign up
+        </Text>
+        {trueCount > 0 && <h1>Fill out the form before submitting</h1>}
+        <form onSubmit={handleSubmit}>
+          <FormControl isInvalid={isError}>
+            <FormLabel fontSize={{ base: "1rem", md: "1.2rem", lg: "1.5rem" }}>
+              Email address
+              <input
+                type="email"
+                required
+                value={email}
+                name="email"
+                onChange={(event) => setEmail(event.target.value)}
+                onFocus={handleFocus}
+              />
+            </FormLabel>
 
-          {showInstructions.email && (
-            <FormHelperText
-              style={{ color: "white" }}
-              fontSize={{ base: "0.8rem", md: "1rem" }}
-              textAlign={"center"}
-            >
-              Enter the email you'd like to receive the newsletter on.
-            </FormHelperText>
-          )}
+            {/* {showInstructions.email && (
+              <FormHelperText
+                style={{ color: "white" }}
+                fontSize={{ base: "0.8rem", md: "1rem" }}
+                textAlign={"center"}
+              >
+                Enter the email you'd like to receive the newsletter on.
+              </FormHelperText>
+            )} */}
 
-          <FormLabel fontSize={{ base: "1.2rem", lg: "1.5rem" }}>
-            Username
-            <input
-              type="text"
-              required
-              value={username}
-              name="username"
-              onChange={(event) => setUsername(event.target.value)}
-              onFocus={handleFocus}
-            />
-          </FormLabel>
-          {showInstructions.username && (
-            <FormHelperText
-              style={{ color: "white" }}
-              fontSize={{ base: "0.8rem", md: "1rem" }}
-              textAlign={"center"}
-            >
-              Enter the username we will make fun of
-            </FormHelperText>
-          )}
-          {isInvalidSignup && (
-            <FormErrorMessage
-              fontSize={{ base: "0.8rem", md: "1rem" }}
-              textAlign={"center"}
-            >
-              Username already exisist
-            </FormErrorMessage>
-          )}
-          <FormLabel fontSize={{ base: "1.2rem", lg: "1.5rem" }}>
-            Password
-            <input
-              type="password"
-              required
-              value={password}
-              name="password"
-              onChange={(event) => setPassword(event.target.value)}
-              onFocus={handleFocus}
-            />
-          </FormLabel>
-          {showInstructions.password && (
-            <div className="password-ctr">
-              {!minLengthRegex.test(password) ? (
-                <FormErrorMessage
-                  fontSize={{ base: "0.8rem", md: "1rem" }}
-                  textAlign={"center"}
-                >
-                  Password has to be at least 6 characters long
-                </FormErrorMessage>
-              ) : (
-                <FormHelperText
-                  style={{ color: "lightgreen" }}
-                  fontSize={{ base: "0.8rem", md: "1rem" }}
-                  textAlign={"center"}
-                >
-                  <CheckIcon /> Password has to be at least 6 characters long
-                </FormHelperText>
-              )}
-              {!specialCharRegex.test(password) ? (
-                <FormErrorMessage
-                  fontSize={{ base: "0.8rem", md: "1rem" }}
-                  textAlign={"center"}
-                >
-                  Password has to contain at least one special character
-                </FormErrorMessage>
-              ) : (
-                <FormHelperText
-                  style={{ color: "lightgreen" }}
-                  fontSize={{ base: "0.8rem", md: "1rem" }}
-                  textAlign={"center"}
-                >
-                  <CheckIcon /> Password has to contain at least one special
-                  character
-                </FormHelperText>
-              )}
-              {!uppercaseRegex.test(password) ? (
-                <FormErrorMessage
-                  fontSize={{ base: "0.8rem", md: "1rem" }}
-                  textAlign={"center"}
-                >
-                  Password has to contain at least one capital letter
-                </FormErrorMessage>
-              ) : (
-                <FormHelperText
-                  style={{ color: "lightgreen" }}
-                  fontSize={{ base: "0.8rem", md: "1rem" }}
-                  textAlign={"center"}
-                >
-                  <CheckIcon /> Password has to contain at least one capital
-                  letter
-                </FormHelperText>
-              )}
-            </div>
-          )}
+            <FormLabel fontSize={{ base: "1rem", md: "1.2rem", lg: "1.5rem" }}>
+              Username
+              <input
+                type="text"
+                required
+                value={username}
+                name="username"
+                onChange={(event) => setUsername(event.target.value)}
+                onFocus={handleFocus}
+              />
+            </FormLabel>
+            {/* {showInstructions.username && (
+              <FormHelperText
+                style={{ color: "white" }}
+                fontSize={{ base: "0.8rem", md: "1rem" }}
+                textAlign={"center"}
+              >
+                Enter the username we will make fun of
+              </FormHelperText>
+            )} */}
+            {isInvalidSignup && (
+              <FormErrorMessage
+                fontSize={{ base: "0.8rem", md: "1rem" }}
+                textAlign={"center"}
+              >
+                Username already exisist
+              </FormErrorMessage>
+            )}
+            <FormLabel fontSize={{ base: "1rem", md: "1.2rem", lg: "1.5rem" }}>
+              Password
+              <input
+                type="password"
+                required
+                value={password}
+                name="password"
+                onChange={(event) => setPassword(event.target.value)}
+                onFocus={handleFocus}
+              />
+            </FormLabel>
+            {showInstructions.password && (
+              <div className="password-ctr">
+                {!minLengthRegex.test(password) ? (
+                  <FormErrorMessage
+                    fontSize={{ base: "0.8rem", md: "1rem" }}
+                    textAlign={"center"}
+                  >
+                    Password has to be at least 6 characters long
+                  </FormErrorMessage>
+                ) : (
+                  <FormHelperText
+                    style={{ color: "lightgreen" }}
+                    fontSize={{ base: "0.8rem", md: "1rem" }}
+                    textAlign={"center"}
+                  >
+                    <CheckIcon /> Password has to be at least 6 characters long
+                  </FormHelperText>
+                )}
+                {!specialCharRegex.test(password) ? (
+                  <FormErrorMessage
+                    fontSize={{ base: "0.8rem", md: "1rem" }}
+                    textAlign={"center"}
+                  >
+                    Password has to contain at least one special character
+                  </FormErrorMessage>
+                ) : (
+                  <FormHelperText
+                    style={{ color: "lightgreen" }}
+                    fontSize={{ base: "0.8rem", md: "1rem" }}
+                    textAlign={"center"}
+                  >
+                    <CheckIcon /> Password has to contain at least one special
+                    character
+                  </FormHelperText>
+                )}
+                {!uppercaseRegex.test(password) ? (
+                  <FormErrorMessage
+                    fontSize={{ base: "0.8rem", md: "1rem" }}
+                    textAlign={"center"}
+                  >
+                    Password has to contain at least one capital letter
+                  </FormErrorMessage>
+                ) : (
+                  <FormHelperText
+                    style={{ color: "lightgreen" }}
+                    fontSize={{ base: "0.8rem", md: "1rem" }}
+                    textAlign={"center"}
+                  >
+                    <CheckIcon /> Password has to contain at least one capital
+                    letter
+                  </FormHelperText>
+                )}
+              </div>
+            )}
 
-          <FormLabel fontSize={{ base: "1.2rem", lg: "1.5rem" }}>
-            Repeat Password
-            <input
-              type="password"
-              required
-              value={passwordRepeat}
-              name="passwordRepeat"
-              onChange={(event) => setPasswordRepeat(event.target.value)}
-              onFocus={handleFocus}
-            />
-          </FormLabel>
-          {showInstructions.passwordRepeat && (
-            <Flex justify={"center"}>
-              {!isError.passwordRepeat ? (
-                <FormHelperText
-                  style={{ color: "lightgreen" }}
-                  fontSize={{ base: "0.8rem", md: "1rem" }}
-                  textAlign={"center"}
-                >
-                  <CheckIcon /> Passwords are matching
-                </FormHelperText>
-              ) : (
-                <FormErrorMessage
-                  fontSize={{ base: "0.8rem", md: "1rem" }}
-                  textAlign={"center"}
-                >
-                  Passwords are not matching
-                </FormErrorMessage>
-              )}
-            </Flex>
-          )}
-        </FormControl>
-        <button className="signup-btn" type="submit">
-          <Box
-            padding={{ base: "5px", md: "8px" }}
-            fontSize={{ base: "1rem", lg: "1.5rem" }}
-          >
-            Sign up
-          </Box>
-        </button>
-      </form>
-    </div>
+            <FormLabel fontSize={{ base: "1rem", md: "1.2rem", lg: "1.5rem" }}>
+              Repeat Password
+              <input
+                type="password"
+                required
+                value={passwordRepeat}
+                name="passwordRepeat"
+                onChange={(event) => setPasswordRepeat(event.target.value)}
+                onFocus={handleFocus}
+              />
+            </FormLabel>
+            {showInstructions.passwordRepeat && (
+              <Flex justify={"center"}>
+                {!isError.passwordRepeat ? (
+                  <FormHelperText
+                    style={{ color: "lightgreen" }}
+                    fontSize={{ base: "0.8rem", md: "1rem" }}
+                    textAlign={"center"}
+                  >
+                    <CheckIcon /> Passwords are matching
+                  </FormHelperText>
+                ) : (
+                  <FormErrorMessage
+                    fontSize={{ base: "0.8rem", md: "1rem" }}
+                    textAlign={"center"}
+                  >
+                    Passwords are not matching
+                  </FormErrorMessage>
+                )}
+              </Flex>
+            )}
+          </FormControl>
+          <button className="signup-btn" type="submit">
+            <Box
+              padding={{ base: "5px", md: "8px" }}
+              fontSize={{ base: "1rem", lg: "1.5rem" }}
+            >
+              Sign up
+            </Box>
+          </button>
+        </form>
+      </div>
+    </Box>
   );
 }
 

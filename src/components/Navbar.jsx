@@ -7,12 +7,10 @@ import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { IconButton } from "@chakra-ui/button";
 import { Box, Flex, Spacer, Text, UnorderedList } from "@chakra-ui/layout";
-import { useWindowSize } from "@uidotdev/usehooks";
 import { FaHome } from "react-icons/fa";
 
 function NavBar({ children, gameNav }) {
   const { token, tokenInfo, logout } = useContext(SessionContext);
-  const windowProps = useWindowSize();
 
   if (gameNav) {
     return (
@@ -77,14 +75,14 @@ function NavBar({ children, gameNav }) {
           <Link to="/">
             <Flex
               className="logo"
-              fontSize={{ base: "1.2rem", md: "1.7rem", lg: "2rem" }}
+              fontSize={{ base: "1.2rem", md: "1.3rem", lg: "2rem" }}
               wrap={"no-wrap"}
               gap={"10px"}
               align={"center"}
               justify={"center"}
             >
               <Text
-                fontSize={{ base: "1.7rem", md: "2.2rem", lg: "3.5rem" }}
+                fontSize={{ base: "1.7rem", md: "2.1rem", lg: "3.5rem" }}
                 align={"center"}
               >
                 <span>Why</span>
