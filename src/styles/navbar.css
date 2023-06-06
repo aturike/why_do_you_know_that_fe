@@ -20,11 +20,12 @@
   font-family: "Titan One", cursive;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
   color: #f0f0f0;
   transition: transform 1s;
   gap: 30px;
-  margin-right: 90px;
+  margin-right: 1dvw;
 }
 
 .navBar li:hover {

@@ -1,3 +1,13 @@
+.signup-form {
+  border: 3px solid #5900ff96;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
 .signup-form-text {
   color: #f0f0f0;
   font-family: "Titan One", cursive;
@@ -16,8 +26,6 @@
   -ms-animation: fadein 2s;
   -o-animation: fadein 2s;
   animation: fadein 2s;
-  height: 60dvh;
-  width: 100%;
 }
 
 .signup-form label {
