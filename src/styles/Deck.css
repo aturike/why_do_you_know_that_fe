@@ -201,7 +201,6 @@ input::file-selector-button {
   flex-direction: column;
   align-items: center;
   padding: "10px";
-  width: 18%;
   min-width: 200px;
 }
 
@@ -257,4 +256,13 @@ input::file-selector-button {
 .centerText {
   text-align: center;
   margin-bottom: 10px;
+}
+
+.image {
+  display: block;
+  margin: 0 auto;
+  height: 150px;
+  width: intrinsic; /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content; /* Firefox/Gecko */
+  width: -webkit-max-content; /* Chrome */
 }

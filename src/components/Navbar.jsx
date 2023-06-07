@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "../styles/navbar.css";
-
 import { SessionContext } from "../contexts/SessionContext";
 import { useContext } from "react";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
@@ -75,14 +74,14 @@ function NavBar({ children, gameNav }) {
           <Link to="/">
             <Flex
               className="logo"
-              fontSize={{ base: "1.2rem", md: "1.3rem", lg: "2rem" }}
+              fontSize={{ base: "1.2rem", md: "1.3rem", lg: "1.6rem" }}
               wrap={"no-wrap"}
               gap={"10px"}
               align={"center"}
               justify={"center"}
             >
               <Text
-                fontSize={{ base: "1.7rem", md: "2.1rem", lg: "3.5rem" }}
+                fontSize={{ base: "1.7rem", md: "2.1rem", lg: "3.4rem" }}
                 align={"center"}
               >
                 <span>Why</span>
@@ -93,7 +92,7 @@ function NavBar({ children, gameNav }) {
           <Spacer />
           <Box display={{ base: "none", md: "block" }}>
             <UnorderedList
-              fontSize={{ base: "1rem", md: "1rem", lg: "1.5rem" }}
+              fontSize={{ base: "1rem", md: "1rem", lg: "1.3rem" }}
             >
               {!token && (
                 <li>

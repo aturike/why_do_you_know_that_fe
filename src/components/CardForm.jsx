@@ -1,28 +1,69 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Deck.css";
+import { Button, Text } from "@chakra-ui/react";
 const { VITE_BACKEND_URL } = import.meta.env;
 
-function CreateCardForm({
-  cards,
-  setCards,
-  index,
-  setCardFields,
-  setValueFields,
-}) {
-  const [img, setImage] = useState(cards[index].img);
-  const [text, setText] = useState(cards[index].text);
-  const [value, setValue] = useState(cards[index].value);
+function CardForm({ cards, setCards, index, setCardFields }) {
   const [isSubmited, setIsSubmited] = useState(false);
+  const [isValueError, setIsValueError] = useState(false);
   const [isUrl, setIsUrl] = useState(false);
 
   const defaultImg =
     "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image-300x225.jpg";
+  const loadingImg =
+    "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921";
 
-  const uploadImage = async (event) => {
-    event.preventDefault();
+  const handleCard = (event) => {
+    const copyArray = [...cards];
+    const copyObject = copyArray[index];
+    let updatedObject = { ...copyObject };
+    if (event.target.name === "img" && event.target.value.length === 0) {
+      updatedObject = {
+        ...copyObject,
+        img: defaultImg,
+      };
+    } else if (event.target.name === "value") {
+      const typevalue = event.target.value;
+      if (!parseInt(typevalue) && typevalue !== "00" && typevalue !== "") {
+        setIsValueError(true);
+      } else if (typevalue.length > 5) {
+        setIsValueError(true);
+      } else {
+        const slicedTypeVal = typevalue.slice(0, 5);
+        const numericValue = slicedTypeVal.replace(/[^\d]/g, "");
+        updatedObject = {
+          ...copyObject,
+          [event.target.name]: parseInt(numericValue) || 0,
+        };
+      }
+    } else {
+      updatedObject = {
+        ...copyObject,
+        [event.target.name]: event.target.value,
+      };
+    }
+
+    copyArray[index] = updatedObject;
+    setCards(copyArray);
+  };
+
+  useEffect(() => {
+    if (
+      cards[index].img.length > 0 &&
+      cards[index].text.length > 0 &&
+      cards[index].value
+    ) {
+      setCardFields(true);
+    } else {
+      setCardFields(false);
+    }
+  }, [cards[index].img, cards[index].text, cards[index].value]);
+
+  const fileUploadChange = async (event) => {
+    setIsSubmited(true);
     const fData = new FormData();
-    const image = event.target[2].files[0];
+    const image = event.target.files[0];
     fData.append("imageUrl", image);
     try {
       const response = await axios.post(
@@ -37,58 +78,28 @@ function CreateCardForm({
           img: response.data,
         };
         copyArray[index] = updatedObject;
-        setImage(response.data);
         setCards(copyArray);
-        setIsSubmited(true);
+        setIsSubmited(false);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleCard = (event) => {
-    const copyArray = [...cards];
-    const copyObject = copyArray[index];
-    let updatedObject;
-    if (event.target.name === "img" && event.target.value.length === 0) {
-      updatedObject = {
-        ...copyObject,
-        img: defaultImg,
-      };
-    } else {
-      updatedObject = {
-        ...copyObject,
-        [event.target.name]: event.target.value,
-      };
-    }
-
-    copyArray[index] = updatedObject;
-    setCards(copyArray);
-  };
-
-  useEffect(() => {
-    if (img.length > 0 && text.length > 0 && value) {
-      setCardFields(true);
-    } else {
-      setCardFields(false);
-    }
-  }, [img, text, value]);
-
-  useEffect(() => {
-    if (img.length === 0) {
-      setImage(defaultImg);
-    }
-  }, [img]);
-
   return (
     <form
       className="cardForm"
-      onSubmit={uploadImage}
       encType="multipart/form-data"
+      onChange={() => {
+        setTimeout(() => {
+          setIsValueError(false);
+        }, 3000);
+      }}
     >
       <h3 className="mainText fontBasics">Card {index + 1}</h3>
       <img
-        src={cards[index].img}
+        className="image"
+        src={isSubmited ? loadingImg : cards[index].img}
         onError={(event) => {
           event.target.src = defaultImg;
           event.onerror = null;
@@ -137,53 +148,48 @@ function CreateCardForm({
           // value={img}
           placeholder="Copy your url"
           onChange={(e) => {
-            setImage(e.target.value);
             handleCard(e);
           }}
         ></input>
       )}
-      {!isUrl && (
+      {!isUrl && !isSubmited && (
         <input
           className="fileInput fontBasics inputG"
           name="img"
           type="file"
           accept="image/jpg, image/png"
+          onChange={fileUploadChange}
           // value={img}
         ></input>
       )}
-      {isSubmited && !isUrl ? (
-        <button className="submitImage inputG" type="submit">
-          Submited!
-        </button>
-      ) : !isUrl ? (
-        <button className="submitImage inputG" type="submit">
-          Submit Image
-        </button>
-      ) : null}
 
       <label className="fontBasics"> Text </label>
       <input
         className="fontBasics inputG"
         name="text"
-        value={text}
+        value={cards[index].text}
         onChange={(e) => {
           handleCard(e);
-          setText(e.target.value);
         }}
       ></input>
       <label className="fontBasics"> Value </label>
       <input
         className="fontBasics inputG"
-        type="number"
+        type="text"
         name="value"
-        value={value}
+        value={cards[index].value}
         onChange={(e) => {
+          setIsValueError(false);
           handleCard(e);
-          setValue(e.target.value);
         }}
       ></input>
+      {isValueError && (
+        <Text fontSize={"0.8rem"} color="red" align={"center"}>
+          Value has to be a number of max 5 digits
+        </Text>
+      )}
     </form>
   );
 }
 
-export default CreateCardForm;
+export default CardForm;

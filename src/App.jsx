@@ -8,10 +8,9 @@ import LandingPage from "./pages/LandingPage";
 import DeckList from "./pages/DeckList";
 import DeckDetails from "./pages/DeckDetails";
 import PrivateRoute from "./components/PrivateRoute";
-import UpdateDeckForm from "./pages/UpdateDeckForm";
 import NavBar from "./components/Navbar";
-import CreateDeck from "./pages/CreateDeck";
 import IntroPage from "./pages/IntroPage";
+import DeckInput from "./pages/DeckInput";
 
 function App() {
   return (
@@ -101,7 +100,7 @@ function App() {
         element={
           <PrivateRoute>
             <NavBar />
-            <CreateDeck />
+            <DeckInput create={true} />
           </PrivateRoute>
         }
       />
@@ -110,7 +109,7 @@ function App() {
         element={
           <PrivateRoute>
             <NavBar />
-            <UpdateDeckForm />
+            <DeckInput create={false} />
           </PrivateRoute>
         }
       />
