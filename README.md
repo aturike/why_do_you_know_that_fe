@@ -1,4 +1,4 @@
-# Findeatre
+# Why do you know that?
 
 [Click here to see deployed app](https://why-do-you-know-that.netlify.app/)
 
