@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { SessionContext } from "../contexts/SessionContext";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function MyHighScore() {
   const [myHighScoreList, setmyHighScoreList] = useState();
@@ -17,7 +18,7 @@ function MyHighScore() {
 
     try {
       const userScores = await axios.get(
-        `https://why-do-i-know-that.adaptable.app/leaderboard/user/${userId}`
+        VITE_BACKEND_URL + `/leaderboard/user/${userId}`
       );
 
       const sliceduserScores = userScores.data
@@ -28,7 +29,7 @@ function MyHighScore() {
 
       if (isAdmin) {
         const gameScores = await axios.get(
-          `https://why-do-i-know-that.adaptable.app/leaderboard/game/admin`
+          VITE_BACKEND_URL + "/leaderboard/game/admin"
         );
 
         const slicedGameScores = gameScores.data
@@ -37,7 +38,7 @@ function MyHighScore() {
         setgameHighscore(slicedGameScores);
       } else {
         const gameScores = await axios.get(
-          `https://why-do-i-know-that.adaptable.app/leaderboard/game/${userId}`
+          VITE_BACKEND_URL + `/leaderboard/game/${userId}`
         );
         const slicedGameScores = gameScores.data
           .sort((a, b) => b.score - a.score)

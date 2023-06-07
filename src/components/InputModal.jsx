@@ -15,6 +15,7 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function InputModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,9 +30,7 @@ function InputModal() {
     } else {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          `https://why-do-i-know-that.adaptable.app/decks/${gameId}`
-        );
+        const response = await axios.get(VITE_BACKEND_URL + `/decks/${gameId}`);
         if (response.status === 200) {
           navigate(`/game/${gameId}`);
         }

@@ -4,6 +4,7 @@ import CreateCardForm from "../components/CreateCardForm";
 import { Link, useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import "../styles/Deck.css";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function CreateDeck() {
   const defaultImg =
@@ -58,10 +59,7 @@ function CreateDeck() {
       cards,
     };
     try {
-      const response = await axios.post(
-        "https://why-do-i-know-that.adaptable.app/decks",
-        payload
-      );
+      const response = await axios.post(VITE_BACKEND_URL + "/decks", payload);
       if (response.status === 201) {
         navigate(`/decklist/${tokenInfo.payload._id}`);
       }

@@ -14,6 +14,7 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function DeckList() {
   const [allDecks, setAllDecks] = useState([]);
@@ -25,7 +26,7 @@ function DeckList() {
   const fetchDecks = async () => {
     try {
       const response = await axios.get(
-        `https://why-do-i-know-that.adaptable.app/decks/user/${tokenInfo.payload._id}`
+        VITE_BACKEND_URL + `/decks/user/${tokenInfo.payload._id}`
       );
       if (response.status === 200) {
         setAllDecks(response.data);

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function UpdateCardForm({
   setValueFields,
@@ -25,7 +26,7 @@ function UpdateCardForm({
     fData.append("imageUrl", image);
     try {
       const response = await axios.post(
-        "https://why-do-i-know-that.adaptable.app/decks/cloudinary",
+        VITE_BACKEND_URL + "/decks/cloudinary",
         fData
       );
       const copyArray = [...thisDeck.cards];

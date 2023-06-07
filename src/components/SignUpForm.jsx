@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CheckIcon } from "@chakra-ui/icons";
 import "../styles/login-signup.css";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function SignUpForm(props) {
   const [email, setEmail] = useState("");
@@ -40,10 +41,11 @@ function SignUpForm(props) {
 
     if (trueCount === 0) {
       try {
-        const response = await axios.post(
-          "https://why-do-i-know-that.adaptable.app/auth/signup",
-          { email, username, password }
-        );
+        const response = await axios.post(VITE_BACKEND_URL + "/auth/signup", {
+          email,
+          username,
+          password,
+        });
 
         if (response.status === 201) {
           if (props.setsignupShow) {
@@ -55,6 +57,7 @@ function SignUpForm(props) {
           }
         }
       } catch (error) {
+        console.log(error);
         if (error.response.status === 409) {
           setIsinvalidSignup(true);
         }

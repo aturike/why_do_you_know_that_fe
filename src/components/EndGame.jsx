@@ -5,6 +5,7 @@ import { Text, useBoolean } from "@chakra-ui/react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import Confetti from "react-confetti";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function EndGame({ score, lives, gameId, gameUserName }) {
   const [userName, setuserName] = useState("");
@@ -33,10 +34,7 @@ function EndGame({ score, lives, gameId, gameUserName }) {
         score: score,
       };
       try {
-        await axios.post(
-          "https://why-do-i-know-that.adaptable.app/leaderboard",
-          sendHighscore
-        );
+        await axios.post(VITE_BACKEND_URL + "/leaderboard", sendHighscore);
       } catch (error) {
         console.log(error);
       }

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 import "../styles/Deck.css";
 
@@ -14,9 +15,7 @@ function DeckDetails() {
 
   const fetchOneDeck = async () => {
     try {
-      const response = await axios.get(
-        `https://why-do-i-know-that.adaptable.app/decks/${deckId}`
-      );
+      const response = await axios.get(VITE_BACKEND_URL + `/decks/${deckId}`);
       if (response.status === 200) {
         setThisDeck(response.data);
       }
@@ -28,7 +27,7 @@ function DeckDetails() {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `https://why-do-i-know-that.adaptable.app/decks/${deckId}`
+        VITE_BACKEND_URL + `/decks/${deckId}`
       );
       if (response.status === 200) {
         setThisDeck(response.data);
