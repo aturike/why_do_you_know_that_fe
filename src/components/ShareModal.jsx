@@ -1,10 +1,10 @@
 import {
   Box,
   Button,
+  Flex,
   Input,
   InputGroup,
   InputLeftAddon,
-  InputLeftElement,
   InputRightElement,
   Modal,
   ModalBody,
@@ -18,13 +18,26 @@ import {
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { CopyIcon } from "@chakra-ui/icons";
+import {
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
 
 function ShareModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [gameId, setGameId] = useState();
+  const [gameId, setGameId] = useState("testtest");
   const [isCopied, setIsCopied] = useState(false);
+
+  const shareUrl = "https://why-do-you-know-that.netlify.app/";
 
   const inputRef = useRef(null);
 
@@ -67,7 +80,7 @@ function ShareModal() {
                 onClick={handleCopy}
                 readOnly
                 cursor={"pointer"}
-                value={"Testtest"}
+                value={gameId}
               ></Input>
               <InputRightElement cursor={"pointer"} onClick={handleCopy}>
                 <CopyIcon w={4} />
@@ -78,6 +91,59 @@ function ShareModal() {
                 GameId copied
               </Text>
             )}
+            <Flex pt={"10px"} justify={"center"} gap="10px">
+              <WhatsappShareButton
+                beforeOnClick={() => {
+                  handleCopy();
+                }}
+                url={shareUrl}
+                title={"My gameId: " + gameId}
+                separator=" "
+              >
+                <WhatsappIcon size={40} round />
+              </WhatsappShareButton>
+              <TwitterShareButton
+                beforeOnClick={() => {
+                  handleCopy();
+                }}
+                title={"My gameId: " + gameId}
+                hashtags={["why-do-you-know-that"]}
+                url={shareUrl}
+              >
+                <TwitterIcon size={40} round />
+              </TwitterShareButton>
+              <FacebookShareButton
+                beforeOnClick={() => {
+                  handleCopy();
+                }}
+                url={shareUrl}
+                quote={"My gameId: " + gameId}
+                hashtag={"#" + gameId}
+              >
+                <FacebookIcon size={40} round />
+              </FacebookShareButton>
+              <LinkedinShareButton
+                beforeOnClick={() => {
+                  handleCopy();
+                }}
+                url={shareUrl}
+                title={"My gameId: " + gameId}
+                summary={"My gameId: " + gameId}
+                source={"My gameId: " + gameId}
+              >
+                <LinkedinIcon size={40} round />
+              </LinkedinShareButton>
+              <EmailShareButton
+                beforeOnClick={() => {
+                  handleCopy();
+                }}
+                url={shareUrl}
+                subject={"Why-do-you-know that game"}
+                body={"My gameId: " + gameId}
+              >
+                <EmailIcon size={40} round />
+              </EmailShareButton>
+            </Flex>
           </ModalBody>
           <ModalFooter>
             <Button
