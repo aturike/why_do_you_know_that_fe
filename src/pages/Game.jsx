@@ -92,13 +92,12 @@ function Game() {
     try {
       if (!userId) {
         const { data } = await axios.get(
-          "https://why-do-you-know-that-dev.adaptable.app/decks/random/admin"
+          VITE_BACKEND_URL + "/decks/random/admin"
         );
         setrandomDecks(data);
       } else {
         const { data } = await axios.get(
-          "https://why-do-you-know-that-dev.adaptable.app" +
-            `/decks/random/${userId}`
+          VITE_BACKEND_URL + `/decks/random/${userId}`
         );
         setrandomDecks(data);
       }
