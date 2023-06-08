@@ -83,6 +83,9 @@ function SignUpForm(props) {
   const handleFocus = (event) => {
     setshowInstructions({ ...showInstructions, [event.target.name]: true });
   };
+  const handleBlur = (event) => {
+    setshowInstructions({ ...showInstructions, [event.target.name]: false });
+  };
 
   return (
     <Box
@@ -110,6 +113,7 @@ function SignUpForm(props) {
                 name="email"
                 onChange={(event) => setEmail(event.target.value)}
                 onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </FormLabel>
 
@@ -132,6 +136,7 @@ function SignUpForm(props) {
                 name="username"
                 onChange={(event) => setUsername(event.target.value)}
                 onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </FormLabel>
             {/* {showInstructions.username && (
@@ -160,6 +165,7 @@ function SignUpForm(props) {
                 name="password"
                 onChange={(event) => setPassword(event.target.value)}
                 onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </FormLabel>
             {showInstructions.password && (
@@ -226,6 +232,7 @@ function SignUpForm(props) {
                 name="passwordRepeat"
                 onChange={(event) => setPasswordRepeat(event.target.value)}
                 onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </FormLabel>
             {showInstructions.passwordRepeat && (

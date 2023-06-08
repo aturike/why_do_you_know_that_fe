@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../styles/Deck.css";
-import { Button, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function CardForm({ cards, setCards, index, setCardFields }) {
@@ -87,15 +87,7 @@ function CardForm({ cards, setCards, index, setCardFields }) {
   };
 
   return (
-    <form
-      className="cardForm"
-      encType="multipart/form-data"
-      onChange={() => {
-        setTimeout(() => {
-          setIsValueError(false);
-        }, 3000);
-      }}
-    >
+    <form className="cardForm" encType="multipart/form-data">
       <h3 className="mainText fontBasics">Card {index + 1}</h3>
       <img
         className="image"
@@ -177,6 +169,9 @@ function CardForm({ cards, setCards, index, setCardFields }) {
         className="fontBasics inputG"
         type="text"
         name="value"
+        onBlur={() => {
+          setIsValueError(false);
+        }}
         value={cards[index].value}
         onChange={(e) => {
           setIsValueError(false);

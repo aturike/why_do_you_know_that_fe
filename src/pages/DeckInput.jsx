@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import "../styles/Deck.css";
 import CardForm from "../components/CardForm";
+import ShareModal from "../components/ShareModal";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function DeckInput({ create }) {
@@ -33,12 +34,6 @@ function DeckInput({ create }) {
     }
   };
 
-  useEffect(() => {
-    if (!create) {
-      fetchOneDeck();
-    }
-  }, []);
-
   const navigate = useNavigate();
   const [title, setTitle] = useState(titleDef);
   const [question, setQuestion] = useState(questionDef);
@@ -55,6 +50,13 @@ function DeckInput({ create }) {
     );
     return newArray.length === 0;
   };
+
+  useEffect(() => {
+    //When update
+    if (!create) {
+      fetchOneDeck();
+    }
+  }, []);
 
   useEffect(() => {
     const mapedArray = cards.map((card) => card.value);
@@ -114,7 +116,7 @@ function DeckInput({ create }) {
         onSubmit={handleSubmit}
       >
         {create && <h1 className="largeFont fontBasics">NEW DECK</h1>}
-        <label className="mainText fontBasics">Title </label>
+        <label className="mainText fontBasics ">Title </label>
         <input
           className="mainInputs fontBasics inputG"
           name="title"
@@ -146,13 +148,13 @@ function DeckInput({ create }) {
           )}
         </div>
       </form>
+      <ShareModal />
       <div className="cardContainer">
         <CardForm
           index={0}
           cards={cards}
           setCards={setCards}
           setCardFields={setCardFields}
-          create={create}
         />
         <CardForm
           index={1}
