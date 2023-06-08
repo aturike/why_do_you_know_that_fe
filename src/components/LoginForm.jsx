@@ -11,6 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import "../styles/login-signup.css";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function LoginForm(props) {
   const navigate = useNavigate();
@@ -22,10 +23,10 @@ function LoginForm(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "https://why-do-i-know-that.adaptable.app/auth/login",
-        { username, password }
-      );
+      const response = await axios.post(VITE_BACKEND_URL + "/auth/login", {
+        username,
+        password,
+      });
 
       if (response.status === 200) {
         setToken(response.data);

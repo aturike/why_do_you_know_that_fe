@@ -1,60 +1,42 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "../styles/Deck.css";
+import { Text } from "@chakra-ui/react";
+const { VITE_BACKEND_URL } = import.meta.env;
 
-function UpdateCardForm({
-  setValueFields,
-  setThisDeck,
-  thisDeck,
-  index,
-  setCardFields,
-}) {
-  const [img, setImage] = useState(thisDeck.cards[index].img);
-  const [text, setText] = useState(thisDeck.cards[index].text);
-  const [value, setValue] = useState(thisDeck.cards[index].value);
+function CardForm({ cards, setCards, index, setCardFields }) {
   const [isSubmited, setIsSubmited] = useState(false);
+  const [isValueError, setIsValueError] = useState(false);
   const [isUrl, setIsUrl] = useState(false);
 
   const defaultImg =
     "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image-300x225.jpg";
-
-  //upload image
-  const uploadImage = async (event) => {
-    event.preventDefault();
-    const fData = new FormData();
-    const image = event.target[2].files[0];
-    fData.append("imageUrl", image);
-    try {
-      const response = await axios.post(
-        "https://why-do-i-know-that.adaptable.app/decks/cloudinary",
-        fData
-      );
-      const copyArray = [...thisDeck.cards];
-      const copyObject = copyArray[index];
-      if (response.status === 201) {
-        const updatedObject = {
-          ...copyObject,
-          img: response.data,
-        };
-        copyArray[index] = updatedObject;
-        setThisDeck({ ...thisDeck, cards: copyArray });
-        setIsSubmited(true);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  // upload image
+  const loadingImg =
+    "https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921";
 
   const handleCard = (event) => {
-    event.preventDefault();
-    const copyArray = [...thisDeck.cards];
+    const copyArray = [...cards];
     const copyObject = copyArray[index];
-    let updatedObject;
+    let updatedObject = { ...copyObject };
     if (event.target.name === "img" && event.target.value.length === 0) {
       updatedObject = {
         ...copyObject,
         img: defaultImg,
       };
+    } else if (event.target.name === "value") {
+      const typevalue = event.target.value;
+      if (!parseInt(typevalue) && typevalue !== "00" && typevalue !== "") {
+        setIsValueError(true);
+      } else if (typevalue.length > 5) {
+        setIsValueError(true);
+      } else {
+        const slicedTypeVal = typevalue.slice(0, 5);
+        const numericValue = slicedTypeVal.replace(/[^\d]/g, "");
+        updatedObject = {
+          ...copyObject,
+          [event.target.name]: parseInt(numericValue) || 0,
+        };
+      }
     } else {
       updatedObject = {
         ...copyObject,
@@ -63,33 +45,53 @@ function UpdateCardForm({
     }
 
     copyArray[index] = updatedObject;
-    setThisDeck({ ...thisDeck, cards: copyArray });
+    setCards(copyArray);
   };
 
   useEffect(() => {
-    if (text.length > 0 && value > 0) {
+    if (
+      cards[index].img.length > 0 &&
+      cards[index].text.length > 0 &&
+      cards[index].value
+    ) {
       setCardFields(true);
     } else {
       setCardFields(false);
     }
-  }, [img, text, value]);
+  }, [cards[index].img, cards[index].text, cards[index].value]);
 
-  const findDuplicates = (array) => {
-    const newArray = array.splice(index, 1);
-    const found = array.includes(Number(newArray[0]));
-    return found;
+  const fileUploadChange = async (event) => {
+    setIsSubmited(true);
+    const fData = new FormData();
+    const image = event.target.files[0];
+    fData.append("imageUrl", image);
+    try {
+      const response = await axios.post(
+        VITE_BACKEND_URL + "/decks/cloudinary",
+        fData
+      );
+      const copyArray = [...cards];
+      const copyObject = copyArray[index];
+      if (response.status === 201) {
+        const updatedObject = {
+          ...copyObject,
+          img: response.data,
+        };
+        copyArray[index] = updatedObject;
+        setCards(copyArray);
+        setIsSubmited(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  useEffect(() => {
-    const mapedArray = thisDeck.cards.map((card) => card.value);
-    setValueFields(!findDuplicates(mapedArray));
-  }, [value]);
-
   return (
-    <form className="cardForm" onSubmit={uploadImage}>
+    <form className="cardForm" encType="multipart/form-data">
       <h3 className="mainText fontBasics">Card {index + 1}</h3>
       <img
-        src={thisDeck.cards[index].img}
+        className="image"
+        src={isSubmited ? loadingImg : cards[index].img}
         onError={(event) => {
           event.target.src = defaultImg;
           event.onerror = null;
@@ -135,55 +137,54 @@ function UpdateCardForm({
         <input
           className="fontBasics inputG"
           name="img"
-          value={img}
+          // value={img}
+          placeholder="Copy your url"
           onChange={(e) => {
             handleCard(e);
-            setImage(e.target.value);
           }}
         ></input>
       )}
-      {!isUrl && (
+      {!isUrl && !isSubmited && (
         <input
           className="fileInput fontBasics inputG"
           name="img"
           type="file"
           accept="image/jpg, image/png"
+          onChange={fileUploadChange}
           // value={img}
         ></input>
       )}
 
-      {isSubmited && !isUrl ? (
-        <button className="submitImage inputG" type="submit">
-          Submited!
-        </button>
-      ) : !isUrl ? (
-        <button className="submitImage inputG" type="submit">
-          Submit Image
-        </button>
-      ) : null}
       <label className="fontBasics"> Text </label>
       <input
         className="fontBasics inputG"
         name="text"
-        value={text}
+        value={cards[index].text}
         onChange={(e) => {
           handleCard(e);
-          setText(e.target.value);
         }}
       ></input>
       <label className="fontBasics"> Value </label>
       <input
         className="fontBasics inputG"
-        type="number"
+        type="text"
         name="value"
-        value={value}
+        onBlur={() => {
+          setIsValueError(false);
+        }}
+        value={cards[index].value}
         onChange={(e) => {
+          setIsValueError(false);
           handleCard(e);
-          setValue(e.target.value);
         }}
       ></input>
+      {isValueError && (
+        <Text fontSize={"0.8rem"} color="red" align={"center"}>
+          Value has to be a number of max 5 digits
+        </Text>
+      )}
     </form>
   );
 }
 
-export default UpdateCardForm;
+export default CardForm;

@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CheckIcon } from "@chakra-ui/icons";
 import "../styles/login-signup.css";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function SignUpForm(props) {
   const [email, setEmail] = useState("");
@@ -40,10 +41,11 @@ function SignUpForm(props) {
 
     if (trueCount === 0) {
       try {
-        const response = await axios.post(
-          "https://why-do-i-know-that.adaptable.app/auth/signup",
-          { email, username, password }
-        );
+        const response = await axios.post(VITE_BACKEND_URL + "/auth/signup", {
+          email,
+          username,
+          password,
+        });
 
         if (response.status === 201) {
           if (props.setsignupShow) {
@@ -55,6 +57,7 @@ function SignUpForm(props) {
           }
         }
       } catch (error) {
+        console.log(error);
         if (error.response.status === 409) {
           setIsinvalidSignup(true);
         }
@@ -79,6 +82,9 @@ function SignUpForm(props) {
 
   const handleFocus = (event) => {
     setshowInstructions({ ...showInstructions, [event.target.name]: true });
+  };
+  const handleBlur = (event) => {
+    setshowInstructions({ ...showInstructions, [event.target.name]: false });
   };
 
   return (
@@ -107,6 +113,7 @@ function SignUpForm(props) {
                 name="email"
                 onChange={(event) => setEmail(event.target.value)}
                 onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </FormLabel>
 
@@ -129,6 +136,7 @@ function SignUpForm(props) {
                 name="username"
                 onChange={(event) => setUsername(event.target.value)}
                 onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </FormLabel>
             {/* {showInstructions.username && (
@@ -157,6 +165,7 @@ function SignUpForm(props) {
                 name="password"
                 onChange={(event) => setPassword(event.target.value)}
                 onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </FormLabel>
             {showInstructions.password && (
@@ -223,6 +232,7 @@ function SignUpForm(props) {
                 name="passwordRepeat"
                 onChange={(event) => setPasswordRepeat(event.target.value)}
                 onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </FormLabel>
             {showInstructions.passwordRepeat && (

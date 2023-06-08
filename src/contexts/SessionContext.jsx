@@ -2,6 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 export const SessionContext = createContext();
 
@@ -20,7 +21,7 @@ const SessionContextProvider = ({ children }) => {
       },
     };
     const response = await axios.get(
-      "https://why-do-i-know-that.adaptable.app/auth/verify",
+      VITE_BACKEND_URL + "/auth/verify",
       headers
     );
     if (response.status === 200) {

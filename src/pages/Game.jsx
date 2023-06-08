@@ -13,6 +13,7 @@ import Confetti from "react-confetti";
 import { useWindowSize } from "@uidotdev/usehooks";
 import NavBar from "../components/Navbar";
 import ScoreBoard from "../components/ScoreBoard";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function Game() {
   const [randomDecks, setrandomDecks] = useState([]);
@@ -61,7 +62,7 @@ function Game() {
     if (userId) {
       try {
         const { data } = await axios.get(
-          `https://why-do-i-know-that.adaptable.app/auth/user/${userId}`
+          VITE_BACKEND_URL + `/auth/user/${userId}`
         );
         setcreatorName(data.username);
       } catch (error) {
@@ -91,12 +92,12 @@ function Game() {
     try {
       if (!userId) {
         const { data } = await axios.get(
-          "https://why-do-i-know-that.adaptable.app/decks/random/admin"
+          VITE_BACKEND_URL + "/decks/random/admin"
         );
         setrandomDecks(data);
       } else {
         const { data } = await axios.get(
-          `https://why-do-i-know-that.adaptable.app/decks/random/${userId}`
+          VITE_BACKEND_URL + `/decks/random/${userId}`
         );
         setrandomDecks(data);
       }
@@ -209,7 +210,7 @@ function Game() {
                 p={"10px"}
               >
                 {gameSet.map((element, index) => {
-                  if (element.value) {
+                  if (typeof element.value === "number") {
                     if (element.target) {
                       return (
                         <Flex

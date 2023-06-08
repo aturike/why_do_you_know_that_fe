@@ -99,7 +99,6 @@ font-family: "Titan One", cursive;
   text-align: center;
   font-family: "Titan One", cursive;
   min-width: 200px;
-  width: 18%;
 }
 
 .navButton:hover {
@@ -200,9 +199,7 @@ input::file-selector-button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: "10px";
-  width: 18%;
-  min-width: 200px;
+  min-width: 16%;
 }
 
 .cardContainer {
@@ -257,4 +254,13 @@ input::file-selector-button {
 .centerText {
   text-align: center;
   margin-bottom: 10px;
+}
+
+.image {
+  display: block;
+  margin: 0 auto;
+  height: 150px;
+  width: intrinsic; /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content; /* Firefox/Gecko */
+  width: -webkit-max-content; /* Chrome */
 }

@@ -1,19 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SessionContext } from "../contexts/SessionContext";
 import "../styles/Deck.css";
 import "../styles/Deck-Table.css";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
-} from "@chakra-ui/react";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+
+import ShareModal from "../components/ShareModal";
+import { Flex, Text } from "@chakra-ui/react";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function DeckList() {
   const [allDecks, setAllDecks] = useState([]);
@@ -25,7 +20,7 @@ function DeckList() {
   const fetchDecks = async () => {
     try {
       const response = await axios.get(
-        `https://why-do-i-know-that.adaptable.app/decks/user/${tokenInfo.payload._id}`
+        VITE_BACKEND_URL + `/decks/user/${tokenInfo.payload._id}`
       );
       if (response.status === 200) {
         setAllDecks(response.data);
@@ -57,6 +52,19 @@ function DeckList() {
     navigate(`/game/${tokenInfo.payload._id}`);
   };
 
+  const handleDelete = async (deckid) => {
+    try {
+      const response = await axios.delete(
+        VITE_BACKEND_URL + `/decks/${deckid}`
+      );
+      if (response.status === 200) {
+        fetchDecks();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchDecks();
   }, []);
@@ -64,12 +72,26 @@ function DeckList() {
   return (
     <div className="mainList">
       <Link className="navButton" to="/createdeck">
-        Create a new deck!
+        <Text fontSize={{ base: "0.8rem", md: "1rem" }}>
+          Create a new deck!
+        </Text>
       </Link>
       {filteredDecks && filteredDecks.length > 0 && (
-        <button className="navButton" onClick={handlePlayGame}>
-          Play your game
-        </button>
+        <Flex
+          gap={"10px"}
+          p={"10px"}
+          justify={"center"}
+          align={"center"}
+          direction={"column"}
+          w={"18%"}
+        >
+          <button className="navButton" onClick={handlePlayGame}>
+            <Text fontSize={{ base: "0.8rem", md: "1rem" }}>
+              Play your game
+            </Text>
+          </button>
+          <ShareModal gameId={tokenInfo.payload._id} />
+        </Flex>
       )}
 
       <h1 className="largeFont fontBasics">Decks</h1>
@@ -81,35 +103,40 @@ function DeckList() {
         value={search}
         onChange={handleSearch}
       ></input>
-      <div className="chakra-table-style">
-        <TableContainer className="fontBasics">
-          <Table variant="unstyled">
-            <TableCaption className="fontBasics">
-              List of Playable Decks
-            </TableCaption>
-            <Thead>
-              <Tr>
-                <Th>Name</Th>
-                <Th>Question</Th>
-                <Th isNumeric>Number of Cards</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {filteredDecks &&
-                filteredDecks.map((deck) => (
-                  <Tr key={deck._id}>
-                    <Link to={`/deckdetails/${deck._id}`}>
-                      <Td className="fontBasics">{deck.title}</Td>
-                    </Link>
-                    <Td className="fontBasics">{deck.question}</Td>
-                    <Td className="fontBasics" isNumeric>
+      <div className="deckInfo-Container">
+        {filteredDecks &&
+          filteredDecks.map((deck) => (
+            <div className="deckInformation" key={deck._id}>
+              <div className="deckInfo-first">
+                <Link to={`/deckdetails/${deck._id}`}>
+                  <h1 className="deckFontClass">{deck.title}</h1>
+                </Link>
+                <h2 className="fontBasics">{deck.question}</h2>
+                {/* <h2 className="fontBasics" isNumeric>
                       {deck.cards.length}
-                    </Td>
-                  </Tr>
-                ))}
-            </Tbody>
-          </Table>
-        </TableContainer>
+                    </h2> */}
+                <hr className="hr-style"></hr>
+              </div>
+              <div className="editDeck-btn">
+                <EditIcon
+                  onClick={() => {
+                    navigate(`/updatedeck/${deck._id}`);
+                  }}
+                  w={5}
+                  h={5}
+                  color="white"
+                />
+                <DeleteIcon
+                  onClick={() => {
+                    handleDelete(deck._id);
+                  }}
+                  w={5}
+                  h={5}
+                  color="white"
+                />
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );
