@@ -34,10 +34,10 @@ import {
 
 function ShareModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [gameId, setGameId] = useState("testtest");
+  const [gameId, setGameId] = useState("648046c5882a58d70b397517");
   const [isCopied, setIsCopied] = useState(false);
 
-  const shareUrl = "https://why-do-you-know-that.netlify.app/";
+  const shareUrl = `https://why-do-you-know-that-dev.netlify.app/game/${gameId}`;
 
   const inputRef = useRef(null);
 
@@ -93,21 +93,14 @@ function ShareModal() {
             )}
             <Flex pt={"10px"} justify={"center"} gap="10px">
               <WhatsappShareButton
-                beforeOnClick={() => {
-                  handleCopy();
-                }}
                 url={shareUrl}
-                title={"My gameId: " + gameId}
+                title={"Hey, try out my amazing game: "}
                 separator=" "
               >
                 <WhatsappIcon size={40} round />
               </WhatsappShareButton>
               <TwitterShareButton
-                beforeOnClick={() => {
-                  handleCopy();
-                }}
-                title={"My gameId: " + gameId}
-                hashtags={["why-do-you-know-that"]}
+                title={"Hey, try out my amazing game: "}
                 url={shareUrl}
               >
                 <TwitterIcon size={40} round />
