@@ -55,10 +55,8 @@ function ShareModal({ gameId }) {
 
   return (
     <>
-      <Box className="btn-alt" onClick={onOpen}>
-        <Text fontSize={{ base: "0.8rem", md: "1.2rem" }}>
-          Share your gameId
-        </Text>
+      <Box className="navButton" onClick={onOpen}>
+        <Text fontSize={{ base: "0.8rem", md: "1rem" }}>Share your game</Text>
       </Box>
 
       <Modal

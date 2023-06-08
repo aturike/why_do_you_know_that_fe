@@ -180,6 +180,19 @@ function DeckInput({ create }) {
           setCardFields={setCardFields}
         />
       </div>
+      <div className="creationContainer" style={{ width: "18%" }}>
+        {formFields ? (
+          valueFields ? (
+            <button type="button" className="submitDeck" onClick={handleSubmit}>
+              {create ? "Create deck!" : "Update deck!"}
+            </button>
+          ) : (
+            <h2 className="errorText">Values must be different</h2>
+          )
+        ) : (
+          <h2 className="errorText">Fill all fields please</h2>
+        )}
+      </div>
 
       <Link className="navButton" to={`/decklist/${tokenInfo.payload._id}`}>
         Go back!

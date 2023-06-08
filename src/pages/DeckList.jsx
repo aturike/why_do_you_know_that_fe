@@ -7,6 +7,7 @@ import "../styles/Deck-Table.css";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
 import ShareModal from "../components/ShareModal";
+import { Flex, Text } from "@chakra-ui/react";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function DeckList() {
@@ -57,7 +58,7 @@ function DeckList() {
         VITE_BACKEND_URL + `/decks/${deckid}`
       );
       if (response.status === 200) {
-        fetchDecks()
+        fetchDecks();
       }
     } catch (error) {
       console.log(error);
@@ -71,15 +72,26 @@ function DeckList() {
   return (
     <div className="mainList">
       <Link className="navButton" to="/createdeck">
-        Create a new deck!
+        <Text fontSize={{ base: "0.8rem", md: "1rem" }}>
+          Create a new deck!
+        </Text>
       </Link>
       {filteredDecks && filteredDecks.length > 0 && (
-        <div>
+        <Flex
+          gap={"10px"}
+          p={"10px"}
+          justify={"center"}
+          align={"center"}
+          direction={"column"}
+          w={"18%"}
+        >
           <button className="navButton" onClick={handlePlayGame}>
-            Play your game
+            <Text fontSize={{ base: "0.8rem", md: "1rem" }}>
+              Play your game
+            </Text>
           </button>
           <ShareModal gameId={tokenInfo.payload._id} />
-        </div>
+        </Flex>
       )}
 
       <h1 className="largeFont fontBasics">Decks</h1>
