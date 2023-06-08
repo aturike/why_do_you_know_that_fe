@@ -4,7 +4,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import "../styles/Deck.css";
 import CardForm from "../components/CardForm";
-import ShareModal from "../components/ShareModal";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function DeckInput({ create }) {
@@ -148,7 +147,7 @@ function DeckInput({ create }) {
           )}
         </div>
       </form>
-      <ShareModal />
+
       <div className="cardContainer">
         <CardForm
           index={0}

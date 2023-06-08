@@ -32,12 +32,12 @@ import {
   WhatsappShareButton,
 } from "react-share";
 
-function ShareModal() {
+function ShareModal({ gameId }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [gameId, setGameId] = useState("648046c5882a58d70b397517");
+
   const [isCopied, setIsCopied] = useState(false);
 
-  const shareUrl = `https://why-do-you-know-that-dev.netlify.app/game/${gameId}`;
+  const shareUrl = `https://why-do-you-know-that.netlify.app/game/${gameId}`;
 
   const inputRef = useRef(null);
 
@@ -106,23 +106,15 @@ function ShareModal() {
                 <TwitterIcon size={40} round />
               </TwitterShareButton>
               <FacebookShareButton
-                beforeOnClick={() => {
-                  handleCopy();
-                }}
                 url={shareUrl}
-                quote={"My gameId: " + gameId}
-                hashtag={"#" + gameId}
+                quote={"Hey, try out my amazing game: "}
+                hashtag={"#why-do-you-know-that"}
               >
                 <FacebookIcon size={40} round />
               </FacebookShareButton>
               <LinkedinShareButton
-                beforeOnClick={() => {
-                  handleCopy();
-                }}
                 url={shareUrl}
-                title={"My gameId: " + gameId}
-                summary={"My gameId: " + gameId}
-                source={"My gameId: " + gameId}
+                title={"Hey, try out my amazing game: "}
               >
                 <LinkedinIcon size={40} round />
               </LinkedinShareButton>
@@ -132,7 +124,7 @@ function ShareModal() {
                 }}
                 url={shareUrl}
                 subject={"Why-do-you-know that game"}
-                body={"My gameId: " + gameId}
+                body={"Hey, try out my amazing game: "}
               >
                 <EmailIcon size={40} round />
               </EmailShareButton>

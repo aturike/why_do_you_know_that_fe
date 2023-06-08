@@ -14,6 +14,7 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
+import ShareModal from "../components/ShareModal";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function DeckList() {
@@ -68,9 +69,12 @@ function DeckList() {
         Create a new deck!
       </Link>
       {filteredDecks && filteredDecks.length > 0 && (
-        <button className="navButton" onClick={handlePlayGame}>
-          Play your game
-        </button>
+        <div>
+          <button className="navButton" onClick={handlePlayGame}>
+            Play your game
+          </button>
+          <ShareModal gameId={tokenInfo.payload._id} />
+        </div>
       )}
 
       <h1 className="largeFont fontBasics">Decks</h1>
