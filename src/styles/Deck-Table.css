@@ -1,19 +1,46 @@
-.chakra-table-style {
-  border: 5px #ffc600 solid;
-  padding: 20px;
+@import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
+
+.deckInfo-Container {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid #5800ff;
   border-radius: 10px;
+  min-width: 350px;
+  width: 40%;
+  gap: 10px;
+  padding: 20px;
+}
+
+.hr-style {
+  width: 40%;
+  border: none;
+  border-bottom: solid 5px #5800ff;
+  border-radius: 3px;
+  margin: 5px;
+}
+
+.deckFontClass {
+  font-size: 1.5rem;
+  color: white;
+  font-family: "Titan One", cursive;
+}
+
+.deckInfo-first {
   width: 80%;
 }
 
-.chakra-table-style Th {
-  color: #f0f0f0;
-  font-family: "Titan One", cursive;
-  font-size: 1.5rem;
-  text-align: center;
+.deckInformation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.editDeck-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.chakra-table-style Td {
-  text-align: center;
+.editDeck-btn:hover{
+  cursor: pointer;
+  color: #f5018a;
 }
-
-
