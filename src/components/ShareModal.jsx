@@ -3,6 +3,8 @@ import {
   Button,
   Input,
   InputGroup,
+  InputLeftAddon,
+  InputLeftElement,
   InputRightElement,
   Modal,
   ModalBody,
@@ -54,31 +56,27 @@ function ShareModal() {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader fontWeight={"400"}>
-            <Text fontSize={{ base: "1rem", md: "1.2rem" }}>Your gameId</Text>
-          </ModalHeader>
+          <ModalHeader fontWeight={"400"}></ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <InputGroup>
+              <InputLeftAddon children="Your gameID" />
               <Input
                 fontWeight={"100"}
                 ref={inputRef}
+                onClick={handleCopy}
+                readOnly
+                cursor={"pointer"}
                 value={"Testtest"}
               ></Input>
-              <InputRightElement>
-                <Button
-                  variant={"outline"}
-                  colorScheme="black"
-                  fontWeight={"400"}
-                  fontSize={{ base: "0.8rem" }}
-                  onClick={handleCopy}
-                >
-                  <CopyIcon w={4} />
-                </Button>
+              <InputRightElement cursor={"pointer"} onClick={handleCopy}>
+                <CopyIcon w={4} />
               </InputRightElement>
             </InputGroup>
             {isCopied && (
-              <Text fontSize={{ base: "0.8rem" }}>GameId copied</Text>
+              <Text fontSize={{ base: "0.8rem" }} align={"center"}>
+                GameId copied
+              </Text>
             )}
           </ModalBody>
           <ModalFooter>
