@@ -52,8 +52,8 @@ function MyHighScore() {
 
   if (myHighScoreList && gameHighscore) {
     return (
-      <div className="profileText">
-        <div>
+      <div className="profileText profile-container">
+        <div className="high-score-container">
           <h2 className="mainText">My Highscore</h2>
           <div className="columns">
             <ul className="listed">
@@ -72,7 +72,7 @@ function MyHighScore() {
             </ul>
           </div>
         </div>
-        <div>
+        <div className="high-score-container">
           <h2 className="mainText">My Game's Highscore</h2>
           <div className="columns">
             <ul className="listed">

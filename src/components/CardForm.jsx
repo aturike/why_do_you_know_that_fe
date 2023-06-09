@@ -101,14 +101,14 @@ function CardForm({ cards, setCards, index, setCardFields }) {
       {isUrl ? (
         <div className="imageForm">
           <button
-            className="imageButtonOn inputG"
+            className="imageButtonLeft imageButtonOn inputG"
             type="button"
             onClick={() => setIsUrl(true)}
           >
             Copy Url
           </button>
           <button
-            className="imageButtonOff inputG"
+            className="imageButtonRigth imageButtonOff inputG"
             type="button"
             onClick={() => setIsUrl(false)}
           >
@@ -118,14 +118,14 @@ function CardForm({ cards, setCards, index, setCardFields }) {
       ) : (
         <div className="imageForm">
           <button
-            className="imageButtonOff inputG"
+            className="imageButtonLeft imageButtonOff inputG"
             type="button"
             onClick={() => setIsUrl(true)}
           >
             Copy Url
           </button>
           <button
-            className="imageButtonOn inputG"
+            className="imageButtonRigth imageButtonOn inputG"
             type="button"
             onClick={() => setIsUrl(false)}
           >
