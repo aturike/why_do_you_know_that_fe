@@ -417,3 +417,22 @@ font-family: "Titan One", cursive;
   flex-direction: column;
   list-style-type: none;
 }
+
+/* PROFILE */
+
+.high-score-container {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid #5800ff;
+  border-radius: 10px;
+  min-width: 350px;
+  width: 40%;
+  gap: 10px;
+  padding: 20px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
