@@ -163,7 +163,7 @@ input::file-selector-button {
   padding: 0 5px 0 5px;
   border: none;
   background-color: #f5018a;
-
+  pointer-events: none;
   color: #f0f0f0;
   font-weight: 300;
   font-size: 0.85rem;
@@ -176,6 +176,7 @@ input::file-selector-button {
 
 .imageButtonOff {
   padding: 0 5px 0 5px;
+
   border: none;
   background-color: #3d3d3d;
 
@@ -187,6 +188,9 @@ input::file-selector-button {
   font-family: "Titan One", cursive;
   height: 30px;
   width: 50%;
+}
+.imageButtonOff:hover {
+  color: #f0f0f0;
 }
 
 .imageForm {
