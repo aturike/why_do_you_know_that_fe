@@ -110,6 +110,7 @@ font-family: "Titan One", cursive;
 .submitDeck {
   margin-top: 15px;
   padding: 0 5px 0 5px;
+  align-self: center;
   border: none;
   background-color: #f5018a;
   border-radius: 10px;
@@ -122,7 +123,7 @@ font-family: "Titan One", cursive;
   font-family: "Titan One", cursive;
   height: 50px;
   min-width: 200px;
-  width: 100%;
+  width: 16%;
 }
 
 .submitDeck:hover {
